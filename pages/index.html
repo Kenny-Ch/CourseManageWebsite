@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <!--     Favicon Icon-->
+    <link rel="stylesheet" href="css/comm.css">
+    <link rel="icon" type="image/jpg" href="images/personal/a.jpg">
+    <!-- Bootstrap core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome-->
+    <link href="vendor/fontawesome/css/font-awesome.min.css" rel="stylesheet">
+    <!-- Material Design Icons -->
+    <link href="vendor/icons/css/materialdesignicons.min.css" media="all" rel="stylesheet" type="text/css">
+    <!-- Slick -->
+    <!--    <link href="vendor/slick-master/slick/slick.css" rel="stylesheet" type="text/css">-->
+    <!-- Lightgallery -->
+    <link href="vendor/lightgallery-master/dist/css/lightgallery.min.css" rel="stylesheet">
+    <!-- Select2 CSS -->
+    <!--    <link href="vendor/select2/css/select2-bootstrap.css" />-->
+    <link href="vendor/select2/css/select2.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    <title>我的课程 | 学者网</title>
+    <script type="text/javascript" src="header.js" style="padding: 0px;"></script>
+</head>
+<body style="background-image: url('images/personal/whitepaper.jpg')">
+<div class="main-page py-5 second">
+    <div class="container">
+        <div class="modal fade" id="scrollmodal" tabindex="-1" role="dialog" aria-labelledby="scrollmodalLabel"
+             aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="scrollmodalLabel">创建课程</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div style="margin-top: 15px; margin-bottom: 20px;">
+                            <form action="" role="form">
+                                <div class="form-group">
+                                    <label for="yuming" class="col-sm-4 control-label">课程域名:</label>
+                                    <div class="col-sm-10"><input class="form-control" id="yuming" type="text"></div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="name" class="col-sm-4 control-label">课程名称:</label>
+                                    <div class="col-sm-10"><input class="form-control" id="name" type="text"></div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="jieshao" class="col-sm-4 control-label">课程简介:</label>
+                                    <textarea class="form-control" id="jieshao" name="jieshao" rows="13""></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label for="img-put" class="control-label">课程封面图:</label>
+                                    <input class="custom-file" type="file" id="img-put"
+                                           accept="image/gif,image/jpeg,image/jpg,image/png">
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
+                        <button type="button" class="btn btn-primary">确定</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--课程div，用不同的div展示不同的内容-->
+        <style type="text/css">
+            #userProfileTitle {
+                margin-left: 5px;
+                width: 150px;
+                text-align: center;
+                font-size: 16px;
+                background-color: #399;
+                float: left;
+                padding: 10px;
+                font-weight: bold;
+                color: #fff;
+            }
+        </style>
+        <!--            copy-->
+        <nav class="navbar navbar-expand-lg rounded">
+            <div class="container">
+            <ul class="nav nav-tabs" id="myTab" role="tablist" style="min-width: 80%;">
+                <li class="nav-item">
+                    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab"
+                       aria-controls="home" aria-selected="true">所有课程</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab"
+                       aria-controls="profile" aria-selected="false">创建的课程</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab"
+                       aria-controls="contact" aria-selected="false">学习的课程</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav mr-auto nav-tabs">
+                <li class="nav-item">
+                    <input class="" type="image" src="images/personal/plus2.png" data-toggle="modal"
+                           data-target="#scrollmodal" style="height: 36px;outline: none;"/>
+                </li>
+            </ul>
+            </div>
+        </nav>
+        <!--            <div class="tab-content pl-3 p-1" id="myTabContent2">-->
+        <!--                <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">-->
+        <!--                    <h3>Home</h3>-->
+        <!--                    <p>Some content here.</p>-->
+        <!--                </div>-->
+        <!--                <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">-->
+        <!--                    <h3>Menu 1</h3>-->
+        <!--                    <p>Some content here.</p>-->
+        <!--                </div>-->
+        <!--                <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">-->
+        <!--                    <h3>Menu 2</h3>-->
+        <!--                    <p>Some content here.</p>-->
+        <!--                </div>-->
+        <!--            </div>-->
+        <!--            copy-->
+        <!--创建的课程-->
+        <div class="tab-content pl-3 p-1" id="myTabContent">
+            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                <ul class="slider" id="courseEvents">
+                    <!--所有课程里各个课程-->
+                    <div id="homeworkRemind14360">
+                        <div style="line-height:6px;min-height:6px;"><a href="perInfo.html" target="_blank">
+                            <img src="images/personal/jsjkxdl.jpg" class="user_img"
+                                 style="margin-top:16px;margin-left:16px;height:56px;width:56px;"></a></div>
+                        <p style="padding-left:94px;margin-top:-50px;font-size: 25px">
+                            <a style="text-decoration:none;font-size:25px;color: black" href="#"
+                               target="_blank">计算机科学导论</a>
+                            <!--                            <a style="text-decoration:none;font-size:15px;" href="./course/S_homeworkList.html?courseId=1428" target="_blank">上机实验13&nbsp;考级复习二</a>-->
+                        </p>
+                        <div style="border-bottom:1px solid #cfd2d5;height:1px;box-shadow:0px 1px 7px rgba(0, 0, 0, 0.24);margin-top:35px;margin-bottom:10px;width:900px;"></div>
+                    </div>
+                    <div id="homeworkRemind14361">
+                        <div style="line-height:72px;min-height:72px;"><a href="perInfo.html" target="_blank">
+                            <img src="images/personal/jsjkxdl.jpg" class="user_img"
+                                 style="margin-top:16px;margin-left:16px;height:56px;width:56px;"></a></div>
+                        <p style="padding-left:94px;margin-top:-50px;font-size: 25px">
+                            <a style="text-decoration:none;font-size:25px;color: black" href="#"
+                               target="_blank">计算机科学导论</a>
+                            <!--                            <a style="text-decoration:none;font-size:15px;" href="./course/S_homeworkList.html?courseId=1428" target="_blank">上机实验13&nbsp;考级复习二</a>-->
+                        </p>
+                        <div style="border-bottom:1px solid #cfd2d5;height:1px;box-shadow:0px 1px 7px rgba(0, 0, 0, 0.24);margin-top:35px;margin-bottom:10px;width:900px;"></div>
+                    </div>
+                    <div id="homeworkRemind14362">
+                        <div style="line-height:72px;min-height:72px;"><a href="perInfo.html" target="_blank">
+                            <img src="images/personal/jsjkxdl.jpg" class="user_img"
+                                 style="margin-top:16px;margin-left:16px;height:56px;width:56px;"></a></div>
+                        <p style="padding-left:94px;margin-top:-50px;font-size: 25px">
+                            <a style="text-decoration:none;font-size:25px;color: black" href="#"
+                               target="_blank">计算机科学导论</a>
+                            <!--                            <a style="text-decoration:none;font-size:15px;" href="./course/S_homeworkList.html?courseId=1428" target="_blank">上机实验13&nbsp;考级复习二</a>-->
+                        </p>
+                        <div style="border-bottom:1px solid #cfd2d5;height:1px;box-shadow:0px 1px 7px rgba(0, 0, 0, 0.24);margin-top:35px;margin-bottom:10px;width:900px;"></div>
+                    </div>
+                    <div id="homeworkRemind14363">
+                        <div style="line-height:72px;min-height:72px;"><a href="perInfo.html" target="_blank">
+                            <img src="images/personal/jisuanjijc.jpg" class="user_img"
+                                 style="margin-top:16px;margin-left:16px;height:56px;width:56px;"></a></div>
+                        <p style="padding-left:94px;margin-top:-50px;font-size: 25px">
+                            <a style="text-decoration:none;font-size:25px;color: black" href="#"
+                               target="_blank">计算机基础实验</a>
+                            <!--                            <a style="text-decoration:none;font-size:15px;" href="./course/S_homeworkList.html?courseId=1428" target="_blank">上机实验13&nbsp;考级复习二</a>-->
+                        </p>
+                        <div style="border-bottom:1px solid #cfd2d5;height:1px;box-shadow:0px 1px 7px rgba(0, 0, 0, 0.24);margin-top:35px;margin-bottom:10px;width:900px;"></div>
+                    </div>
+                    <div id="homeworkRemind14364">
+                        <div style="line-height:72px;min-height:72px;"><a href="perInfo.html" target="_blank">
+                            <img src="images/personal/jisuanjijc.jpg" class="user_img"
+                                 style="margin-top:16px;margin-left:16px;height:56px;width:56px;"></a></div>
+                        <p style="padding-left:94px;margin-top:-50px;font-size: 25px">
+                            <a style="text-decoration:none;font-size:25px;color: black" href="#"
+                               target="_blank">计算机基础实验</a>
+                            <!--                            <a style="text-decoration:none;font-size:15px;" href="./course/S_homeworkList.html?courseId=1428" target="_blank">上机实验13&nbsp;考级复习二</a>-->
+                        </p>
+                        <div style="border-bottom:1px solid #cfd2d5;height:1px;box-shadow:0px 1px 7px rgba(0, 0, 0, 0.24);margin-top:35px;margin-bottom:10px;width:900px;"></div>
+                    </div>
+                    <div id="homeworkRemind14365">
+                        <div style="line-height:72px;min-height:72px;"><a href="perInfo.html" target="_blank">
+                            <img src="images/personal/jisuanjijc.jpg" class="user_img"
+                                 style="margin-top:16px;margin-left:16px;height:56px;width:56px;"></a></div>
+                        <p style="padding-left:94px;margin-top:-50px;font-size: 25px">
+                            <a style="text-decoration:none;font-size:25px;color: black" href="#"
+                               target="_blank">计算机基础实验</a>
+                            <!--                            <a style="text-decoration:none;font-size:15px;" href="./course/S_homeworkList.html?courseId=1428" target="_blank">上机实验13&nbsp;考级复习二</a>-->
+                        </p>
+                        <div style="border-bottom:1px solid #cfd2d5;height:1px;box-shadow:0px 1px 7px rgba(0, 0, 0, 0.24);margin-top:35px;margin-bottom:10px;width:900px;"></div>
+                    </div>
+                </ul>
+            </div>
+            <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                <div class="tabs_stc">共创建<a id="courseNum">&nbsp;0&nbsp;</a>门课程</div>
+                <div id="pl_event_eventIntro" class="ev_intro">
+                    <div class="evlist_main clearfix">
+                        <ul id="pl_event_eventList" style="margin-top: 0px;">
+                            <table class="datalist" style="margin-left:0px;" id="datalist1">
+                                <tbody id="createCourse">
+                                <div class="not-conts">你还没有创建任何课程，可以先<a href="#" data-toggle="modal"
+                                                                        data-target="#scrollmodal"
+                                                                        class="find-course">去创建课程</a></div>
+                                </tbody>
+                            </table>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!--            学习的课程-->
+            <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+                <div class="main-page best-selling">
+                    <div class="view_slider recommended pt-5">
+                        <div class="container">
+                            <h3>正在学习6门课程</h3>
+                        </div>
+                        <div class="container">
+                            <div class="row">
+<!--                                一个学习的课程-->
+                                <div class="col-md-3">
+                                    <a href="CreateCourse/announcement.html">
+                                        <img class="img-fluid" src="images/personal/jsjkxdl.jpg" />
+                                    </a>
+                                    <div class="inner-slider">
+                                        <div class="inner-wrapper">
+                                            <div class="d-flex align-items-center">
+                              <span class="seller-image">
+                              <img class="img-fluid"
+                                   src="images/personal/jsjkxdl.jpg"
+                                   alt='' />
+                              </span>
+                                                <span class="seller-name">
+                              <a href="CreateCourse/announcement.html">计算机科学导论</a>
+                              </span>
+                                            </div>
+                                            <div class="content-info">
+                                                <div class="rating-wrapper">
+<!--                                 <span class="gig-rating text-body-2">-->
+<!--                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1792 1792" width="15" height="15">-->
+<!--                                       <path fill="currentColor"-->
+<!--                                             d="M1728 647q0 22-26 48l-363 354 86 500q1 7 1 20 0 21-10.5 35.5t-30.5 14.5q-19 0-40-12l-449-236-449 236q-22 12-40 12-21 0-31.5-14.5t-10.5-35.5q0-6 2-20l86-500-364-354q-25-27-25-48 0-37 56-46l502-73 225-455q19-41 49-41t49 41l225 455 502 73q56 9 56 46z">-->
+<!--                                       </path>-->
+<!--                                    </svg>-->
+<!--                                    5.0-->
+<!--                                    <span>(7)</span>-->
+<!--                                 </span>-->
+                                                </div>
+                                            </div>
+                                            <div class="footer row" style="font-size: 15px;">
+                                                <div class="price col-sm-6" style="">
+                                                    <a href="CreateCourse/announcement.html">
+                                                        进入课程
+                                                    </a>
+                                                </div>
+                                                <div class="price col-sm-6" style="">
+                                                    <a href="#">
+                                                        退出课程
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+<!--                                一个学习的课程-->
+                                <div class="col-md-3">
+                                    <a href="CreateCourse/announcement.html">
+                                        <img class="img-fluid" src="images/personal/jsjkxdl.jpg" />
+                                    </a>
+                                    <div class="inner-slider">
+                                        <div class="inner-wrapper">
+                                            <div class="d-flex align-items-center">
+                              <span class="seller-image">
+                              <img class="img-fluid"
+                                   src="images/personal/jsjkxdl.jpg"
+                                   alt='' />
+                              </span>
+                                                <span class="seller-name">
+                              <a href="CreateCourse/announcement.html">计算机科学导论</a>
+                              </span>
+                                            </div>
+                                            <div class="content-info">
+                                                <div class="rating-wrapper">
+                                                    <!--                                 <span class="gig-rating text-body-2">-->
+                                                    <!--                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1792 1792" width="15" height="15">-->
+                                                    <!--                                       <path fill="currentColor"-->
+                                                    <!--                                             d="M1728 647q0 22-26 48l-363 354 86 500q1 7 1 20 0 21-10.5 35.5t-30.5 14.5q-19 0-40-12l-449-236-449 236q-22 12-40 12-21 0-31.5-14.5t-10.5-35.5q0-6 2-20l86-500-364-354q-25-27-25-48 0-37 56-46l502-73 225-455q19-41 49-41t49 41l225 455 502 73q56 9 56 46z">-->
+                                                    <!--                                       </path>-->
+                                                    <!--                                    </svg>-->
+                                                    <!--                                    5.0-->
+                                                    <!--                                    <span>(7)</span>-->
+                                                    <!--                                 </span>-->
+                                                </div>
+                                            </div>
+                                            <div class="footer row" style="font-size: 15px;">
+                                                <div class="price col-sm-6" style="">
+                                                    <a href="#">
+                                                        进入课程
+                                                    </a>
+                                                </div>
+                                                <div class="price col-sm-6" style="">
+                                                    <a href="#">
+                                                        退出课程
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--                                一个学习的课程-->
+                                <div class="col-md-3">
+                                    <a href="CreateCourse/announcement.html">
+                                        <img class="img-fluid" src="images/personal/jsjkxdl.jpg" />
+                                    </a>
+                                    <div class="inner-slider">
+                                        <div class="inner-wrapper">
+                                            <div class="d-flex align-items-center">
+                              <span class="seller-image">
+                              <img class="img-fluid"
+                                   src="images/personal/jsjkxdl.jpg"
+                                   alt='' />
+                              </span>
+                                                <span class="seller-name">
+                              <a href="#">计算机科学导论</a>
+                              </span>
+                                            </div>
+                                            <div class="content-info">
+                                                <div class="rating-wrapper">
+                                                    <!--                                 <span class="gig-rating text-body-2">-->
+                                                    <!--                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1792 1792" width="15" height="15">-->
+                                                    <!--                                       <path fill="currentColor"-->
+                                                    <!--                                             d="M1728 647q0 22-26 48l-363 354 86 500q1 7 1 20 0 21-10.5 35.5t-30.5 14.5q-19 0-40-12l-449-236-449 236q-22 12-40 12-21 0-31.5-14.5t-10.5-35.5q0-6 2-20l86-500-364-354q-25-27-25-48 0-37 56-46l502-73 225-455q19-41 49-41t49 41l225 455 502 73q56 9 56 46z">-->
+                                                    <!--                                       </path>-->
+                                                    <!--                                    </svg>-->
+                                                    <!--                                    5.0-->
+                                                    <!--                                    <span>(7)</span>-->
+                                                    <!--                                 </span>-->
+                                                </div>
+                                            </div>
+                                            <div class="footer row" style="font-size: 15px;">
+                                                <div class="price col-sm-6" style="">
+                                                    <a href="#">
+                                                        进入课程
+                                                    </a>
+                                                </div>
+                                                <div class="price col-sm-6" style="">
+                                                    <a href="#">
+                                                        退出课程
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--                                一个学习的课程-->
+                                <div class="col-md-3">
+                                    <a href="CreateCourse/announcement.html">
+                                        <img class="img-fluid" src="images/personal/jsjkxdl.jpg" />
+                                    </a>
+                                    <div class="inner-slider">
+                                        <div class="inner-wrapper">
+                                            <div class="d-flex align-items-center">
+                              <span class="seller-image">
+                              <img class="img-fluid"
+                                   src="images/personal/jsjkxdl.jpg"
+                                   alt='' />
+                              </span>
+                                                <span class="seller-name">
+                              <a href="#">计算机科学导论</a>
+                              </span>
+                                            </div>
+                                            <div class="content-info">
+                                                <div class="rating-wrapper">
+                                                    <!--                                 <span class="gig-rating text-body-2">-->
+                                                    <!--                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1792 1792" width="15" height="15">-->
+                                                    <!--                                       <path fill="currentColor"-->
+                                                    <!--                                             d="M1728 647q0 22-26 48l-363 354 86 500q1 7 1 20 0 21-10.5 35.5t-30.5 14.5q-19 0-40-12l-449-236-449 236q-22 12-40 12-21 0-31.5-14.5t-10.5-35.5q0-6 2-20l86-500-364-354q-25-27-25-48 0-37 56-46l502-73 225-455q19-41 49-41t49 41l225 455 502 73q56 9 56 46z">-->
+                                                    <!--                                       </path>-->
+                                                    <!--                                    </svg>-->
+                                                    <!--                                    5.0-->
+                                                    <!--                                    <span>(7)</span>-->
+                                                    <!--                                 </span>-->
+                                                </div>
+                                            </div>
+                                            <div class="footer row" style="font-size: 15px;">
+                                                <div class="price col-sm-6" style="">
+                                                    <a href="#">
+                                                        进入课程
+                                                    </a>
+                                                </div>
+                                                <div class="price col-sm-6" style="">
+                                                    <a href="#">
+                                                        退出课程
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--                                一个学习的课程-->
+                                <div class="col-md-3">
+                                    <a href="CreateCourse/announcement.html">
+                                        <img class="img-fluid" src="images/personal/jsjkxdl.jpg" />
+                                    </a>
+                                    <div class="inner-slider">
+                                        <div class="inner-wrapper">
+                                            <div class="d-flex align-items-center">
+                              <span class="seller-image">
+                              <img class="img-fluid"
+                                   src="images/personal/jsjkxdl.jpg"
+                                   alt='' />
+                              </span>
+                                                <span class="seller-name">
+                              <a href="#">计算机科学导论</a>
+                              </span>
+                                            </div>
+                                            <div class="content-info">
+                                                <div class="rating-wrapper">
+                                                    <!--                                 <span class="gig-rating text-body-2">-->
+                                                    <!--                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1792 1792" width="15" height="15">-->
+                                                    <!--                                       <path fill="currentColor"-->
+                                                    <!--                                             d="M1728 647q0 22-26 48l-363 354 86 500q1 7 1 20 0 21-10.5 35.5t-30.5 14.5q-19 0-40-12l-449-236-449 236q-22 12-40 12-21 0-31.5-14.5t-10.5-35.5q0-6 2-20l86-500-364-354q-25-27-25-48 0-37 56-46l502-73 225-455q19-41 49-41t49 41l225 455 502 73q56 9 56 46z">-->
+                                                    <!--                                       </path>-->
+                                                    <!--                                    </svg>-->
+                                                    <!--                                    5.0-->
+                                                    <!--                                    <span>(7)</span>-->
+                                                    <!--                                 </span>-->
+                                                </div>
+                                            </div>
+                                            <div class="footer row" style="font-size: 15px;">
+                                                <div class="price col-sm-6" style="">
+                                                    <a href="#">
+                                                        进入课程
+                                                    </a>
+                                                </div>
+                                                <div class="price col-sm-6" style="">
+                                                    <a href="#">
+                                                        退出课程
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--                                一个学习的课程-->
+                                <div class="col-md-3">
+                                    <a href="CreateCourse/announcement.html">
+                                        <img class="img-fluid" src="images/personal/jsjkxdl.jpg" />
+                                    </a>
+                                    <div class="inner-slider">
+                                        <div class="inner-wrapper">
+                                            <div class="d-flex align-items-center">
+                              <span class="seller-image">
+                              <img class="img-fluid"
+                                   src="images/personal/jsjkxdl.jpg"
+                                   alt='' />
+                              </span>
+                                                <span class="seller-name">
+                              <a href="#">计算机科学导论</a>
+                              </span>
+                                            </div>
+                                            <div class="content-info">
+                                                <div class="rating-wrapper">
+                                                    <!--                                 <span class="gig-rating text-body-2">-->
+                                                    <!--                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1792 1792" width="15" height="15">-->
+                                                    <!--                                       <path fill="currentColor"-->
+                                                    <!--                                             d="M1728 647q0 22-26 48l-363 354 86 500q1 7 1 20 0 21-10.5 35.5t-30.5 14.5q-19 0-40-12l-449-236-449 236q-22 12-40 12-21 0-31.5-14.5t-10.5-35.5q0-6 2-20l86-500-364-354q-25-27-25-48 0-37 56-46l502-73 225-455q19-41 49-41t49 41l225 455 502 73q56 9 56 46z">-->
+                                                    <!--                                       </path>-->
+                                                    <!--                                    </svg>-->
+                                                    <!--                                    5.0-->
+                                                    <!--                                    <span>(7)</span>-->
+                                                    <!--                                 </span>-->
+                                                </div>
+                                            </div>
+                                            <div class="footer row" style="font-size: 15px;">
+                                                <div class="price col-sm-6" style="">
+                                                    <a href="#">
+                                                        进入课程
+                                                    </a>
+                                                </div>
+                                                <div class="price col-sm-6" style="">
+                                                    <a href="#">
+                                                        退出课程
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--                                一个学习的课程-->
+        </div>
+    </div>
+</div>
+<script src="vendor/jquery/jquery.min.js"></script>
+<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- Contact form JavaScript -->
+<!--    &lt;!&ndash; Do not edit these files! In order to set the email address and subject line for the contact form go to the bin/contact_me.php file. &ndash;&gt;-->
+<!--    <script src="js/jqBootstrapValidation.js"></script>-->
+<!--    <script src="js/contact_me.js"></script>-->
+<!-- Slick -->
+<script src="vendor/slick-master/slick/slick.js" type="text/javascript" charset="utf-8"></script>
+<!-- lightgallery -->
+<script src="vendor/lightgallery-master/dist/js/lightgallery-all.min.js"></script>
+<!-- select2 Js -->
+<script src="vendor/select2/js/select2.min.js"></script>
+<!-- Custom -->
+<script src="js/custom.js"></script>
+</body>
+<script type="text/javascript" src="footer.js"></script>
+</html>

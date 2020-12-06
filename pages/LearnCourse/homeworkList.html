@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>作业列表</title>
+    <!--     Favicon Icon-->
+    <link rel="stylesheet" href="../css/comm.css">
+    <link rel="icon" type="image/jpg" href="../images/personal/a.jpg">
+    <!-- Bootstrap core CSS -->
+    <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome-->
+    <link href="../vendor/fontawesome/css/font-awesome.min.css" rel="stylesheet">
+    <!-- Material Design Icons -->
+    <link href="../vendor/icons/css/materialdesignicons.min.css" media="all" rel="stylesheet" type="text/css">
+    <!-- Slick -->
+    <link href="../vendor/slick-master/slick/slick.css" rel="stylesheet" type="text/css">
+    <!-- Lightgallery -->
+    <link href="../vendor/lightgallery-master/dist/css/lightgallery.min.css" rel="stylesheet">
+    <!-- Select2 CSS -->
+    <link href="../vendor/select2/css/select2.min.css" rel="stylesheet">
+    <link href="../css/style.css" rel="stylesheet">
+    <script type="text/javascript" src="header.js"></script>
+    <style type="text/css">#userHref {
+        cursor: pointer;
+        padding-right: 20px;
+    }
+    #menu1 a:hover {
+        border-radius: 0px;
+    }
+    .noticeme {
+        border-bottom: solid 1px #DCDCDC;
+        padding: 15px 15px 15px 10px;
+        color: #2d2d2d;
+        font-size: 15px;
+    }
+    .noticeme a:hover {
+        color: #0179B5;
+        font-weight: normal;
+    }
+    .hulue {
+        font-size: 12px;
+        color: #A5A5A5;
+        float: right;
+        cursor: pointer;
+        display: none;
+        padding: 2px 0px 3px 0px;
+    }
+    .T_noticenews {
+        width: 6px;
+        height: 6px;
+        display: inline-block;
+        border-radius: 6px;
+        background: #339999;
+        box-shadow: 0px 0px 2px 1px rgba(100, 100, 100, 0.5);
+        overflow: hidden;
+        margin-left: 5px;
+        margin-right: 5px;
+        margin-bottom: 2px;
+    }
+    </style>
+</head>
+<body style="background-image: url('../images/personal/whitepaper.jpg');">
+<div class="main-page py-5 second">
+<div class="container">
+<div class="bodyStyle">
+    <div class="head bg-dark container-fluid " style="padding-bottom: 5px">
+        <div class="container row" style="display: inline;">
+            <div class="container head-title text-light col-sm-3" style="font-family: 微软雅黑;color: black;margin-top:15px;">
+                C语言程序设计
+            </div>
+        </div>
+        <div class="container head-url text-light" style="font-family: 'Georgia', Georgia, 'Times New Roman', Times, 'Microsoft YaHei', SimSun, SimHei, serif">
+            访问地址：
+            <a href="c_language" style="color: whitesmoke">http://www.scholat.com/course/c_language</a>
+        </div>
+
+                <nav class="navbar navbar-expand-lg rounded" style="margin-top: 40px;float: left;left: -20px;">
+                    <div class="container">
+                        <ul class="nav nav-pills" id="myTab" role="tablist" style="min-width: 80%;">
+                            <li class="nav-item">
+                                <a class="nav-link" id="home-tab"href="announcement.html" role="tab" style="color: white;font-size: 15px;font-family: 'Georgia', Georgia, 'Times New Roman', Times, 'Microsoft YaHei', SimSun, SimHei, serif">教学公告</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="profile-tab" href="resource.html" role="tab" style="color: white;font-size: 15px;font-family: 'Georgia', Georgia, 'Times New Roman', Times, 'Microsoft YaHei', SimSun, SimHei, serif">课程资源</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link active" id="contact-tab"href="homeworkList.html" role="tab" style="color: white;font-size: 15px;font-family: 'Georgia', Georgia, 'Times New Roman', Times, 'Microsoft YaHei', SimSun, SimHei, serif">课程作业</a>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+    </div>
+    <div class="container-fluid" style="
+    min-height: 400px;
+    background-color: #fff;
+    border-left: #eee solid 2px;
+    border-right: #eee solid 2px;
+    border-bottom: #eee solid 2px;">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">状态</th>
+                        <th scope="col">作业标题</th>
+                        <th scope="col">发布人</th>
+                        <th scope="col">截止时间</th>
+                        <th scope="col" style="padding-left: 60px;">操作</th></tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <th scope="row">1</th>
+                        <td><span style="padding:2px 7px;color: white;background:#39d239;border-radius:10px;font-size:12px;">按时提交</span></td>
+                        <td>第一章作业</td>
+                        <td>苏海</td>
+                        <td>2020/12/13</td>
+                        <td style="padding-left:10px;">
+                            <a href="homeworkDetail.html">
+                                <span>作业要求</span></a>
+                            &nbsp;|
+                            <a style="cursor:pointer;" onclick="showinfo('165','5666','6086','155705')">已交</a>
+                            |&nbsp;<a href="#" onclick="showfilesend(5666, 27233)">修改</a>
+                        </td></tr>
+                    <tr>
+                        <th scope="row">2</th>
+                        <td><span style="padding:2px 14px;color: white;background:#f6223b;border-radius:10px;font-size:12px;">未提交</span></td>
+                        <td>第二章作业</td>
+                        <td>苏海</td>
+                        <td>2020/12/13</td>
+                        <td style="padding-left:10px;">
+                            <a href="S_oneHomework.html?courseId=165&amp;homeworkId=5666">
+                                <span>作业要求</span></a>
+                            &nbsp;|
+                            <a style="cursor:pointer;" onclick="showinfo('165','5666','6086','155705')">已交</a>
+                            |&nbsp;<a href="#" onclick="showfilesend(5666, 27233)">修改</a>
+                        </td></tr>
+                    <tr>
+                        <th scope="row">3</th>
+                        <td><span style="padding:2px 7px;color: white;background:#ecab5d;border-radius:10px;font-size:12px;">延时提交</span></td>
+                        <td>第三章作业</td>
+                        <td>苏海</td>
+                        <td>2020/12/13</td>
+                        <td style="padding-left:10px;">
+                            <a href="S_oneHomework.html?courseId=165&amp;homeworkId=5666">
+                                <span>作业要求</span></a>
+                            &nbsp;|
+                            <a style="cursor:pointer;" onclick="showinfo('165','5666','6086','155705')">已交</a>
+                            |&nbsp;<a href="#" onclick="showfilesend(5666, 27233)">修改</a>
+                        </td></tr>
+                    <tr>
+                        <th scope="row">4</th>
+                        <td><span style="padding:2px 7px;color: white;background:#39d239;border-radius:10px;font-size:12px;">按时提交</span></td>
+                        <td>第一章作业</td>
+                        <td>苏海</td>
+                        <td>2020/12/13</td>
+                        <td style="padding-left:10px;">
+                            <a href="S_oneHomework.html?courseId=165&amp;homeworkId=5666">
+                                <span>作业要求</span></a>
+                            &nbsp;|
+                            <a style="cursor:pointer;" onclick="showinfo('165','5666','6086','155705')">已交</a>
+                            |&nbsp;<a href="#" onclick="showfilesend(5666, 27233)">修改</a>
+                        </td></tr>
+                    </tbody>
+                </table>
+        </div>
+    </div>
+
+</div>
+</div>
+</div>
+<!--     Bootstrap core JavaScript-->
+<script src="../vendor/jquery/jquery.min.js"></script>
+<script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- Contact form JavaScript -->
+<!--    &lt;!&ndash; Do not edit these files! In order to set the email address and subject line for the contact form go to the bin/contact_me.php file. &ndash;&gt;-->
+<!--    <script src="js/jqBootstrapValidation.js"></script>-->
+<!--    <script src="js/contact_me.js"></script>-->
+<!-- Slick -->
+<script src="../vendor/slick-master/slick/slick.js" type="text/javascript" charset="utf-8"></script>
+<!-- lightgallery -->
+<script src="../vendor/lightgallery-master/dist/js/lightgallery-all.min.js"></script>
+<!-- select2 Js -->
+<script src="../vendor/select2/js/select2.min.js"></script>
+<!-- Custom -->
+<script src="../js/custom.js"></script>
+
+<!--<div id="page"></div>-->
+<!--        <footer>-->
+<!--             <iframe class="my_footer" src="footer.html" scrolling="no"></iframe>-->
+<!--        </footer>-->
+</body>
+<script type="text/javascript" src="footer.js"></script>
+</html>
