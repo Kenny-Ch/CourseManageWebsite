@@ -1,20 +1,20 @@
 const express = require('express');
 const fs = require('fs'); //引入fs，fs 是node中一个文件操作模块，包括文件创建，删除，查询，读取，写入。
-const multer  = require('multer'); //multer - node.js 中间件，用于处理 enctype="multipart/form-data"（设置表单的MIME编码）的表单数据。
+const multer = require('multer'); //multer - node.js 中间件，用于处理 enctype="multipart/form-data"（设置表单的MIME编码）的表单数据。
 
 //引入连接池的模块
 const pool = require('../tool/pool.js');
 const fileTool = require('../tool/fileTool.js');
 
 //创建路由器对象
-const  r = express.Router();
-r.use(multer({dest:"./tempFiles"}).array("file",1));
+const r = express.Router();
+r.use(multer({dest: "./tempFiles"}).array("file", 1));
 
 //添加路由
 
 //已加入课程相关
 //作业列表
-r.get('/homeworkList',(req,res)=>{
+r.get('/homeworkList', (req, res) => {
 
     //1.获取post 请求数据
     let obj = req.query;
@@ -24,8 +24,8 @@ r.get('/homeworkList',(req,res)=>{
     let userInfo = req.session.userInfo;
     //检查是否登录
     if (userInfo) {
-        if(courseID) {
-            pool.query('SELECT * FROM user_homeworklist WHERE userEmail=? and courseID=? order by ddl desc', [userInfo.email,courseID], (err, result) => {
+        if (courseID) {
+            pool.query('SELECT * FROM user_homeworklist WHERE userEmail=? and courseID=? order by ddl desc', [userInfo.email, courseID], (err, result) => {
                 console.log('作业列表查询结果：', result);
                 if (err) throw err;
 
@@ -44,21 +44,21 @@ r.get('/homeworkList',(req,res)=>{
 })
 
 //作业详情
-r.get('/homeworkDetail', (req,res)=>{
+r.get('/homeworkDetail', (req, res) => {
     let obj = req.query;
     console.log(obj);
     let homeworkID = obj.homeworkID
 
     let userInfo = req.session.userInfo;
     if (userInfo) {
-        if(homeworkID) {
+        if (homeworkID) {
             pool.query('SELECT * FROM course_homework WHERE ID=? ', [homeworkID], (err, result) => {
                 console.log('作业详情查询结果：', result);
                 if (err) throw err;
 
                 res.send({
                     code: 200,
-                    homeworkDetail: result[0]?result[0]:null
+                    homeworkDetail: result[0] ? result[0] : null
                 })
             })
         } else {
@@ -71,7 +71,7 @@ r.get('/homeworkDetail', (req,res)=>{
 })
 
 //作业公告列表
-r.get('/announcementList',(req,res)=>{
+r.get('/announcementList', (req, res) => {
 
     //1.获取post 请求数据
     let obj = req.query;
@@ -81,7 +81,7 @@ r.get('/announcementList',(req,res)=>{
     let userInfo = req.session.userInfo;
     //检查是否登录
     if (userInfo) {
-        if(courseID) {
+        if (courseID) {
             pool.query('SELECT * FROM course_announcement WHERE courseID=? order by announceTime desc', [courseID], (err, result) => {
                 console.log('作业公告列表查询结果：', result);
                 if (err) throw err;
@@ -102,34 +102,34 @@ r.get('/announcementList',(req,res)=>{
 
 
 //作业公告详情
-r.get('/announcementDetail', (req,res)=>{
+r.get('/announcementDetail', (req, res) => {
     let obj = req.query;
     console.log(obj);
     let announcementID = obj.announcementID
 
     let userInfo = req.session.userInfo;
     if (userInfo) {
-        if(announcementID) {
+        if (announcementID) {
             pool.query('SELECT * FROM course_announcement WHERE ID=? ', [announcementID], (err, result) => {
                 console.log('作业公告详情查询结果：', result);
                 if (err) throw err;
 
                 //公告观看次数+1
-                if(result[0]) {
-                    pool.query('UPDATE course_announcement  SET viewTimes=? WHERE ID=?',[result[0].viewTimes+1,announcementID],(err,updateresult)=>{
-                        if(err) throw err;
+                if (result[0]) {
+                    pool.query('UPDATE course_announcement  SET viewTimes=? WHERE ID=?', [result[0].viewTimes + 1, announcementID], (err, updateresult) => {
+                        if (err) throw err;
 
-                        console.log('更新结果',updateresult);
-                        if(updateresult.affectedRows===0){
+                        console.log('更新结果', updateresult);
+                        if (updateresult.affectedRows === 0) {
                             res.send({
-                                code:201,
-                                msg:'update view times fail',
-                                announcementDetail:result[0]
+                                code: 201,
+                                msg: 'update view times fail',
+                                announcementDetail: result[0]
                             })
-                        }else{
+                        } else {
                             res.send({
-                                code:200,
-                                announcementDetail:result[0]
+                                code: 200,
+                                announcementDetail: result[0]
                             })
                         }
                     })
@@ -151,7 +151,7 @@ r.get('/announcementDetail', (req,res)=>{
 
 
 //作业资源列表
-r.get('/resourceList',(req,res)=>{
+r.get('/resourceList', (req, res) => {
 
     //1.获取get 请求数据
     let obj = req.query;
@@ -161,7 +161,7 @@ r.get('/resourceList',(req,res)=>{
     let userInfo = req.session.userInfo;
     //检查是否登录
     if (userInfo) {
-        if(courseID) {
+        if (courseID) {
             pool.query('SELECT * FROM course_resource WHERE courseID=? order by uploadTime desc', [courseID], (err, result) => {
                 console.log('作业资源列表查询结果：', result);
                 if (err) throw err;
@@ -181,16 +181,12 @@ r.get('/resourceList',(req,res)=>{
 })
 
 
-
-
-
-
 //创建课程相关
 //创建课程
-r.post('/createCourse', (req,res) => {
+r.post('/createCourse', (req, res) => {
     //1.获取post 请求数据
     let obj = req.body;
-    console.log("创建课程请求参数：",obj)
+    console.log("创建课程请求参数：", obj)
 
     //2.获取session个人信息
     let userInfo = req.session.userInfo;
@@ -200,22 +196,22 @@ r.post('/createCourse', (req,res) => {
 
     //检查是否登录
     if (userInfo) {
-        if(!obj.cname){
-            res.send({code:402,msg:'uname required'});
+        if (!obj.cname) {
+            res.send({code: 402, msg: 'uname required'});
             //阻止往后执行
             return;
         }
-        if(!fileInfo) {
-            res.send({code:403, msg:'image required'})
+        if (!fileInfo) {
+            res.send({code: 403, msg: 'image required'})
             return;
         }
         obj.creator = userInfo.name
 
 
-        pool.query('INSERT INTO course SET ?',[obj],(err,result)=>{
-            if(err) {
+        pool.query('INSERT INTO course SET ?', [obj], (err, result) => {
+            if (err) {
                 fileTool.deleteFile(fileInfo.path)
-                res.send({code:405,msg:'query fail'})
+                res.send({code: 405, msg: 'query fail'})
                 throw err;
             }
             let courseID = result.insertId
@@ -224,31 +220,31 @@ r.post('/createCourse', (req,res) => {
 
             // 上传文件
             fileTool.uploadFile(fileInfo.path, desDirPath, fileInfo.originalname)
-                .then(function (fileRes){
-                    if(fileRes.code === 200) {//上传成功
+                .then(function (fileRes) {
+                    if (fileRes.code === 200) {//上传成功
                         //执行sql命令  将数据添加到数据库
-                        pool.query('UPDATE course  SET cImgUrl=? WHERE courseID=?',[fileUrl,courseID],(err,updateresult)=>{
-                            if(err) {
+                        pool.query('UPDATE course  SET cImgUrl=? WHERE courseID=?', [fileUrl, courseID], (err, updateresult) => {
+                            if (err) {
                                 fileTool.deleteFile(fileInfo.path)
                                 fileTool.deleteFile(fileUrl)
                                 res.send({
-                                    code:405,
-                                    msg:'query fail'
+                                    code: 405,
+                                    msg: 'query fail'
                                 })
                                 throw err;
                             }
 
-                            console.log('更新结果',updateresult);
-                            if(updateresult.affectedRows===0){
+                            console.log('更新结果', updateresult);
+                            if (updateresult.affectedRows === 0) {
                                 fileTool.deleteFile(fileInfo.path)
                                 fileTool.deleteFile(fileUrl)
                                 res.send({
-                                    code:406,
-                                    msg:'updatequery fail',
+                                    code: 406,
+                                    msg: 'updatequery fail',
                                 })
-                            }else{
+                            } else {
                                 res.send({
-                                    code:200,
+                                    code: 200,
                                     msg: 'create success'
                                 })
                             }
@@ -257,9 +253,9 @@ r.post('/createCourse', (req,res) => {
                         fileTool.deleteFile(fileInfo.path)
                         res.send({code: 404, msg: 'upload file fail'})
                     }
-                }).catch(function (err){
-                    fileTool.deleteFile(fileInfo.path)
-                    res.send({code: 404, msg: 'upload file fail'})
+                }).catch(function (err) {
+                fileTool.deleteFile(fileInfo.path)
+                res.send({code: 404, msg: 'upload file fail'})
             })
         })
     } else {
@@ -268,38 +264,38 @@ r.post('/createCourse', (req,res) => {
 })
 
 //创建公告
-r.post('/publishAnnouncement', (req,res) => {
+r.post('/publishAnnouncement', (req, res) => {
     //1.获取post 请求数据
     let obj = req.body;
-    console.log("创建公告请求参数：",obj)
+    console.log("创建公告请求参数：", obj)
 
     //2.获取session个人信息
     let userInfo = req.session.userInfo;
     //检查是否登录
     if (userInfo) {
-        if(!obj.courseID){
-            res.send({code:402,msg:'courseID required'});
+        if (!obj.courseID) {
+            res.send({code: 402, msg: 'courseID required'});
             //阻止往后执行
             return;
         }
-        if(!obj.context){
-            res.send({code:403,msg:'context required'});
+        if (!obj.context) {
+            res.send({code: 403, msg: 'context required'});
             //阻止往后执行
             return;
         }
-        if(!obj.title){
-            res.send({code:404,msg:'title required'});
+        if (!obj.title) {
+            res.send({code: 404, msg: 'title required'});
             //阻止往后执行
             return;
         }
 
         obj.announceTime = new Date()
         //执行sql命令  将数据添加到数据库
-        pool.query('INSERT INTO course_announcement SET ?',[obj],(err,result)=>{
-            if(err) throw err;
+        pool.query('INSERT INTO course_announcement SET ?', [obj], (err, result) => {
+            if (err) throw err;
             console.log(result);
             //注册成功
-            res.send({code:200,msg:'publish success'})
+            res.send({code: 200, msg: 'publish success'})
         })
 
     } else {
@@ -308,27 +304,27 @@ r.post('/publishAnnouncement', (req,res) => {
 })
 
 //上传资源
-r.post('/uploadResource', (req,res) => {
+r.post('/uploadResource', (req, res) => {
     //1.获取post 请求数据
     let obj = req.body;
-    console.log("上传资源请求参数：",obj)
+    console.log("上传资源请求参数：", obj)
 
     //2.获取session个人信息
     let userInfo = req.session.userInfo;
 
     //3.获取文件信息
-    var fileInfo = req.files[0]
+    let fileInfo = req.files[0]
 
     //检查是否登录
     if (userInfo) {
-        if(!fileInfo){
-            res.send({code:402,msg:'file required'});
+        if (!fileInfo) {
+            res.send({code: 402, msg: 'file required'});
             //阻止往后执行
             return;
         }
-        if(!obj.courseID){
+        if (!obj.courseID) {
             fileTool.deleteFile(fileInfo.path)
-            res.send({code:403,msg:'courseID required'});
+            res.send({code: 403, msg: 'courseID required'});
             //阻止往后执行
             return;
         }
@@ -341,26 +337,26 @@ r.post('/uploadResource', (req,res) => {
 
         // 上传文件
         fileTool.uploadFile(fileInfo.path, desDirPath, obj.fileName)
-            .then(function (fileRes){
-                if(fileRes.code === 200) {//上传成功
+            .then(function (fileRes) {
+                if (fileRes.code === 200) {//上传成功
                     //执行sql命令  将数据添加到数据库
-                    pool.query('INSERT INTO course_resource SET ?',[obj],(err,result)=>{
-                        if(err) {
+                    pool.query('INSERT INTO course_resource SET ?', [obj], (err, result) => {
+                        if (err) {
                             fileTool.deleteFile(fileInfo.path)
                             fileTool.deleteFile(desDirPath + "/" + fileInfo.originalname)
-                            res.send({code:405,msg:'query fail'})
+                            res.send({code: 405, msg: 'query fail'})
                             throw err;
                         }
                         fileTool.deleteFile(fileInfo.path)
                         console.log(result);
                         //注册成功
-                        res.send({code:200,msg:'upload success'})
+                        res.send({code: 200, msg: 'upload success'})
                     })
                 } else {//上传失败
                     fileTool.deleteFile(fileInfo.path)
                     res.send({code: 404, msg: 'upload file fail'})
                 }
-            }).catch(function (err){
+            }).catch(function (err) {
             fileTool.deleteFile(fileInfo.path)
             res.send({code: 404, msg: 'upload file fail'})
         })
@@ -370,49 +366,120 @@ r.post('/uploadResource', (req,res) => {
     }
 })
 
-//上传作业
-r.post('/assignHomework', (req,res) => {
+//上传作业要求
+r.post('/assignHomework', (req, res) => {
     //1.获取post 请求数据
     let obj = req.body;
-    console.log("布置作业请求参数：",obj)
+    console.log("布置作业请求参数：", obj)
 
     //2.获取session个人信息
     let userInfo = req.session.userInfo;
     //检查是否登录
     if (userInfo) {
-        if(!obj.courseID){
-            res.send({code:402,msg:'courseID required'});
+        if (!obj.courseID) {
+            res.send({code: 402, msg: 'courseID required'});
             //阻止往后执行
             return;
         }
-        if(!obj.title){
-            res.send({code:403,msg:'title required'});
+        if (!obj.title) {
+            res.send({code: 403, msg: 'title required'});
             //阻止往后执行
             return;
         }
-        if(!obj.context){
-            res.send({code:404,msg:'context required'});
+        if (!obj.context) {
+            res.send({code: 404, msg: 'context required'});
             //阻止往后执行
             return;
         }
-        if(!obj.ddl){
-            res.send({code:405,msg:'ddl required'});
+        if (!obj.ddl) {
+            res.send({code: 405, msg: 'ddl required'});
             //阻止往后执行
             return;
         }
 
         obj.userID = userInfo.email
         //执行sql命令  将数据添加到数据库
-        pool.query('INSERT INTO course_homework SET ?',[obj],(err,result)=>{
-            if(err) throw err;
+        pool.query('INSERT INTO course_homework SET ?', [obj], (err, result) => {
+            if (err) throw err;
             console.log(result);
             //注册成功
-            res.send({code:200,msg:'assign success'})
+            res.send({code: 200, msg: 'assign success'})
         })
 
     } else {
         res.send({code: 401, msg: '请先登录'})
     }
+})
+
+//上传作业
+r.post('/submitHomework', (req, res) => {
+    //1.获取post 请求数据
+    let obj = req.body;
+    console.log("布置作业请求参数：", obj)
+
+    let fileInfo = req.files[0]
+
+    //2.获取session个人信息
+    let userInfo = req.session.userInfo;
+    //检查是否登录
+    if (userInfo) {
+        if (!fileInfo) {
+            res.send({code: 402, msg: 'file required'});
+            //阻止往后执行
+            return;
+        }
+        if (!obj.homeworkID) {
+            res.send({code: 403, msg: 'homeworkID required'});
+            //阻止往后执行
+            return;
+        }
+
+        obj.userID = userInfo.email
+
+        let desDirPath = "uploadFiles/user" + obj.userID
+        let fileName = fileInfo.originalname
+
+        // 上传文件
+        fileTool.uploadFile(fileInfo.path, desDirPath, fileName)
+            .then(function (fileRes) {
+                if (fileRes.code === 200) {//上传成功
+                    //执行sql命令  将数据添加到数据库
+                    pool.query('UPDATE user_coursehomework  SET status=?,finishTime=? WHERE userEmail=? and homeworkID=?'
+                        , ['已完成', new Date(), userInfo.email, obj.homeworkID], (err, result) => {
+                            if (err) {
+                                fileTool.deleteFile(fileInfo.path)
+                                fileTool.deleteFile(desDirPath + "/" + fileInfo.originalname)
+                                res.send({code: 405, msg: 'update fail'})
+                                throw err;
+                            }
+                            fileTool.deleteFile(fileInfo.path)
+                            console.log(result);
+
+                            res.send({code: 200, msg: 'submit success'})
+                        })
+                } else {//上传失败
+                    fileTool.deleteFile(fileInfo.path)
+                    res.send({code: 404, msg: 'upload file fail'})
+                }
+            }).catch(function (err) {
+            fileTool.deleteFile(fileInfo.path)
+            res.send({code: 404, msg: 'upload file fail'})
+        })
+
+    } else {
+        res.send({code: 401, msg: '请先登录'})
+    }
+})
+
+//下载资源
+r.post('/downloadResource', (req, res) => {
+    let obj = req.body
+    let path = obj.path
+    fileTool.downloadFile(res, path).then((result) => {
+        res.send(result)
+    }).catch((err) => {
+        res.send(err)
+    })
 })
 
 

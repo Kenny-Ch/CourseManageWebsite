@@ -52,7 +52,22 @@ fileTool.uploadFile = function (tempFilepath, desDirPath, desFileName) {
     })
 }
 
-fileTool.downloadFile = function () {
+fileTool.downloadFile = function (response, path) {
+    return new Promise((resolve, reject) => {
+        response.download(path, function (err){
+            if(err) {
+                reject({
+                    code:401,
+                    msg:err
+                })
+            } else {
+                resolve({
+                    code:200,
+                    msg:'success download'
+                })
+            }
+        })
+    })
 
 }
 
