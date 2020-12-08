@@ -22,6 +22,7 @@ r.post('/login', (req, res) => {
         res.send({code:402,msg:'email required'})
         return;
     }
+    console.log("ok!")
     //到数据库中查询是否有用户名和密码同时匹配的数据
     pool.query('SELECT * FROM user WHERE email=? AND password=?',[obj.email,obj.password],(err,result)=>{
         if(err) throw err;
