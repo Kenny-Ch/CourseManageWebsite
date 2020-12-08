@@ -13,10 +13,14 @@ var app = new Vue({
             console.log(this.formData.username)
             let formData = JSON.stringify(this.formData);
             console.log(formData);
+            var that=this;
             this.$http.post('/user/login',this.formData,{emulateJSON:true}).then(function (res) {
                 if (res.status === 200) {
                     if(res.body.code==200){
                         console.log(res.body.msg)
+                        console.log(res.session)
+                        $.cookie('name', that.formData.email);
+                        window.location.replace("/index.html") 
                     }else{
                         console.log(res)
                     }

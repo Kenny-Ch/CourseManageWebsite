@@ -23,22 +23,23 @@ r.post('/login', (req, res) => {
         return;
     }
     console.log("ok!")
+    res.send({code:200,msg:'login seccess'})
     //到数据库中查询是否有用户名和密码同时匹配的数据
-    pool.query('SELECT * FROM user WHERE email=? AND password=?',[obj.email,obj.password],(err,result)=>{
-        if(err) throw err;
-        //返回空数组，长度为0 ，说明登录失败
-        if(result.length===0){
-            res.send({code:403,msg:'login err'})
-        }else{//查询到匹配的用户  登录成功
-            req.session.userInfo = {
-                name: result[0].name,
-                email: result[0].email,
-                imgUrl: result[0].imgUrl
-            }
-            res.send({code:200,msg:'login seccess'})
-        }
-        console.log('登录查询结果：',result);
-    })
+    // pool.query('SELECT * FROM user WHERE email=? AND password=?',[obj.email,obj.password],(err,result)=>{
+    //     if(err) throw err;
+    //     //返回空数组，长度为0 ，说明登录失败
+    //     if(result.length===0){
+    //         res.send({code:403,msg:'login err'})
+    //     }else{//查询到匹配的用户  登录成功
+    //         req.session.userInfo = {
+    //             name: result[0].name,
+    //             email: result[0].email,
+    //             imgUrl: result[0].imgUrl
+    //         }
+    //         res.send({code:200,msg:'login seccess'})
+    //     }
+    //     console.log('登录查询结果：',result);
+    // })
 })
 
 //register页面
