@@ -45,7 +45,7 @@ document.writeln("<!--            <li>-->");
 document.writeln("<!--                <a href=\'index.html\'>我的课程&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</a>-->");
 document.writeln("<!--            </li>-->");
 document.writeln("            <li class=\'nav-item dropdown no-arrow no-caret dropdown-user\'>");
-document.writeln("                <a class=\'btn btn-icon btn-transparent-dark dropdown-toggle\' id=\'navbarDropdownUserImage\' href=\'javascript:void(0);\' role=\'button\' data-toggle=\'dropdown\' aria-haspopup=\'true\' aria-expanded=\'false\'><img class=\'img-fluid\' src=\'images/personal/people.png\'></a>");
+document.writeln("                <a class=\'btn btn-icon btn-transparent-dark dropdown-toggle\' id=\'navbarDropdownUserImage\' href=\'javascript:void(0);\' role=\'button\' data-toggle=\'dropdown\' aria-haspopup=\'true\' aria-expanded=\'false\'><img class=\'img-fluid\' src=\'images/personal/kennychen_1589254399919.jpg\'></a>");
 document.writeln("                <div class=\'dropdown-menu dropdown-menu-right border-0 shadow animated--fade-in-up\' aria-labelledby=\'navbarDropdownUserImage\'>");
 document.writeln("                    <h5 class=\'dropdown-header d-flex align-items-center\'>");
 document.writeln("                        <img class=\'dropdown-user-img rounded-circle\' src=\'images/personal/kennychen_1589254399919.jpg\'>");

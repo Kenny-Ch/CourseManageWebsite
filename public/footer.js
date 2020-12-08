@@ -11,7 +11,7 @@ document.writeln("				<div class=\'row no-gutters\'>");
 document.writeln("					<div class=\'col-lg-4 col-sm-12 mb-sm-4 mb-lg-0\'>");
 document.writeln("						<div class=\'d-flex flex-lg-column flex-sm-row justify-content-sm-around justify-content-lg-start\'>");
 document.writeln("							<div><img src=\'images/personal/xuezhe.png\'></div>");
-document.writeln("<!--							<div><img src=\'img/footer/footerFont.png\'></div>-->");
+// document.writeln("							<div><img src=\'img/footer/footerFont.png\'></div>");
 document.writeln("						</div>");
 document.writeln("					</div>");
 document.writeln("					<div class=\'col-lg-4 col-sm-12\'>");
