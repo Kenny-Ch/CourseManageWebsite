@@ -41,7 +41,7 @@
         }
         function clearCookie(name) {
             setCookie(name, "", -1);
-        }  
+        }
         function logout() {
             clearCookie('name')
             window.location.replace("/index.html")
@@ -78,32 +78,32 @@
                         </div>
                         <div class="modal-body">
                             <div style="margin-top: 15px; margin-bottom: 20px;">
-                                <form action="" role="form">
+                                <form action="" role="form" enctype="multipart/form-data">
                                     <div class="form-group">
                                         <label for="yuming" class="col-sm-4 control-label">课程域名:</label>
-                                        <div class="col-sm-10"><input class="form-control" id="yuming" type="text">
+                                        <div class="col-sm-10"><input class="form-control" id="yuming" type="text" v-model="CreCouData.url">
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label for="name" class="col-sm-4 control-label">课程名称:</label>
-                                        <div class="col-sm-10"><input class="form-control" id="name" type="text"></div>
+                                        <div class="col-sm-10"><input class="form-control" id="name" type="text" v-model="CreCouData.name"></div>
                                     </div>
                                     <div class="form-group">
                                         <label for="jieshao" class="col-sm-4 control-label">课程简介:</label>
                                         <textarea class="form-control" id="jieshao" name="jieshao"
-                                            rows=’13‘"></textarea>
+                                            rows=’13‘" v-model="CreCouData.content"></textarea>
                                     </div>
                                     <div class="form-group">
                                         <label for="img-put" class="control-label">课程封面图:</label>
                                         <input class="custom-file" type="file" id="img-put"
-                                            accept="image/gif,image/jpeg,image/jpg,image/png">
+                                            accept="image/gif,image/jpeg,image/jpg,image/png" @change="getFile($event)">
                                     </div>
                                 </form>
                             </div>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
-                            <button type="button" class="btn btn-primary">确定</button>
+                            <button type="button" class="btn btn-primary" @click="CreateCou()">确定</button>
                         </div>
                     </div>
                 </div>
