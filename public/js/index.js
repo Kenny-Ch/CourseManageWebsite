@@ -7,7 +7,14 @@ var app = new Vue({
             url: '',
             content: '',
             file:[]
-        }
+        },
+        courseList:[]
+    },
+    created(){
+        this.$http.get('/index/mycourses').then(function(res){
+            console.log(res.body.courseList)
+            this.courseList=res.body.courseList;
+        })
     },
     methods: {
         CreateCou(){
@@ -39,25 +46,9 @@ var app = new Vue({
         },
         getFile(event){
             var file = event.target.files;
-            // for(var i = 0;i<file.length;i++){
-            //  //    上传类型判断
-            //     var imgName = file[i].name;
-            //      var idx = imgName.lastIndexOf(".");  
-            //      if (idx != -1){
-            //          var ext = imgName.substr(idx+1).toUpperCase();   
-            //          ext = ext.toLowerCase( ); 
-            //           if (ext!='pdf' && ext!='doc' && ext!='docx'){
-                        
-            //          }else{
-            //                this.addArr.push(file[i]);
-            //          }   
-            //      }else{
- 
-            //      }
-            // }
             console.log(event.target.files)
-            // this.CreCouData.file=[1];
             this.CreCouData.file=event.target.files;
         },
+        
     }
 });

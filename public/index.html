@@ -155,84 +155,20 @@
                 <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
                     <ul class="slider" id="courseEvents">
                         <!--所有课程里各个课程-->
-                        <div id="homeworkRemind14360">
+                        <div id="homeworkRemind14360" v-for="course in courseList">
                             <div style="line-height:6px;min-height:6px;"><a href="perInfo.html" target="_blank">
                                     <img src="images/personal/jsjkxdl.jpg" class="user_img"
                                         style="margin-top:16px;margin-left:16px;height:56px;width:56px;"></a></div>
                             <p style="padding-left:94px;margin-top:-50px;font-size: 25px">
-                                <a style="text-decoration:none;font-size:25px;color: black" href="#"
-                                    target="_blank">计算机科学导论</a>
-                                <!--                            <a style="text-decoration:none;font-size:15px;" href="./course/S_homeworkList.html?courseId=1428" target="_blank">上机实验13&nbsp;考级复习二</a>-->
+                                <a style="text-decoration:none;font-size:25px;color: black" v-bind:href="'/LearnCourse/homeworkList.html?courseId='+course.ID" target="_blank">{{course.cname}}</a>
+                                <!--<a style="text-decoration:none;font-size:15px;" href="./course/S_homeworkList.html?courseId=1428" target="_blank">上机实验13&nbsp;考级复习二</a>-->
                             </p>
                             <div
                                 style="border-bottom:1px solid #cfd2d5;height:1px;box-shadow:0px 1px 7px rgba(0, 0, 0, 0.24);margin-top:35px;margin-bottom:10px;width:900px;">
                             </div>
                         </div>
-                        <div id="homeworkRemind14361">
-                            <div style="line-height:72px;min-height:72px;"><a href="perInfo.html" target="_blank">
-                                    <img src="images/personal/jsjkxdl.jpg" class="user_img"
-                                        style="margin-top:16px;margin-left:16px;height:56px;width:56px;"></a></div>
-                            <p style="padding-left:94px;margin-top:-50px;font-size: 25px">
-                                <a style="text-decoration:none;font-size:25px;color: black" href="#"
-                                    target="_blank">计算机科学导论</a>
-                                <!--                            <a style="text-decoration:none;font-size:15px;" href="./course/S_homeworkList.html?courseId=1428" target="_blank">上机实验13&nbsp;考级复习二</a>-->
-                            </p>
-                            <div
-                                style="border-bottom:1px solid #cfd2d5;height:1px;box-shadow:0px 1px 7px rgba(0, 0, 0, 0.24);margin-top:35px;margin-bottom:10px;width:900px;">
-                            </div>
-                        </div>
-                        <div id="homeworkRemind14362">
-                            <div style="line-height:72px;min-height:72px;"><a href="perInfo.html" target="_blank">
-                                    <img src="images/personal/jsjkxdl.jpg" class="user_img"
-                                        style="margin-top:16px;margin-left:16px;height:56px;width:56px;"></a></div>
-                            <p style="padding-left:94px;margin-top:-50px;font-size: 25px">
-                                <a style="text-decoration:none;font-size:25px;color: black" href="#"
-                                    target="_blank">计算机科学导论</a>
-                                <!--                            <a style="text-decoration:none;font-size:15px;" href="./course/S_homeworkList.html?courseId=1428" target="_blank">上机实验13&nbsp;考级复习二</a>-->
-                            </p>
-                            <div
-                                style="border-bottom:1px solid #cfd2d5;height:1px;box-shadow:0px 1px 7px rgba(0, 0, 0, 0.24);margin-top:35px;margin-bottom:10px;width:900px;">
-                            </div>
-                        </div>
-                        <div id="homeworkRemind14363">
-                            <div style="line-height:72px;min-height:72px;"><a href="perInfo.html" target="_blank">
-                                    <img src="images/personal/jisuanjijc.jpg" class="user_img"
-                                        style="margin-top:16px;margin-left:16px;height:56px;width:56px;"></a></div>
-                            <p style="padding-left:94px;margin-top:-50px;font-size: 25px">
-                                <a style="text-decoration:none;font-size:25px;color: black" href="#"
-                                    target="_blank">计算机基础实验</a>
-                                <!--                            <a style="text-decoration:none;font-size:15px;" href="./course/S_homeworkList.html?courseId=1428" target="_blank">上机实验13&nbsp;考级复习二</a>-->
-                            </p>
-                            <div
-                                style="border-bottom:1px solid #cfd2d5;height:1px;box-shadow:0px 1px 7px rgba(0, 0, 0, 0.24);margin-top:35px;margin-bottom:10px;width:900px;">
-                            </div>
-                        </div>
-                        <div id="homeworkRemind14364">
-                            <div style="line-height:72px;min-height:72px;"><a href="perInfo.html" target="_blank">
-                                    <img src="images/personal/jisuanjijc.jpg" class="user_img"
-                                        style="margin-top:16px;margin-left:16px;height:56px;width:56px;"></a></div>
-                            <p style="padding-left:94px;margin-top:-50px;font-size: 25px">
-                                <a style="text-decoration:none;font-size:25px;color: black" href="#"
-                                    target="_blank">计算机基础实验</a>
-                                <!--                            <a style="text-decoration:none;font-size:15px;" href="./course/S_homeworkList.html?courseId=1428" target="_blank">上机实验13&nbsp;考级复习二</a>-->
-                            </p>
-                            <div
-                                style="border-bottom:1px solid #cfd2d5;height:1px;box-shadow:0px 1px 7px rgba(0, 0, 0, 0.24);margin-top:35px;margin-bottom:10px;width:900px;">
-                            </div>
-                        </div>
-                        <div id="homeworkRemind14365">
-                            <div style="line-height:72px;min-height:72px;"><a href="perInfo.html" target="_blank">
-                                    <img src="images/personal/jisuanjijc.jpg" class="user_img"
-                                        style="margin-top:16px;margin-left:16px;height:56px;width:56px;"></a></div>
-                            <p style="padding-left:94px;margin-top:-50px;font-size: 25px">
-                                <a style="text-decoration:none;font-size:25px;color: black" href="#"
-                                    target="_blank">计算机基础实验</a>
-                                <!--                            <a style="text-decoration:none;font-size:15px;" href="./course/S_homeworkList.html?courseId=1428" target="_blank">上机实验13&nbsp;考级复习二</a>-->
-                            </p>
-                            <div
-                                style="border-bottom:1px solid #cfd2d5;height:1px;box-shadow:0px 1px 7px rgba(0, 0, 0, 0.24);margin-top:35px;margin-bottom:10px;width:900px;">
-                            </div>
-                        </div>
+                        
+                        
                     </ul>
                 </div>
                 <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
