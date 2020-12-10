@@ -25,12 +25,13 @@ CREATE TABLE `course` (
   `cname` varchar(10) NOT NULL,
   `cImgUrl` varchar(50) DEFAULT NULL,
   `creator` varchar(20) NOT NULL,
+  `introduction` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`courseID`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 /*Data for the table `course` */
 
-insert  into `course`(`courseID`,`cname`,`cImgUrl`,`creator`) values (1,'语文',NULL,'张三'),(2,'数学',NULL,'李四'),(3,'英语',NULL,'王五');
+insert  into `course`(`courseID`,`cname`,`cImgUrl`,`creator`,`introduction`) values (1,'数据结构与算法','http://www.scholat.com/resources/c_icon/sjjg_15032','2','这是数据结构与算法课程'),(2,'数字图像处理','http://www.scholat.com/resources/c_icon/imageproce','3','这是数字图像处理'),(3,'Linux操作系统','http://www.scholat.com/resources/c_icon/linuxopsys','2','这是Linux操作系统课程'),(6,'c++语言程序设计','http://www.scholat.com/resources/c_icon/cppl_15513','3','这是C++语言程序设计课程'),(7,'计算机科学技术导论','http://www.scholat.com/resources/c_icon/jsjkx_1534','3','这是计算机科学技术导论'),(8,'计算机科学技术导论','http://www.scholat.com/resources/c_icon/jsjkx_1534','3','这是计算机科学技术导论');
 
 /*Table structure for table `course_announcement` */
 
@@ -48,7 +49,7 @@ CREATE TABLE `course_announcement` (
 
 /*Data for the table `course_announcement` */
 
-insert  into `course_announcement`(`ID`,`courseID`,`context`,`title`,`announceTime`,`viewTimes`) values (1,1,'这是作业1的公告， 大家注意查收','作业公告','2020-12-05 14:37:58.000000',5);
+insert  into `course_announcement`(`ID`,`courseID`,`context`,`title`,`announceTime`,`viewTimes`) values (1,1,'这是作业1的公告， 大家注意查收','作业公告','2020-12-05 14:37:58.000000',5),(2,1,'这是作业2的公告，大家注意查收',NULL,NULL,0);
 
 /*Table structure for table `course_homework` */
 
@@ -58,15 +59,15 @@ CREATE TABLE `course_homework` (
   `ID` int(5) NOT NULL AUTO_INCREMENT,
   `courseID` int(5) NOT NULL,
   `title` varchar(20) DEFAULT NULL,
-  `userID` varchar(20) DEFAULT NULL,
+  `teaID` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
   `ddl` datetime DEFAULT NULL,
   `context` varchar(500) DEFAULT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 /*Data for the table `course_homework` */
 
-insert  into `course_homework`(`ID`,`courseID`,`title`,`userID`,`ddl`,`context`) values (1,1,'环境安装','2','2020-12-03 15:50:41','这是作业详情界面');
+insert  into `course_homework`(`ID`,`courseID`,`title`,`teaID`,`ddl`,`context`) values (1,1,'实验一','2','2020-12-03 15:50:41','这是作业详情界面'),(2,1,'实验二','2','2020-12-05 16:03:11','这也是作业详情界面'),(3,1,'实验三','2','2020-12-02 15:50:41','这是作业详情界面'),(4,1,'实验四','2','2020-12-05 16:03:11','这也是作业详情界面');
 
 /*Table structure for table `course_resource` */
 
@@ -121,15 +122,34 @@ DROP TABLE IF EXISTS `user_coursehomework`;
 CREATE TABLE `user_coursehomework` (
   `ID` int(5) NOT NULL AUTO_INCREMENT,
   `userEmail` varchar(20) NOT NULL,
-  `courseID` int(5) NOT NULL,
+  `homeworkID` int(5) NOT NULL,
   `status` varchar(5) DEFAULT '未完成',
   `finishTime` datetime(6) DEFAULT NULL,
+  `homeworkUrl` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`ID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 /*Data for the table `user_coursehomework` */
 
-insert  into `user_coursehomework`(`ID`,`userEmail`,`courseID`,`status`,`finishTime`) values (1,'1',1,'未完成',NULL);
+insert  into `user_coursehomework`(`ID`,`userEmail`,`homeworkID`,`status`,`finishTime`,`homeworkUrl`) values (1,'1',1,'已完成','2020-12-07 21:54:35.337000',NULL);
+
+/*Table structure for table `course_homework_tea` */
+
+DROP TABLE IF EXISTS `course_homework_tea`;
+
+/*!50001 DROP VIEW IF EXISTS `course_homework_tea` */;
+/*!50001 DROP TABLE IF EXISTS `course_homework_tea` */;
+
+/*!50001 CREATE TABLE  `course_homework_tea`(
+ `ID` int(5) ,
+ `courseID` int(5) ,
+ `title` varchar(20) ,
+ `teaID` varchar(20) ,
+ `ddl` datetime ,
+ `context` varchar(500) ,
+ `teaName` varchar(10) ,
+ `teaImg` varchar(50) 
+)*/;
 
 /*Table structure for table `user_allcourses` */
 
@@ -144,7 +164,9 @@ DROP TABLE IF EXISTS `user_allcourses`;
  `userEmail` varchar(20) ,
  `cname` varchar(10) ,
  `cImgUrl` varchar(50) ,
- `creator` varchar(20) 
+ `teaID` varchar(20) ,
+ `teaName` varchar(10) ,
+ `introduction` varchar(100) 
 )*/;
 
 /*Table structure for table `user_homeworklist` */
@@ -160,25 +182,34 @@ DROP TABLE IF EXISTS `user_homeworklist`;
  `userEmail` varchar(20) ,
  `status` varchar(5) ,
  `finishTime` datetime(6) ,
+ `homeworkUrl` varchar(50) ,
  `homeworkTitle` varchar(20) ,
  `ddl` datetime ,
  `homeworkID` int(5) ,
+ `teaID` varchar(20) ,
  `teaName` varchar(10) 
 )*/;
+
+/*View structure for view course_homework_tea */
+
+/*!50001 DROP TABLE IF EXISTS `course_homework_tea` */;
+/*!50001 DROP VIEW IF EXISTS `course_homework_tea` */;
+
+/*!50001 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `course_homework_tea` AS select `course_homework`.`ID` AS `ID`,`course_homework`.`courseID` AS `courseID`,`course_homework`.`title` AS `title`,`course_homework`.`teaID` AS `teaID`,`course_homework`.`ddl` AS `ddl`,`course_homework`.`context` AS `context`,`user`.`name` AS `teaName`,`user`.`imgUrl` AS `teaImg` from (`course_homework` join `user`) where (`user`.`email` = `course_homework`.`teaID`) */;
 
 /*View structure for view user_allcourses */
 
 /*!50001 DROP TABLE IF EXISTS `user_allcourses` */;
 /*!50001 DROP VIEW IF EXISTS `user_allcourses` */;
 
-/*!50001 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `user_allcourses` AS select `user_course`.`ID` AS `ID`,`user_course`.`courseID` AS `courseID`,`user_course`.`userEmail` AS `userEmail`,`course`.`cname` AS `cname`,`course`.`cImgUrl` AS `cImgUrl`,`course`.`creator` AS `creator` from (`user_course` join `course`) where (`user_course`.`courseID` = `course`.`courseID`) */;
+/*!50001 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `user_allcourses` AS select `user_course`.`ID` AS `ID`,`user_course`.`courseID` AS `courseID`,`user_course`.`userEmail` AS `userEmail`,`course`.`cname` AS `cname`,`course`.`cImgUrl` AS `cImgUrl`,`course`.`creator` AS `teaID`,`user`.`name` AS `teaName`,`course`.`introduction` AS `introduction` from ((`user_course` join `course`) join `user`) where ((`user_course`.`courseID` = `course`.`courseID`) and (`user`.`email` = `course`.`creator`)) */;
 
 /*View structure for view user_homeworklist */
 
 /*!50001 DROP TABLE IF EXISTS `user_homeworklist` */;
 /*!50001 DROP VIEW IF EXISTS `user_homeworklist` */;
 
-/*!50001 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `user_homeworklist` AS select `user_coursehomework`.`ID` AS `ID`,`user_coursehomework`.`courseID` AS `courseID`,`user_coursehomework`.`userEmail` AS `userEmail`,`user_coursehomework`.`status` AS `status`,`user_coursehomework`.`finishTime` AS `finishTime`,`course_homework`.`title` AS `homeworkTitle`,`course_homework`.`ddl` AS `ddl`,`course_homework`.`ID` AS `homeworkID`,`user`.`name` AS `teaName` from ((`user_coursehomework` join `course_homework`) join `user`) where ((`user_coursehomework`.`courseID` = `course_homework`.`courseID`) and (`course_homework`.`userID` = `user`.`email`)) */;
+/*!50001 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `user_homeworklist` AS select `user_coursehomework`.`ID` AS `ID`,`course_homework`.`courseID` AS `courseID`,`user_coursehomework`.`userEmail` AS `userEmail`,`user_coursehomework`.`status` AS `status`,`user_coursehomework`.`finishTime` AS `finishTime`,`user_coursehomework`.`homeworkUrl` AS `homeworkUrl`,`course_homework`.`title` AS `homeworkTitle`,`course_homework`.`ddl` AS `ddl`,`course_homework`.`ID` AS `homeworkID`,`course_homework`.`teaID` AS `teaID`,`user`.`name` AS `teaName` from ((`user_coursehomework` join `course_homework`) join `user`) where ((`user_coursehomework`.`homeworkID` = `course_homework`.`ID`) and (`course_homework`.`teaID` = `user`.`email`)) */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
