@@ -30,7 +30,7 @@
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="scrollmodalLabel">发布新作业</h5>
+                <h5 class="modal-title" id="scrollmodalLabel">上传资源</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -39,12 +39,7 @@
                 <div style="margin-top: 15px; margin-bottom: 20px;">
                     <form action="" role="form">
                         <div class="form-group">
-                            <label for="homework-title" class="col-sm-4 control-label">作业标题</label>
-                            <div class="col-sm-10"><input class="form-control" id="homework-title" type="text"></div>
-                        </div>
-                        <div class="form-group">
-                            <label for="detail" class="col-sm-4 control-label">作业要求</label>
-                            <textarea class="form-control" id="detail" name="detail" rows="13"></textarea>
+                            <div class="col-sm-10"><input class="" id="upload-resource" type="file" style="size: 30px;"></div>
                         </div>
                     </form>
                 </div>
@@ -62,25 +57,25 @@
         <h1><strong>My Courses</strong></h1>
     </div>
     <div id="menu-main" class="" style="padding: 0;margin-bottom: 15px;">
-<!--        <nav class="navbar navbar-expand-lg rounded" style="">-->
-<!--            <div class="">-->
-<!--                <ul class="nav nav-tabs" id="myTab" role="tablist" style="min-width: 80%;">-->
-<!--                    <li class="nav-item"><strong>-->
-<!--                        <a class="nav-link a_style" id="introduction-tab" data-toggle="tab" href="announcement.html" role="tab"-->
-<!--                           aria-controls="home" aria-selected="true">课程公告</a></strong>-->
-<!--                    </li>-->
-<!--                    <li class="nav-item"><strong>-->
-<!--                        <a class="nav-link a_style" id="news-tab" data-toggle="tab" href="resource.html" role="tab"-->
-<!--                           aria-controls="profile" aria-selected="false">课程资源</a></strong>-->
-<!--                    </li>-->
-<!--                    <li class="nav-item"><strong>-->
-<!--                        <a class="nav-link active a_style" id="academic-tab" data-toggle="tab" href="homeworkList2.html"-->
-<!--                           role="tab"-->
-<!--                           aria-controls="contact" aria-selected="false">课程作业</a></strong>-->
-<!--                    </li>-->
-<!--                </ul>-->
-<!--            </div>-->
-<!--        </nav>-->
+        <!--        <nav class="navbar navbar-expand-lg rounded" style="">-->
+        <!--            <div class="">-->
+        <!--                <ul class="nav nav-tabs" id="myTab" role="tablist" style="min-width: 80%;">-->
+        <!--                    <li class="nav-item"><strong>-->
+        <!--                        <a class="nav-link a_style" id="introduction-tab" data-toggle="tab" href="announcement.html" role="tab"-->
+        <!--                           aria-controls="home" aria-selected="true">课程公告</a></strong>-->
+        <!--                    </li>-->
+        <!--                    <li class="nav-item"><strong>-->
+        <!--                        <a class="nav-link a_style" id="news-tab" data-toggle="tab" href="resource.html" role="tab"-->
+        <!--                           aria-controls="profile" aria-selected="false">课程资源</a></strong>-->
+        <!--                    </li>-->
+        <!--                    <li class="nav-item"><strong>-->
+        <!--                        <a class="nav-link active a_style" id="academic-tab" data-toggle="tab" href="homeworkList2.html"-->
+        <!--                           role="tab"-->
+        <!--                           aria-controls="contact" aria-selected="false">课程作业</a></strong>-->
+        <!--                    </li>-->
+        <!--                </ul>-->
+        <!--            </div>-->
+        <!--        </nav>-->
 
         <div  style="display: inline-block">
             <nav class="mynav">
@@ -91,7 +86,7 @@
                 </ul>
             </nav><span class="target"></span></div>
         <div style="display: inline-block;margin-left: 45%">
-            <button type="button" class="btn btn-outline-warning btn-lg" style="font-size: 18px;margin-left: 46%;min-width:100px;padding: 0;color: black;"  data-toggle="modal" data-target="#scrollmodal" >发布新作业</button>
+            <button type="button" class="btn btn-outline-warning btn-lg" style="font-size: 18px;margin-left: 46%;min-width:100px;padding: 0;color: black;"  data-toggle="modal" data-target="#scrollmodal" >上传资源</button>
         </div>
         <span class="target"></span>
         <script>
@@ -352,37 +347,37 @@
         </div>
 
         <!--        <div class="tab-pane fade show active" id="introduction" role="tabpanel" aria-labelledby="introduction-tab">-->
-<!--            <div class="seller-profile">-->
-<!--                <div class="container row" style="height: 100%;top: -30px;">-->
-<!--                    &lt;!&ndash;                        icon&ndash;&gt;-->
-<!--                    <div class="col-sm-2">-->
-<!--                        <img src="../images/l3.png" alt="" style="max-height: 50px;max-width: 50px">-->
-<!--                    </div>-->
-<!--                    &lt;!&ndash;        main-content&ndash;&gt;-->
-<!--                    <div class="col-sm-6" style="left: -100px;">-->
-<!--                        <div class="container-fluid" style="top: -30px;">-->
-<!--                            <span style="font-size: 20px;font-family: 微軟正黑體;"><strong>作业标题eg：第一章</strong></span>-->
-<!--                        </div>-->
-<!--                        <div class="container-fluid" style="color: gray;font-size: 14px;font-family: 微软雅黑;">-->
-<!--                            苏海 发布时间....etc-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                    <div class="col-sm-1"></div>-->
-<!--                    &lt;!&ndash;        situation-complete&ndash;&gt;-->
-<!--                    <div class="col-sm-1" style="min-width: 10px;float: right;">-->
-<!--                        <div style="margin-top: 15px;"><span class="badge-dot badge-brand mr-1"></span><strong-->
-<!--                                style="font-size: 12px;">未完成</strong></div>-->
+        <!--            <div class="seller-profile">-->
+        <!--                <div class="container row" style="height: 100%;top: -30px;">-->
+        <!--                    &lt;!&ndash;                        icon&ndash;&gt;-->
+        <!--                    <div class="col-sm-2">-->
+        <!--                        <img src="../images/l3.png" alt="" style="max-height: 50px;max-width: 50px">-->
+        <!--                    </div>-->
+        <!--                    &lt;!&ndash;        main-content&ndash;&gt;-->
+        <!--                    <div class="col-sm-6" style="left: -100px;">-->
+        <!--                        <div class="container-fluid" style="top: -30px;">-->
+        <!--                            <span style="font-size: 20px;font-family: 微軟正黑體;"><strong>作业标题eg：第一章</strong></span>-->
+        <!--                        </div>-->
+        <!--                        <div class="container-fluid" style="color: gray;font-size: 14px;font-family: 微软雅黑;">-->
+        <!--                            苏海 发布时间....etc-->
+        <!--                        </div>-->
+        <!--                    </div>-->
+        <!--                    <div class="col-sm-1"></div>-->
+        <!--                    &lt;!&ndash;        situation-complete&ndash;&gt;-->
+        <!--                    <div class="col-sm-1" style="min-width: 10px;float: right;">-->
+        <!--                        <div style="margin-top: 15px;"><span class="badge-dot badge-brand mr-1"></span><strong-->
+        <!--                                style="font-size: 12px;">未完成</strong></div>-->
 
-<!--                    </div>-->
-<!--                    &lt;!&ndash;        button&ndash;&gt;-->
-<!--                    <div class="col-sm-2" style="text-align: center;width: 150px;">-->
-<!--                        <button class="btn btn-lg btn-success"-->
-<!--                                style="width: 100%;margin-top: 5px;margin-right:20px;font-size: 14px;"><strong-->
-<!--                                style="font-size: 14px;">更改作业</strong></button>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </div>-->
+        <!--                    </div>-->
+        <!--                    &lt;!&ndash;        button&ndash;&gt;-->
+        <!--                    <div class="col-sm-2" style="text-align: center;width: 150px;">-->
+        <!--                        <button class="btn btn-lg btn-success"-->
+        <!--                                style="width: 100%;margin-top: 5px;margin-right:20px;font-size: 14px;"><strong-->
+        <!--                                style="font-size: 14px;">更改作业</strong></button>-->
+        <!--                    </div>-->
+        <!--                </div>-->
+        <!--            </div>-->
+        <!--        </div>-->
 
 
     </div>
