@@ -52,7 +52,7 @@ r.get('/homeworkDetail', (req, res) => {
     let userInfo = req.session.userInfo;
     if (userInfo) {
         if (homeworkID) {
-            pool.query('SELECT * FROM course_homework WHERE ID=? ', [homeworkID], (err, result) => {
+            pool.query('SELECT * FROM course_homework_tea WHERE ID=? ', [homeworkID], (err, result) => {
                 console.log('作业详情查询结果：', result);
                 if (err) throw err;
 
@@ -397,7 +397,7 @@ r.post('/assignHomework', (req, res) => {
             return;
         }
 
-        obj.userID = userInfo.email
+        obj.teaID = userInfo.email
         //执行sql命令  将数据添加到数据库
         pool.query('INSERT INTO course_homework SET ?', [obj], (err, result) => {
             if (err) throw err;
@@ -434,29 +434,53 @@ r.post('/submitHomework', (req, res) => {
             return;
         }
 
-        obj.userID = userInfo.email
-
-        let desDirPath = "uploadFiles/user" + obj.userID
+        let desDirPath = "uploadFiles/user" + userInfo.email
         let fileName = fileInfo.originalname
 
-        // 上传文件
+        obj.userID = userInfo.email
+        obj.status = '已完成'
+        obj.finishTime = new Date()
+        obj.homeworkUrl = desDirPath + "/" + fileName
+
+            // 上传文件
         fileTool.uploadFile(fileInfo.path, desDirPath, fileName)
             .then(function (fileRes) {
                 if (fileRes.code === 200) {//上传成功
                     //执行sql命令  将数据添加到数据库
-                    pool.query('UPDATE user_coursehomework  SET status=?,finishTime=? WHERE userEmail=? and homeworkID=?'
-                        , ['已完成', new Date(), userInfo.email, obj.homeworkID], (err, result) => {
-                            if (err) {
-                                fileTool.deleteFile(fileInfo.path)
-                                fileTool.deleteFile(desDirPath + "/" + fileInfo.originalname)
-                                res.send({code: 405, msg: 'update fail'})
-                                throw err;
-                            }
-                            fileTool.deleteFile(fileInfo.path)
-                            console.log(result);
 
-                            res.send({code: 200, msg: 'submit success'})
-                        })
+                    pool.query('SELECT * FROM user_coursehomework WHERE userEmail=? and homeworkID=?', [userInfo.email, obj.homeworkID], (err, qresult) => {
+
+                        if (err) throw err;
+
+                        if(qresult.length >0) {
+                            pool.query('UPDATE user_coursehomework  SET status=?,finishTime=?,homeworkUrl=? WHERE userEmail=? and homeworkID=?'
+                                , ['已完成', new Date(), desDirPath+"/"+fileName ,userInfo.email, obj.homeworkID], (err, result) => {
+                                    if (err) {
+                                        fileTool.deleteFile(fileInfo.path)
+                                        fileTool.deleteFile(desDirPath + "/" + fileInfo.originalname)
+                                        res.send({code: 405, msg: 'update fail'})
+                                        throw err;
+                                    }
+                                    fileTool.deleteFile(fileInfo.path)
+                                    console.log(result);
+                                    res.send({code: 200, msg: 'submit success'})
+                                })
+                        } else {
+                            pool.query('INSERT INTO user_coursehomework SET ?', [obj], (err, result) => {
+                                if (err) {
+                                    fileTool.deleteFile(fileInfo.path)
+                                    fileTool.deleteFile(desDirPath + "/" + fileInfo.originalname)
+                                    res.send({code: 405, msg: 'insert fail'})
+                                    throw err;
+                                }
+                                console.log(result);
+                                //注册成功
+                                res.send({code: 200, msg: 'submit success'})
+                            })
+                        }
+                    })
+
+
                 } else {//上传失败
                     fileTool.deleteFile(fileInfo.path)
                     res.send({code: 404, msg: 'upload file fail'})
