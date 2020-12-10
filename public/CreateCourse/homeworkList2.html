@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>作业列表</title>
+    <!--     Favicon Icon-->
+    <link rel="stylesheet" href="../css/comm.css">
+    <link rel="icon" type="image/jpg" href="../images/personal/a.jpg">
+    <!-- Bootstrap core CSS -->
+    <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome-->
+    <link href="../vendor/fontawesome/css/font-awesome.min.css" rel="stylesheet">
+    <!-- Material Design Icons -->
+    <link href="../vendor/icons/css/materialdesignicons.min.css" media="all" rel="stylesheet" type="text/css">
+    <!-- Slick -->
+    <link href="../vendor/slick-master/slick/slick.css" rel="stylesheet" type="text/css">
+    <!-- Lightgallery -->
+    <link href="../vendor/lightgallery-master/dist/css/lightgallery.min.css" rel="stylesheet">
+    <!-- Select2 CSS -->
+    <link href="../vendor/select2/css/select2.min.css" rel="stylesheet">
+    <link href="../css/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/nav.css">
+    <script type="text/javascript" src="header.js"></script>
+</head>
+<body style="background-color: whitesmoke">
+<div class="container" style="min-height: 100%;">
+    <div id="courseName" class="container-fluid courseName">
+        <h1><strong>My Courses</strong></h1>
+    </div>
+    <div id="menu-main" class="" style="padding: 0;margin-bottom: 15px;">
+<!--        <nav class="navbar navbar-expand-lg rounded" style="">-->
+<!--            <div class="">-->
+<!--                <ul class="nav nav-tabs" id="myTab" role="tablist" style="min-width: 80%;">-->
+<!--                    <li class="nav-item"><strong>-->
+<!--                        <a class="nav-link a_style" id="introduction-tab" data-toggle="tab" href="announcement.html" role="tab"-->
+<!--                           aria-controls="home" aria-selected="true">课程公告</a></strong>-->
+<!--                    </li>-->
+<!--                    <li class="nav-item"><strong>-->
+<!--                        <a class="nav-link a_style" id="news-tab" data-toggle="tab" href="resource.html" role="tab"-->
+<!--                           aria-controls="profile" aria-selected="false">课程资源</a></strong>-->
+<!--                    </li>-->
+<!--                    <li class="nav-item"><strong>-->
+<!--                        <a class="nav-link active a_style" id="academic-tab" data-toggle="tab" href="homeworkList2.html"-->
+<!--                           role="tab"-->
+<!--                           aria-controls="contact" aria-selected="false">课程作业</a></strong>-->
+<!--                    </li>-->
+<!--                </ul>-->
+<!--            </div>-->
+<!--        </nav>-->
+
+        <nav class="mynav">
+            <ul>
+                <li onclick="window.open('announcement.html')"><a href="announcement.html">课程公告</a></li>
+                <li onclick="window.open('resource.html')"><a href="resource.html">课程资源</a></li>
+                <li onclick="window.open('homeworkList2')"><a href="homeworkList2.html">课程作业</a></li>
+            </ul>
+        </nav>
+        <span class="target"></span>
+        <script>
+            "use strict";
+            (function () {
+
+                var target = document.querySelector(".target");
+                var links = document.querySelectorAll(".mynav a");
+                var colors = ["deepskyblue", "orange", "firebrick", "gold", "magenta", "black", "darkblue"];
+
+                function mouseenterFunc() {
+                    if (!this.parentNode.classList.contains("active")) {
+                        for (var i = 0; i < links.length; i++) {
+                            if (links[i].parentNode.classList.contains("active")) {
+                                links[i].parentNode.classList.remove("active");
+                            }
+                            links[i].style.opacity = "0.25";
+                        }
+
+                        this.parentNode.classList.add("active");
+                        this.style.opacity = "1";
+
+                        var width = this.getBoundingClientRect().width;
+                        var height = this.getBoundingClientRect().height;
+                        var left = this.getBoundingClientRect().left + window.pageXOffset;
+                        var top = this.getBoundingClientRect().top + window.pageYOffset;
+                        var color = colors[Math.floor(Math.random() * colors.length)];
+
+                        target.style.width = width + "px";
+                        target.style.height = height + "px";
+                        target.style.left = left + "px";
+                        target.style.top = top + "px";
+                        target.style.borderColor = color;
+                        target.style.transform = "none";
+                    }
+                }
+
+                for (var i = 0; i < links.length; i++) {
+                    links[i].addEventListener("click", function (e) {
+                        return e.preventDefault();
+                    });
+                    links[i].addEventListener("mouseenter", mouseenterFunc);
+                }
+
+                function resizeFunc() {
+                    var active = document.querySelector(".mynav li.active");
+
+                    if (active) {
+                        var left = active.getBoundingClientRect().left + window.pageXOffset;
+                        var top = active.getBoundingClientRect().top + window.pageYOffset;
+
+                        target.style.left = left + "px";
+                        target.style.top = top + "px";
+                    }
+                }
+
+                window.addEventListener("resize", resizeFunc);
+            })();</script>
+    </div>
+
+    <div class="tab-content pl-3 p-1 container-fluid" id="TabContent">
+        <div class="tab-pane fade show active" id="introduction" role="tabpanel" aria-labelledby="introduction-tab">
+            <div class="seller-profile">
+                <div class="container row" style="height: 100%;top: 50%">
+                    <!--                        icon-->
+                    <div class="col-sm-6 col-lg-2 col-md-2" style="max-height: 50px;max-width: 50px">
+                        <img src="../images/l3.png" alt="" style="max-height: 50px;max-width: 50px">
+                    </div>
+                    <!--        main-content-->
+                    <div class="col-sm-6 col-lg-6 col-md-4" style="left: 3%;margin-right: 20%">
+                        <div class="container" style="min-width: auto">
+                            <span style="font-size: 20px;font-family: 微軟正黑體;"><strong>作业标题eg：第一章</strong></span>
+                        </div>
+                        <div class="container-fluid" style="color: gray;font-size: 14px;font-family: 微软雅黑;">
+                            苏海 发布时间....etc
+                        </div>
+                    </div>
+
+                    <!--        situation-complete-->
+                    <div class="col-sm-6 col-lg-1 col-md-1" style="min-width: 60px;padding: 0;">
+                        <div style="margin-top: 15px;text-align: center"><span class="badge-dot badge-brand mr-1"></span><strong
+                                style="font-size: 12px;min-width: 60px;">未完成</strong></div>
+
+                    </div>
+                    <!--        button-->
+                    <div class="col-sm-6 col-lg-2 col-md-5" style="text-align: center;width: 150px;">
+                        <button class="btn btn-lg btn-success"
+                                style="min-width:150px; width: 100%;margin-top: 5px;margin-right:20px;font-size: 14px;"><strong
+                                style="font-size: 14px;">更改作业</strong></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="tab-pane fade show active" id="introduction" role="tabpanel" aria-labelledby="introduction-tab">
+            <div class="seller-profile">
+                <div class="container row" style="height: 100%;top: 50%">
+                    <!--                        icon-->
+                    <div class="col-sm-6 col-lg-2 col-md-2" style="max-height: 50px;max-width: 50px">
+                        <img src="../images/l3.png" alt="" style="max-height: 50px;max-width: 50px">
+                    </div>
+                    <!--        main-content-->
+                    <div class="col-sm-6 col-lg-6 col-md-4" style="left: 3%;margin-right: 20%">
+                        <div class="container" style="min-width: auto">
+                            <span style="font-size: 20px;font-family: 微軟正黑體;"><strong>作业标题eg：第一章</strong></span>
+                        </div>
+                        <div class="container-fluid" style="color: gray;font-size: 14px;font-family: 微软雅黑;">
+                            苏海 发布时间....etc
+                        </div>
+                    </div>
+
+                    <!--        situation-complete-->
+                    <div class="col-sm-6 col-lg-1 col-md-1" style="min-width: 60px;padding: 0;">
+                        <div style="margin-top: 15px;text-align: center"><span class="badge-dot badge-brand mr-1"></span><strong
+                                style="font-size: 12px;min-width: 60px;">未完成</strong></div>
+
+                    </div>
+                    <!--        button-->
+                    <div class="col-sm-6 col-lg-2 col-md-5" style="text-align: center;width: 150px;">
+                        <button class="btn btn-lg btn-success"
+                                style="min-width:150px; width: 100%;margin-top: 5px;margin-right:20px;font-size: 14px;"><strong
+                                style="font-size: 14px;">更改作业</strong></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="tab-pane fade show active" id="introduction" role="tabpanel" aria-labelledby="introduction-tab">
+            <div class="seller-profile">
+                <div class="container row" style="height: 100%;top: 50%">
+                    <!--                        icon-->
+                    <div class="col-sm-6 col-lg-2 col-md-2" style="max-height: 50px;max-width: 50px">
+                        <img src="../images/l3.png" alt="" style="max-height: 50px;max-width: 50px">
+                    </div>
+                    <!--        main-content-->
+                    <div class="col-sm-6 col-lg-6 col-md-4" style="left: 3%;margin-right: 20%">
+                        <div class="container" style="min-width: auto">
+                            <span style="font-size: 20px;font-family: 微軟正黑體;"><strong>作业标题eg：第一章</strong></span>
+                        </div>
+                        <div class="container-fluid" style="color: gray;font-size: 14px;font-family: 微软雅黑;">
+                            苏海 发布时间....etc
+                        </div>
+                    </div>
+
+                    <!--        situation-complete-->
+                    <div class="col-sm-6 col-lg-1 col-md-1" style="min-width: 60px;padding: 0;">
+                        <div style="margin-top: 15px;text-align: center"><span class="badge-dot badge-brand mr-1"></span><strong
+                                style="font-size: 12px;min-width: 60px;">未完成</strong></div>
+
+                    </div>
+                    <!--        button-->
+                    <div class="col-sm-6 col-lg-2 col-md-5" style="text-align: center;width: 150px;">
+                        <button class="btn btn-lg btn-success"
+                                style="min-width:150px; width: 100%;margin-top: 5px;margin-right:20px;font-size: 14px;"><strong
+                                style="font-size: 14px;">更改作业</strong></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="tab-pane fade show active" id="introduction" role="tabpanel" aria-labelledby="introduction-tab">
+            <div class="seller-profile">
+                <div class="container row" style="height: 100%;top: 50%">
+                    <!--                        icon-->
+                    <div class="col-sm-6 col-lg-2 col-md-2" style="max-height: 50px;max-width: 50px">
+                        <img src="../images/l3.png" alt="" style="max-height: 50px;max-width: 50px">
+                    </div>
+                    <!--        main-content-->
+                    <div class="col-sm-6 col-lg-6 col-md-4" style="left: 3%;margin-right: 20%">
+                        <div class="container" style="min-width: auto">
+                            <span style="font-size: 20px;font-family: 微軟正黑體;"><strong>作业标题eg：第一章</strong></span>
+                        </div>
+                        <div class="container-fluid" style="color: gray;font-size: 14px;font-family: 微软雅黑;">
+                            苏海 发布时间....etc
+                        </div>
+                    </div>
+
+                    <!--        situation-complete-->
+                    <div class="col-sm-6 col-lg-1 col-md-1" style="min-width: 60px;padding: 0;">
+                        <div style="margin-top: 15px;text-align: center"><span class="badge-dot badge-brand mr-1"></span><strong
+                                style="font-size: 12px;min-width: 60px;">未完成</strong></div>
+
+                    </div>
+                    <!--        button-->
+                    <div class="col-sm-6 col-lg-2 col-md-5" style="text-align: center;width: 150px;">
+                        <button class="btn btn-lg btn-success"
+                                style="min-width:150px; width: 100%;margin-top: 5px;margin-right:20px;font-size: 14px;"><strong
+                                style="font-size: 14px;">更改作业</strong></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="tab-pane fade show active" id="introduction" role="tabpanel" aria-labelledby="introduction-tab">
+            <div class="seller-profile">
+                <div class="container row" style="height: 100%;top: 50%">
+                    <!--                        icon-->
+                    <div class="col-sm-6 col-lg-2 col-md-2" style="max-height: 50px;max-width: 50px">
+                        <img src="../images/l3.png" alt="" style="max-height: 50px;max-width: 50px">
+                    </div>
+                    <!--        main-content-->
+                    <div class="col-sm-6 col-lg-6 col-md-4" style="left: 3%;margin-right: 20%">
+                        <div class="container" style="min-width: auto">
+                            <span style="font-size: 20px;font-family: 微軟正黑體;"><strong>作业标题eg：第一章</strong></span>
+                        </div>
+                        <div class="container-fluid" style="color: gray;font-size: 14px;font-family: 微软雅黑;">
+                            苏海 发布时间....etc
+                        </div>
+                    </div>
+
+                    <!--        situation-complete-->
+                    <div class="col-sm-6 col-lg-1 col-md-1" style="min-width: 60px;padding: 0;">
+                        <div style="margin-top: 15px;text-align: center"><span class="badge-dot badge-brand mr-1"></span><strong
+                                style="font-size: 12px;min-width: 60px;">未完成</strong></div>
+
+                    </div>
+                    <!--        button-->
+                    <div class="col-sm-6 col-lg-2 col-md-5" style="text-align: center;width: 150px;">
+                        <button class="btn btn-lg btn-success"
+                                style="min-width:150px; width: 100%;margin-top: 5px;margin-right:20px;font-size: 14px;"><strong
+                                style="font-size: 14px;">更改作业</strong></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="tab-pane fade show active" id="introduction" role="tabpanel" aria-labelledby="introduction-tab">
+            <div class="seller-profile">
+                <div class="container row" style="height: 100%;top: 50%">
+                    <!--                        icon-->
+                    <div class="col-sm-6 col-lg-2 col-md-2" style="max-height: 50px;max-width: 50px">
+                        <img src="../images/l3.png" alt="" style="max-height: 50px;max-width: 50px">
+                    </div>
+                    <!--        main-content-->
+                    <div class="col-sm-6 col-lg-6 col-md-4" style="left: 3%;margin-right: 20%">
+                        <div class="container" style="min-width: auto">
+                            <span style="font-size: 20px;font-family: 微軟正黑體;"><strong>作业标题eg：第一章</strong></span>
+                        </div>
+                        <div class="container-fluid" style="color: gray;font-size: 14px;font-family: 微软雅黑;">
+                            苏海 发布时间....etc
+                        </div>
+                    </div>
+
+                    <!--        situation-complete-->
+                    <div class="col-sm-6 col-lg-1 col-md-1" style="min-width: 60px;padding: 0;">
+                        <div style="margin-top: 15px;text-align: center"><span class="badge-dot badge-brand mr-1"></span><strong
+                                style="font-size: 12px;min-width: 60px;">未完成</strong></div>
+
+                    </div>
+                    <!--        button-->
+                    <div class="col-sm-6 col-lg-2 col-md-5" style="text-align: center;width: 150px;">
+                        <button class="btn btn-lg btn-success"
+                                style="min-width:150px; width: 100%;margin-top: 5px;margin-right:20px;font-size: 14px;"><strong
+                                style="font-size: 14px;">更改作业</strong></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--        <div class="tab-pane fade show active" id="introduction" role="tabpanel" aria-labelledby="introduction-tab">-->
+<!--            <div class="seller-profile">-->
+<!--                <div class="container row" style="height: 100%;top: -30px;">-->
+<!--                    &lt;!&ndash;                        icon&ndash;&gt;-->
+<!--                    <div class="col-sm-2">-->
+<!--                        <img src="../images/l3.png" alt="" style="max-height: 50px;max-width: 50px">-->
+<!--                    </div>-->
+<!--                    &lt;!&ndash;        main-content&ndash;&gt;-->
+<!--                    <div class="col-sm-6" style="left: -100px;">-->
+<!--                        <div class="container-fluid" style="top: -30px;">-->
+<!--                            <span style="font-size: 20px;font-family: 微軟正黑體;"><strong>作业标题eg：第一章</strong></span>-->
+<!--                        </div>-->
+<!--                        <div class="container-fluid" style="color: gray;font-size: 14px;font-family: 微软雅黑;">-->
+<!--                            苏海 发布时间....etc-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div class="col-sm-1"></div>-->
+<!--                    &lt;!&ndash;        situation-complete&ndash;&gt;-->
+<!--                    <div class="col-sm-1" style="min-width: 10px;float: right;">-->
+<!--                        <div style="margin-top: 15px;"><span class="badge-dot badge-brand mr-1"></span><strong-->
+<!--                                style="font-size: 12px;">未完成</strong></div>-->
+
+<!--                    </div>-->
+<!--                    &lt;!&ndash;        button&ndash;&gt;-->
+<!--                    <div class="col-sm-2" style="text-align: center;width: 150px;">-->
+<!--                        <button class="btn btn-lg btn-success"-->
+<!--                                style="width: 100%;margin-top: 5px;margin-right:20px;font-size: 14px;"><strong-->
+<!--                                style="font-size: 14px;">更改作业</strong></button>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+
+
+    </div>
+
+
+</div>
+<!--     Bootstrap core JavaScript-->
+<script src="../vendor/jquery/jquery.min.js"></script>
+<script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- Contact form JavaScript -->
+<!--    &lt;!&ndash; Do not edit these files! In order to set the email address and subject line for the contact form go to the bin/contact_me.php file. &ndash;&gt;-->
+<!--    <script src="js/jqBootstrapValidation.js"></script>-->
+<!--    <script src="js/contact_me.js"></script>-->
+<!-- Slick -->
+<script src="../vendor/slick-master/slick/slick.js" type="text/javascript" charset="utf-8"></script>
+<!-- lightgallery -->
+<script src="../vendor/lightgallery-master/dist/js/lightgallery-all.min.js"></script>
+<!-- select2 Js -->
+<script src="../vendor/select2/js/select2.min.js"></script>
+<!-- Custom -->
+<script src="../js/custom.js"></script>
+
+<!--<div id="page"></div>-->
+<!--        <footer>-->
+<!--             <iframe class="my_footer" src="footer.html" scrolling="no"></iframe>-->
+<!--        </footer>-->
+</body>
+<script type="text/javascript" src="footer.js"></script>
+</html>
