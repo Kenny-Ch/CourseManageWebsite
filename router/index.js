@@ -30,16 +30,30 @@ r.get('/search', (req, res) => {
 
 //获取我的所有课程
 r.get('/mycourses', (req, res) => {
-    let userInfo = req.session.userInfo;
+    // let userInfo = req.session.userInfo;
+    let userInfo = {email:1}
     //检查是否登录
     if (userInfo) {
         pool.query('SELECT * FROM user_allcourses WHERE userEmail=?', [userInfo.email], (err, result) => {
             console.log('查询结果：', result);
             if (err) throw err;
 
+            let allCourse = result
+            let joinCourse = []
+            let createCourse = []
+
+            for(let i=0; i<result.length; i++) {
+                if(result[i].userEmail == result[i].teaID) {
+                    createCourse.push(result[i])
+                } else {
+                    joinCourse.push(result[i])
+                }
+            }
             res.send({
                 code: 200,
-                courseList: result
+                allCourse: allCourse,
+                joinCourse: joinCourse,
+                createCourse: createCourse
             })
 
         })

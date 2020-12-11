@@ -12,8 +12,8 @@ var app = new Vue({
     },
     created(){
         this.$http.get('/index/mycourses').then(function(res){
-            console.log(res.body.courseList)
-            this.courseList=res.body.courseList;
+            console.log(res.body.allCourse)
+            this.courseList=res.body.allCourse;
         })
     },
     methods: {

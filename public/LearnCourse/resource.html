@@ -20,194 +20,84 @@
     <!-- Select2 CSS -->
     <link href="../vendor/select2/css/select2.min.css" rel="stylesheet">
     <link href="../css/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/nav.css">
     <script type="text/javascript" src="header.js"></script>
-    <style type="text/css">#userHref {
-        cursor: pointer;
-        padding-right: 20px;
-    }
-    #menu1 a:hover {
-        border-radius: 0px;
-    }
-    .noticeme {
-        border-bottom: solid 1px #DCDCDC;
-        padding: 15px 15px 15px 10px;
-        color: #2d2d2d;
-        font-size: 15px;
-    }
-    .noticeme a:hover {
-        color: #0179B5;
-        font-weight: normal;
-    }
-    .hulue {
-        font-size: 12px;
-        color: #A5A5A5;
-        float: right;
-        cursor: pointer;
-        display: none;
-        padding: 2px 0px 3px 0px;
-    }
-    .T_noticenews {
-        width: 6px;
-        height: 6px;
-        display: inline-block;
-        border-radius: 6px;
-        background: #339999;
-        box-shadow: 0px 0px 2px 1px rgba(100, 100, 100, 0.5);
-        overflow: hidden;
-        margin-left: 5px;
-        margin-right: 5px;
-        margin-bottom: 2px;
-    }
-    </style>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://cdn.staticfile.org/vue-resource/1.5.1/vue-resource.min.js"></script>
 </head>
-<body>
-<div class="container-fluid header-main header-section navbar-about product-background" style="top: -48px;">
-    <div class="header-back"></div>
-    <div class="container container-zindex cover-container am-animation-scale-up"
-         data-am-scrollspy="{animation: 'scale-up', repeat: false}" style="top: 50%;color: white;">
-        <h1 style="font-size: 60px;"><span>C语言程序设计</span></h1>
-        <div class="container head-url text-light"><h3>
-            访问地址：
-            <a href="c_language" style="color: whitesmoke">http://www.scholat.com/course/c_language</a>
-        </h3></div>
+<body style="background-color: whitesmoke">
+<div class="container" style="min-height: 100%;" id="app">
+    <div id="courseName" class="container-fluid courseName">
+        <h1><strong>My Courses</strong></h1>
     </div>
-    <!--                <div class="container row" style="display: inline;">-->
-    <!--                    <div class="container head-title text-light col-sm-3" style="font-family: 微软雅黑;color: black;margin-top:15px;">-->
-    <!--                        C语言程序设计-->
-    <!--                    </div>-->
-    <!--                    <div class="head-notice text-light container col-sm-9" style="float: right;">-->
-    <!--                        <div class="container" style="font-family: 微软雅黑;margin-top:15px;">-->
-    <!--                            欢迎您，陈玉彬同学&nbsp;&nbsp;-->
-    <!--                        </div>-->
-    <!--                    </div>-->
-    <!--                </div>-->
-    <!--                <div class="container head-url text-light" style="font-family: 'Georgia', Georgia, 'Times New Roman', Times, 'Microsoft YaHei', SimSun, SimHei, serif">-->
-    <!--                    访问地址：-->
-    <!--                    <a href="c_language" style="color: whitesmoke">http://www.scholat.com/course/c_language</a>-->
-    <!--                </div>-->
+    <div id="menu-main" class="" style="padding: 0;margin-bottom: 15px;">
+        <!--        <nav class="navbar navbar-expand-lg rounded" style="">-->
+        <!--            <div class="">-->
+        <!--                <ul class="nav nav-tabs" id="myTab" role="tablist" style="min-width: 80%;">-->
+        <!--                    <li class="nav-item"><strong>-->
+        <!--                        <a class="nav-link a_style" id="introduction-tab" data-toggle="tab" href="announcement.html" role="tab"-->
+        <!--                           aria-controls="home" aria-selected="true">课程公告</a></strong>-->
+        <!--                    </li>-->
+        <!--                    <li class="nav-item"><strong>-->
+        <!--                        <a class="nav-link a_style" id="news-tab" data-toggle="tab" href="resource.html" role="tab"-->
+        <!--                           aria-controls="profile" aria-selected="false">课程资源</a></strong>-->
+        <!--                    </li>-->
+        <!--                    <li class="nav-item"><strong>-->
+        <!--                        <a class="nav-link active a_style" id="academic-tab" data-toggle="tab" href="homeworkList2.html"-->
+        <!--                           role="tab"-->
+        <!--                           aria-controls="contact" aria-selected="false">课程作业</a></strong>-->
+        <!--                    </li>-->
+        <!--                </ul>-->
+        <!--            </div>-->
+        <!--        </nav>-->
 
-    <!--                <nav class="navbar navbar-expand-lg rounded" style="margin-top: 40px;margin-bottom: 10px; float: left;left: -20px;">-->
-    <!--                    <div class="container">-->
-    <!--                        <ul class="nav nav-pills" id="myTab" role="tablist" style="min-width: 80%;">-->
-    <!--                            <li class="nav-item">-->
-    <!--                                <a class="nav-link active" id="home-tab"href="announcement.html" role="tab" style="color: white;font-size: 15px;font-family: 'Georgia', Georgia, 'Times New Roman', Times, 'Microsoft YaHei', SimSun, SimHei, serif">教学公告</a>-->
-    <!--                            </li>-->
-    <!--                            <li class="nav-item">-->
-    <!--                                <a class="nav-link" id="profile-tab" href="resource.html" role="tab" style="color: white;font-size: 15px;font-family: 'Georgia', Georgia, 'Times New Roman', Times, 'Microsoft YaHei', SimSun, SimHei, serif">课程资源</a>-->
-    <!--                            </li>-->
-    <!--                            <li class="nav-item">-->
-    <!--                                <a class="nav-link" id="contact-tab"href="homeworkList.html" role="tab" style="color: white;font-size: 15px;font-family: 'Georgia', Georgia, 'Times New Roman', Times, 'Microsoft YaHei', SimSun, SimHei, serif">课程作业</a>-->
-    <!--                            </li>-->
-    <!--                        </ul>-->
-    <!--                    </div>-->
-    <!--                </nav>-->
-</div>
-<!--&lt;!&ndash;&#45;&#45;&#45;&#45;&#45;&#45;container begin&#45;&#45;&#45;&#45;&#45;&#45;&ndash;&gt;-->
-<!--<div class="container marketing">-->
-<!--    <div class="row">-->
-<!--        <div class="col-lg-4" style="margin: 0 auto;">-->
-<!--            <img width="100" height="100" alt="Generic placeholder image" src="../images/personal/公告.png" class="">-->
-<!--            <h2>教学公告</h2>-->
-<!--        </div>&lt;!&ndash; 社会化媒体传播 &ndash;&gt;-->
-<!--        <div class="col-lg-4" style="margin: 0 auto;">-->
-<!--            <img width="100" height="100" alt="Generic placeholder image" src="../images/personal/下载.png" class="">-->
-<!--            <h2>教学资源</h2>-->
-<!--        </div>&lt;!&ndash; 移动互联网搭建 &ndash;&gt;-->
-<!--        <div class="col-lg-4" style="margin: 0 auto;">-->
-<!--            <img width="100" height="100" alt="Generic placeholder image" src="../images/personal/列表.png" class="">-->
-<!--            <h2>课程作业</h2>-->
-<!--        </div>&lt;!&ndash; 微信全案营销 &ndash;&gt;-->
-<!--    </div>-->
-<!--</div>-->
-<div class="container marketing">
-    <div class="row">
-        <div class="col-lg-4" style="margin: 0 auto;text-align: center;"><a href="announcement.html" style="color: black;">
-            <img width="80" height="80" alt="Generic placeholder image" src="../images/personal/公告.png" class="">
-            <h2>教学公告</h2></a>
-        </div><!-- 社会化媒体传播 -->
-        <div class="col-lg-4" style="margin: 0 auto;text-align: center;"><a href="resource.html" style="color: black;">
-            <img width="80" height="80" alt="Generic placeholder image" src="../images/personal/下载.png" class="">
-            <h2>教学资源</h2></a>
-        </div><!-- 移动互联网搭建 -->
-        <div class="col-lg-4" style="margin: 0 auto;text-align: center;"><a href="homeworkList.html" style="color: black;">
-            <img width="80" height="80" alt="Generic placeholder image" src="../images/personal/列表.png" class="">
-            <h2>课程作业</h2></a>
-        </div><!-- 微信全案营销 -->
+        <nav class="mynav">
+            <ul>
+                <li onclick="window.open('announcement.html')"><a href="announcement.html">课程公告</a></li>
+                <li onclick="window.open('resource2html')"><a href="resource.html">课程资源</a></li>
+                <li onclick="window.open('homeworkList.html')"><a href="homeworkList.html">课程作业</a></li>
+            </ul>
+        </nav>
+        <span class="target"></span>
     </div>
-</div>
-<!--------container End-------->
-<div class="main-page second">
-    <div class="container">
-        <div class="bodyStyle">
 
-            <div class="container-fluid" style="
-    min-height: 400px;
-    background-color: #fff;
-    border-left: #eee solid 2px;
-    border-right: #eee solid 2px;
-    border-bottom: #eee solid 2px;">
-                <div class="subtitle">
-                    <div class="subtitle-toolbar subtitle-toolbar-noticelist" title="Alert Lists"></div>
-                </div>
-                <hr class="managehr">
-                <div class="underContent" style="color: black;">
-
-
-
-
-                    <div class="oneNotice">
-                        <div class="noticeTitle">
-                            <img src="http://res.scholat.com/scholat/course/img/dot2.png" />
-                            <a style="color: black;"
-                                    href="V_courseResourceDownload.html?courseId=165&resourceId=38397"
-                                    title="名  称：10月31日实验补充.pptx&#10;大  小：186KB&#10;上传人：汪红松">
-
-                                10月31日实验补充.pptx
-                            </a>
+    <div class="tab-content pl-3 p-1 container-fluid" id="TabContent">
+        <div class="tab-pane fade show active" id="introduction" role="tabpanel" aria-labelledby="introduction-tab" v-for="resource in resourceList"> 
+            <div class="seller-profile">
+                <div class="container row" style="height: 100%;top: 50%">
+                    <!--                        icon-->
+                    <div class="col-sm-6 col-lg-2 col-md-2" style="max-height: 50px;max-width: 50px">
+                        <img src="../images/l3.png" alt="" style="max-height: 50px;max-width: 50px">
+                    </div>
+                    <!--        main-content-->
+                    <div class="col-sm-6 col-lg-6 col-md-4" style="left: 3%;margin-right: 20%">
+                        <div class="container" style="min-width: auto">
+                            <span style="font-size: 20px;font-family: 微軟正黑體;"><strong>{{resource.fileName}}</strong></span>
                         </div>
-                        <p class="noticeDetail" style="margin-bottom: 10px;">
-                            <span class="gap"> 发布人：<a style="color: black;"
-                                    href="http://www.scholat.com/frankwhs"
-                                    target="_blank">汪红松</a>&nbsp;&nbsp;|&nbsp;&nbsp;
-  	上传时间：2019-10-31
-&nbsp;&nbsp;|&nbsp;&nbsp;
-  	下载次数：183&nbsp;&nbsp;|&nbsp;&nbsp;
-  	大小：186KB </span>
-                        </p>
+                        <div class="container-fluid" style="color: gray;font-size: 14px;font-family: 微软雅黑;">
+                            {{resource.fileName}} {{resource.uploadTime}}
+                        </div>
                     </div>
 
-                    <div class="oneNotice">
-                        <div class="noticeTitle">
-                            <img src="http://res.scholat.com/scholat/course/img/dot2.png" />
-                            <a style="color: black;"
-                                    href="V_courseResourceDownload.html?courseId=165&resourceId=30728"
-                                    title="名  称：2_《C语言程序设计》试卷B.doc&#10;大  小：108KB&#10;上传人：曾碧卿">
+                    <!--        situation-complete-->
+                    <div class="col-sm-6 col-lg-1 col-md-1" style="min-width: 60px;padding: 0;">
+                        <div style="margin-top: 15px;text-align: center"><span class="badge-dot badge-brand mr-1"></span><strong
+                                style="font-size: 12px;min-width: 60px;">未完成</strong></div>
 
-                                2_《C语言程序设计》试卷B.doc
-                            </a>
-                        </div>
-                        <p class="noticeDetail" style="margin-bottom: 10px;">
-  <                         <span class="gap"> 发布人：<a style="color: black;"
-                                href="http://www.scholat.com/zengbiqing"
-                                target="_blank">曾碧卿</a>&nbsp;&nbsp;|&nbsp;&nbsp;
-  	上传时间：2019-01-10
-&nbsp;&nbsp;|&nbsp;&nbsp;
-  	下载次数：929&nbsp;&nbsp;|&nbsp;&nbsp;
-  	大小：108KB </span>
-                        </p>
                     </div>
-
-
-
-
-
-
-
-
+                    <!--        button-->
+                    <div class="col-sm-6 col-lg-2 col-md-5" style="text-align: center;width: 150px;">
+                        <button class="btn btn-lg btn-success"
+                                style="min-width:150px; width: 100%;margin-top: 5px;margin-right:20px;font-size: 14px;" @click="download(resource)"><strong
+                                style="font-size: 14px;" >下载文件</strong></button>
+                    </div>
                 </div>
             </div>
         </div>
+
     </div>
+
+
 </div>
 <!--     Bootstrap core JavaScript-->
 <script src="../vendor/jquery/jquery.min.js"></script>
@@ -224,11 +114,7 @@
 <script src="../vendor/select2/js/select2.min.js"></script>
 <!-- Custom -->
 <script src="../js/custom.js"></script>
-
-<!--<div id="page"></div>-->
-<!--        <footer>-->
-<!--             <iframe class="my_footer" src="footer.html" scrolling="no"></iframe>-->
-<!--        </footer>-->
+<script src="js/resource.js"></script>
 </body>
 <script type="text/javascript" src="footer.js"></script>
 </html>
