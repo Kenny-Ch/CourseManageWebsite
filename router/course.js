@@ -331,7 +331,7 @@ r.post('/uploadResource', (req, res) => {
 
 
         var desDirPath = "uploadFiles/" + obj.courseID
-        obj.fileUrl = desDirPath + "/" + fileInfo.originalname
+        obj.fileUrl = obj.courseID + "/" + fileInfo.originalname
         obj.fileName = fileInfo.originalname
         obj.uploadTime = new Date()
 
@@ -440,7 +440,7 @@ r.post('/submitHomework', (req, res) => {
         obj.userID = userInfo.email
         obj.status = '已完成'
         obj.finishTime = new Date()
-        obj.homeworkUrl = desDirPath + "/" + fileName
+        obj.homeworkUrl = "user" + userInfo.email + "/" + fileName
 
             // 上传文件
         fileTool.uploadFile(fileInfo.path, desDirPath, fileName)
@@ -454,7 +454,7 @@ r.post('/submitHomework', (req, res) => {
 
                         if(qresult.length >0) {
                             pool.query('UPDATE user_coursehomework  SET status=?,finishTime=?,homeworkUrl=? WHERE userEmail=? and homeworkID=?'
-                                , ['已完成', new Date(), desDirPath+"/"+fileName ,userInfo.email, obj.homeworkID], (err, result) => {
+                                , ['已完成', new Date(), "user" + userInfo.email +"/"+fileName ,userInfo.email, obj.homeworkID], (err, result) => {
                                     if (err) {
                                         fileTool.deleteFile(fileInfo.path)
                                         fileTool.deleteFile(desDirPath + "/" + fileInfo.originalname)
@@ -496,15 +496,16 @@ r.post('/submitHomework', (req, res) => {
 })
 
 //下载资源
-r.post('/downloadResource', (req, res) => {
-    let obj = req.body
-    let path = obj.path
-    console.log(path)
-    fileTool.downloadFile(res, path).then((result) => {
-        console.log(result)
-    }).catch((err) => {
-        res.send(err)
-    })
+r.get('/downloadResource', (req, res) => {
+    // let obj = req.body
+    // let path = obj.path
+    // console.log(path);path = 'uploadFiles/7/img.png'
+    // res.sendFile(__dirname + '/../' + path);
+    // fileTool.downloadFile(res, path).then((result) => {
+    //     console.log(result)
+    // }).catch((err) => {
+    //     res.send(err)
+    // })
 })
 
 

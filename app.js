@@ -32,6 +32,7 @@ app.use(bodyParser.urlencoded({
 }));
 //托管静态资源
 app.use(express.static('./public'));
+app.use(express.static('./uploadFiles'));
 
 
 //挂载路由器
