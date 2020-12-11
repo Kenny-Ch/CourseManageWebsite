@@ -2,20 +2,26 @@ var app = new Vue({
     el: '#app',
     data: {
         message: 'Hello Vue!',
-        homeworkDetail:{},
+        announcementList:{},
         params:{}
         
     },
     created(){
-        console.log(getUrlkey(window.location.href))
-        this.params=getUrlkey(window.location.href)
-        console.log(this.params)
-        this.$http.get('/course/homeworkDetail?homeworkID='+this.params.homeworkID).then(function(res){
-            console.log(res)
-            if(res.body.code==200){
-                this.homeworkDetail=res.body.homeworkDetail
-            }
-        })
+        that=this
+        if(getUrlkey(window.location.href)){
+            console.log(getUrlkey(window.location.href).courseId)
+            this.$http.get('/course/announcementList?courseID='+getUrlkey(window.location.href).courseId).then(function(res){
+                console.log(res)
+                if(res.body.code==200){
+                    this.announcementList=res.body.homeworkList
+                }else if(res.body.code==401){
+                    
+                }
+            })
+        }
+        
+        
+        
     },
     methods: {
         
@@ -25,7 +31,10 @@ var app = new Vue({
 
 function getUrlkey(url) {
     var params = {};
-    var urls = url.split("?");                  
+    var urls = url.split("?");
+    if(urls.length==1){
+        return false;
+    }           
     var arr = urls[1].split("&");               
     for (var i = 0, l = arr.length; i < l; i++) {
       var a = arr[i].split("=");                

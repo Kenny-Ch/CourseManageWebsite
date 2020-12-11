@@ -37,12 +37,12 @@
                 <nav class="mynav">
                     <ul>
                         <li onclick="window.open('announcement.html')"><a href="announcement.html">课程公告</a></li>
-                <li onclick="window.open('resource2html')"><a href="resource.html">课程资源</a></li>
-                <li onclick="window.open('homeworkList.html')"><a href="homeworkList.html">课程作业</a></li>
+                        <li onclick="window.open('resource.html')"><a href="resource.html">课程资源</a></li>
+                        <li onclick="window.open('homeworkList.html')"><a href="homeworkList.html">课程作业</a></li>
                     </ul>
                 </nav>
                 <span class="target"></span>
-                
+
             </div>
 
             <div class="tab-content pl-3 p-1 container-fluid" id="TabContent">
@@ -57,8 +57,10 @@
                             <!--        main-content-->
                             <div class="col-sm-6 col-lg-6 col-md-4" style="left: 3%;margin-right: 20%">
                                 <div class="container" style="min-width: auto">
-                                    <a v-bind:href="'/LearnCourse/homeworkDetail.html?homeworkID='+homework.ID" style="color: black;"><span style="font-size: 20px;font-family: 微軟正黑體;"><strong>{{homework.homeworkTitle}}</strong></span></a>
-                                    
+                                    <a v-bind:href="'/LearnCourse/homeworkDetail.html?homeworkID='+homework.ID"
+                                        style="color: black;"><span
+                                            style="font-size: 20px;font-family: 微軟正黑體;"><strong>{{homework.homeworkTitle}}</strong></span></a>
+
                                 </div>
                                 <div class="container-fluid" style="color: gray;font-size: 14px;font-family: 微软雅黑;">
                                     {{homework.teaName}}&nbsp;|&nbsp;{{homework.ddl}}
@@ -74,15 +76,18 @@
                             </div>
                             <!--        button-->
                             <div class="col-sm-6 col-lg-2 col-md-5" style="text-align: center;width: 150px;">
-                                <button class="btn btn-lg btn-success"
+                                <button class="btn btn-lg btn-success" v-if="homework.status=='已完成'"
                                     style="min-width:150px; width: 100%;margin-top: 5px;margin-right:20px;font-size: 14px;"><strong
                                         style="font-size: 14px;">更改作业</strong></button>
+                                <button class="btn btn-lg btn-success" v-if="homework.status=='未完成'"
+                                    style="min-width:150px; width: 100%;margin-top: 5px;margin-right:20px;font-size: 14px;"><strong
+                                        style="font-size: 14px;">提交作业</strong></button>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                
+
             </div>
         </div>
     </div>

@@ -14,29 +14,26 @@ var app = new Vue({
             if(res.body.code==200){
                 this.resourceList=res.body.resourceList
             }
+            for(var i=0;i<this.resourceList.length;i++){
+                resource=this.resourceList[i]
+                var head=resource.fileUrl.indexOf('/')
+                var end=resource.fileUrl.length
+                url=resource.fileUrl.substring(head,end)
+                this.resourceList[i]['url']='http://'+window.location.host+url
+            }
+            console.log(this.resourceList)
         })
+        
     },
     methods: {
-        download(resource){
-            console.log(resource.fileUrl)
-            var path={
-                path:resource.fileUrl
-            }
-            console.log(path)
-            this.$http.post('/course/downloadResource',path,{emulateJSON:true}).then(function (res) {
-                if (res.status === 200) {
-                    if (res.body.code == 200) {
-                        console.log(res)
-                    } else {
-                        console.log(res)
-                    }
-
-                }
-                else {
-                    console.log("err!")
-                }
-            })
-        }
+        // download(resource){
+        //     var head=resource.fileUrl.indexOf('/')
+        //     var end=resource.fileUrl.length
+        //     console.log(resource.fileUrl.substring(head,end))
+        //     url=resource.fileUrl.substring(head,end)
+        //     console.log(window.location.host)
+        //     window.open(window.location.host+url)
+        // }
         
     }
 });

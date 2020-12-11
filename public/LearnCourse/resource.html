@@ -54,7 +54,7 @@
         <nav class="mynav">
             <ul>
                 <li onclick="window.open('announcement.html')"><a href="announcement.html">课程公告</a></li>
-                <li onclick="window.open('resource2html')"><a href="resource.html">课程资源</a></li>
+                <li onclick="window.open('resource.html')"><a href="resource.html">课程资源</a></li>
                 <li onclick="window.open('homeworkList.html')"><a href="homeworkList.html">课程作业</a></li>
             </ul>
         </nav>
@@ -81,15 +81,14 @@
 
                     <!--        situation-complete-->
                     <div class="col-sm-6 col-lg-1 col-md-1" style="min-width: 60px;padding: 0;">
-                        <div style="margin-top: 15px;text-align: center"><span class="badge-dot badge-brand mr-1"></span><strong
-                                style="font-size: 12px;min-width: 60px;">未完成</strong></div>
+                        
 
                     </div>
                     <!--        button-->
                     <div class="col-sm-6 col-lg-2 col-md-5" style="text-align: center;width: 150px;">
-                        <button class="btn btn-lg btn-success"
-                                style="min-width:150px; width: 100%;margin-top: 5px;margin-right:20px;font-size: 14px;" @click="download(resource)"><strong
-                                style="font-size: 14px;" >下载文件</strong></button>
+                        <a class="btn btn-lg btn-success" v-bind:href="resource.url" download
+                                style="min-width:150px; width: 100%;margin-top: 5px;margin-right:20px;font-size: 14px;" ><strong
+                                style="font-size: 14px; color: white;" >下载文件</strong></a>
                     </div>
                 </div>
             </div>
