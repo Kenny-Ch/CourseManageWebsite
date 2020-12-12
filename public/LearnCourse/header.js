@@ -8,7 +8,7 @@ document.writeln("<body>");
 document.writeln("<nav class=\'navbar navbar-expand-lg navbar-light topbar static-top shadow-sm bg-white osahan-nav-top px-0\'>");
 document.writeln("    <div class=\'container\'>");
 document.writeln("        <!-- Sidebar Toggle (Topbar) -->");
-document.writeln("        <a class=\'navbar-brand\' href=\'index.html\'><img src=\'../images/personal/xuezhe.png\' alt=\'\'></a>");
+document.writeln("        <a class=\'navbar-brand\' href=\'../index.html\'><img src=\'../images/personal/xuezhe.png\' alt=\'\'></a>");
 document.writeln("        <!-- Topbar Search -->");
 document.writeln("        <form class=\'d-none d-sm-inline-block form-inline mr-auto my-2 my-md-0 mw-100 col-sm-4\'>");
 document.writeln("            <div class=\'input-group\'>");
