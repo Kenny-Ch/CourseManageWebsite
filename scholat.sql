@@ -49,7 +49,7 @@ CREATE TABLE `course_announcement` (
 
 /*Data for the table `course_announcement` */
 
-insert  into `course_announcement`(`ID`,`courseID`,`context`,`title`,`announceTime`,`viewTimes`) values (1,1,'这是作业1的公告， 大家注意查收','作业公告','2020-12-05 14:37:58.000000',5),(2,1,'这是作业2的公告，大家注意查收',NULL,NULL,0);
+insert  into `course_announcement`(`ID`,`courseID`,`context`,`title`,`announceTime`,`viewTimes`) values (1,1,'这是作业1的公告， 大家注意查收','作业公告','2020-12-05 14:37:58.000000',5),(2,1,'为培养新生对算法兴趣，提高编程素养，华南师范大学软件学院与软件协会香农先修班将举行AK杯程序设计竞赛。','华南师范大学软件学院将举办19级AK杯学院新生程序设计竞赛（时间更改）','2020-12-12 02:33:04.000000',0);
 
 /*Table structure for table `course_homework` */
 
@@ -67,7 +67,7 @@ CREATE TABLE `course_homework` (
 
 /*Data for the table `course_homework` */
 
-insert  into `course_homework`(`ID`,`courseID`,`title`,`teaID`,`ddl`,`context`) values (1,1,'实验一','2','2020-12-03 15:50:41','这是作业详情界面'),(2,1,'实验二','2','2020-12-05 16:03:11','这也是作业详情界面'),(3,1,'实验三','2','2020-12-02 15:50:41','这是作业详情界面'),(4,1,'实验四','2','2020-12-05 16:03:11','这也是作业详情界面');
+insert  into `course_homework`(`ID`,`courseID`,`title`,`teaID`,`ddl`,`context`) values (1,1,'实验一','2','2020-12-03 15:50:41','（1）CPU，中央处理器，计算机最核心的配件，负责所有的计算。\n\n（2）内存，你编写的程序、运行的游戏、打开的浏览器都要加载到内存中才能运行，程序读取的数据、计算的结果也都在内存中，内存的大小决定了你能加载的东西的多少。\n\n（3）主板，存放在内存中数据需要被CPU读取，CPU计算完成后，还要把数据写入到内存中，然而CPU不能直接插在内存上，这就需要主板出马了，主板上很多个插槽，CPU和内存都是插在主板上，主板的芯片组和总线解决了CPU和内存之间的通讯问题，芯片组控制数据传输的流转，决定数据从哪里流向哪里，总线是实际数据传输的告诉公里，总线速度决定了数据的传输速度。\n\n（4）输入/输出设备，其实有了以上三大件之后，计算机就可以跑起来了。我们日常使用的话还需要键盘、鼠标、显示器等输入/输出设备，而很多云服务器通过SSH远程登录就可以访问，就不需要配显示器、鼠标、键盘这些东西，节省成本且方便维护。\n\n（5）硬盘，有了硬盘数据才能长久的保存下来，大部分还会给自己的机器配上机箱和风扇，解决灰尘和散热问题，不过这些也不是必须的，用纸板和电风扇替代也一样可以用。'),(2,1,'实验二','2','2020-12-05 16:03:11','这也是作业详情界面'),(3,1,'实验三','2','2020-12-02 15:50:41','这是作业详情界面'),(4,1,'实验四','2','2020-12-05 16:03:11','这也是作业详情界面');
 
 /*Table structure for table `course_resource` */
 
@@ -76,13 +76,15 @@ DROP TABLE IF EXISTS `course_resource`;
 CREATE TABLE `course_resource` (
   `ID` int(5) NOT NULL AUTO_INCREMENT,
   `courseID` int(5) NOT NULL,
-  `fileUrl` varchar(50) DEFAULT NULL,
+  `fileUrl` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
   `fileName` varchar(20) DEFAULT NULL,
   `uploadTime` datetime(6) DEFAULT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 /*Data for the table `course_resource` */
+
+insert  into `course_resource`(`ID`,`courseID`,`fileUrl`,`fileName`,`uploadTime`) values (1,1,'uploadFiles/7/{E166D541-87EA-4262-B6F7-30BC6F9C457B}.png.jpg','李桂明傻逼','2020-12-11 10:25:24.000000'),(5,1,'uploadFiles/7/api文档.xlsx','测试文件','2020-12-11 10:44:35.000000');
 
 /*Table structure for table `user` */
 
@@ -127,11 +129,11 @@ CREATE TABLE `user_coursehomework` (
   `finishTime` datetime(6) DEFAULT NULL,
   `homeworkUrl` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 /*Data for the table `user_coursehomework` */
 
-insert  into `user_coursehomework`(`ID`,`userEmail`,`homeworkID`,`status`,`finishTime`,`homeworkUrl`) values (1,'1',1,'已完成','2020-12-07 21:54:35.337000',NULL);
+insert  into `user_coursehomework`(`ID`,`userEmail`,`homeworkID`,`status`,`finishTime`,`homeworkUrl`) values (1,'1',1,'已完成','2020-12-07 21:54:35.337000',NULL),(2,'1',2,'未完成','2020-12-11 10:11:47.000000',NULL);
 
 /*Table structure for table `course_homework_tea` */
 
