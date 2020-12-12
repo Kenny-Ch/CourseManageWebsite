@@ -2,12 +2,14 @@ var app = new Vue({
     el: '#app',
     data: {
         message: 'Hello Vue!',
+        resultList:{},
         params:{},
     },
     created(){
         this.params=getUrlkey(window.location.href)
         this.$http.get('/index/search?search='+this.params.key).then(function(res){
             console.log(res.body)
+            this.resultList=res.body.result
         })
     },
     methods: {
