@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -20,206 +21,76 @@
     <!-- Select2 CSS -->
     <link href="../vendor/select2/css/select2.min.css" rel="stylesheet">
     <link href="../css/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/nav.css">
     <script type="text/javascript" src="header.js"></script>
-    <style type="text/css">#userHref {
-        cursor: pointer;
-        padding-right: 20px;
-    }
-
-    #menu1 a:hover {
-        border-radius: 0px;
-    }
-
-    .noticeme {
-        border-bottom: solid 1px #DCDCDC;
-        padding: 15px 15px 15px 10px;
-        color: #2d2d2d;
-        font-size: 15px;
-    }
-
-    .noticeme a:hover {
-        color: #0179B5;
-        font-weight: normal;
-    }
-
-    .hulue {
-        font-size: 12px;
-        color: #A5A5A5;
-        float: right;
-        cursor: pointer;
-        display: none;
-        padding: 2px 0px 3px 0px;
-    }
-
-    .T_noticenews {
-        width: 6px;
-        height: 6px;
-        display: inline-block;
-        border-radius: 6px;
-        background: #339999;
-        box-shadow: 0px 0px 2px 1px rgba(100, 100, 100, 0.5);
-        overflow: hidden;
-        margin-left: 5px;
-        margin-right: 5px;
-        margin-bottom: 2px;
-    }
-    </style>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://cdn.staticfile.org/vue-resource/1.5.1/vue-resource.min.js"></script>
 </head>
-<body>
-<div class="container-fluid header-main header-section navbar-about product-background" style="top: -48px;">
-    <div class="header-back"></div>
-    <div class="container container-zindex cover-container am-animation-scale-up"
-         data-am-scrollspy="{animation: 'scale-up', repeat: false}" style="top: 50%;color: white;">
-        <h1 style="font-size: 60px;"><span>C语言程序设计</span></h1>
-        <div class="container head-url text-light"><h3>
-            访问地址：
-            <a href="c_language" style="color: whitesmoke">http://www.scholat.com/course/c_language</a>
-        </h3></div>
-    </div>
-    <!--                <div class="container row" style="display: inline;">-->
-    <!--                    <div class="container head-title text-light col-sm-3" style="font-family: 微软雅黑;color: black;margin-top:15px;">-->
-    <!--                        C语言程序设计-->
-    <!--                    </div>-->
-    <!--                    <div class="head-notice text-light container col-sm-9" style="float: right;">-->
-    <!--                        <div class="container" style="font-family: 微软雅黑;margin-top:15px;">-->
-    <!--                            欢迎您，陈玉彬同学&nbsp;&nbsp;-->
-    <!--                        </div>-->
-    <!--                    </div>-->
-    <!--                </div>-->
-    <!--                <div class="container head-url text-light" style="font-family: 'Georgia', Georgia, 'Times New Roman', Times, 'Microsoft YaHei', SimSun, SimHei, serif">-->
-    <!--                    访问地址：-->
-    <!--                    <a href="c_language" style="color: whitesmoke">http://www.scholat.com/course/c_language</a>-->
-    <!--                </div>-->
 
-    <!--                <nav class="navbar navbar-expand-lg rounded" style="margin-top: 40px;margin-bottom: 10px; float: left;left: -20px;">-->
-    <!--                    <div class="container">-->
-    <!--                        <ul class="nav nav-pills" id="myTab" role="tablist" style="min-width: 80%;">-->
-    <!--                            <li class="nav-item">-->
-    <!--                                <a class="nav-link active" id="home-tab"href="announcement.html" role="tab" style="color: white;font-size: 15px;font-family: 'Georgia', Georgia, 'Times New Roman', Times, 'Microsoft YaHei', SimSun, SimHei, serif">教学公告</a>-->
-    <!--                            </li>-->
-    <!--                            <li class="nav-item">-->
-    <!--                                <a class="nav-link" id="profile-tab" href="resource.html" role="tab" style="color: white;font-size: 15px;font-family: 'Georgia', Georgia, 'Times New Roman', Times, 'Microsoft YaHei', SimSun, SimHei, serif">课程资源</a>-->
-    <!--                            </li>-->
-    <!--                            <li class="nav-item">-->
-    <!--                                <a class="nav-link" id="contact-tab"href="homeworkList.html" role="tab" style="color: white;font-size: 15px;font-family: 'Georgia', Georgia, 'Times New Roman', Times, 'Microsoft YaHei', SimSun, SimHei, serif">课程作业</a>-->
-    <!--                            </li>-->
-    <!--                        </ul>-->
-    <!--                    </div>-->
-    <!--                </nav>-->
-</div>
-<!--&lt;!&ndash;&#45;&#45;&#45;&#45;&#45;&#45;container begin&#45;&#45;&#45;&#45;&#45;&#45;&ndash;&gt;-->
-<!--<div class="container marketing">-->
-<!--    <div class="row">-->
-<!--        <div class="col-lg-4" style="margin: 0 auto;">-->
-<!--            <img width="100" height="100" alt="Generic placeholder image" src="../images/personal/公告.png" class="">-->
-<!--            <h2>教学公告</h2>-->
-<!--        </div>&lt;!&ndash; 社会化媒体传播 &ndash;&gt;-->
-<!--        <div class="col-lg-4" style="margin: 0 auto;">-->
-<!--            <img width="100" height="100" alt="Generic placeholder image" src="../images/personal/下载.png" class="">-->
-<!--            <h2>教学资源</h2>-->
-<!--        </div>&lt;!&ndash; 移动互联网搭建 &ndash;&gt;-->
-<!--        <div class="col-lg-4" style="margin: 0 auto;">-->
-<!--            <img width="100" height="100" alt="Generic placeholder image" src="../images/personal/列表.png" class="">-->
-<!--            <h2>课程作业</h2>-->
-<!--        </div>&lt;!&ndash; 微信全案营销 &ndash;&gt;-->
-<!--    </div>-->
-<!--</div>-->
-<div class="container marketing">
-    <div class="row">
-        <div class="col-lg-4" style="margin: 0 auto;text-align: center;"><a href="announcement.html" style="color: black;">
-            <img width="80" height="80" alt="Generic placeholder image" src="../images/personal/公告.png" class="">
-            <h2>教学公告</h2></a>
-        </div><!-- 社会化媒体传播 -->
-        <div class="col-lg-4" style="margin: 0 auto;text-align: center;"><a href="resource.html" style="color: black;">
-            <img width="80" height="80" alt="Generic placeholder image" src="../images/personal/下载.png" class="">
-            <h2>教学资源</h2></a>
-        </div><!-- 移动互联网搭建 -->
-        <div class="col-lg-4" style="margin: 0 auto;text-align: center;"><a href="homeworkList.html" style="color: black;">
-            <img width="80" height="80" alt="Generic placeholder image" src="../images/personal/列表.png" class="">
-            <h2>课程作业</h2></a>
-        </div><!-- 微信全案营销 -->
-    </div>
-</div>
-<!--------container End-------->
+<body style="background-color: whitesmoke">
+    <div class="container" style="min-height: 100%;" id="app">
+        <div id="courseName" class="container-fluid courseName">
+            <h1><strong>计算机组成原理</strong></h1>
+        </div>
+        <div id="menu-main" class="" style="padding: 0;margin-bottom: 15px;">
 
-<!--            下面主体-->
-<div class="main-page second">
+            <nav class="mynav">
+                <ul>
+                    <li onclick="window.open('announcement2.html')"><a href="announcement2.html">课程公告</a></li>
+                    <li onclick="window.open('resource2.html')"><a href="resource2.html">课程资源</a></li>
+                    <li onclick="window.open('homeworkList2')"><a href="homeworkList2.html">课程作业</a></li>
+                </ul>
+            </nav>
+            <span class="target"></span>
+        </div>
 
-    <div class="bodyStyle">
-        <div class="container" style="
-    min-height: 400px;
-    background-color: #fff;
-    border-left: #eee solid 2px;
-    border-right: #eee solid 2px;
-    border-bottom: #eee solid 2px;">
-            <div class="underContent container">
-                <div class="notice_title container"><h2>华南师范大学软件学院将举办19级AK杯学院新生程序设计竞赛（时间更改）</h2></div>
-                <div class="notice_d container">
-                    [&nbsp;发布人：
-                    <a href="../quchao" target="_blank">苏海</a>&nbsp;&nbsp;&nbsp;发布时间：2020-10-23 23:59:59&nbsp;&nbsp;]
-                </div>
-                <div class="notice_content container">
-                    <p style="margin-left: 48px; line-height: 1.5em;">为培养新生对算法兴趣，提高编程素养，华南师范大学软件学院与软件协会香农先修班将举行<span
-                            style="color:red">AK</span><span style="color:red">杯程序设计竞赛</span>。</p>
-                    <p style="margin-left: 48px; line-height: 1.5em;">（1）时间:<span style="color:red">10</span><span
-                            style="color:red">月20号</span>（周日）上午九点，时长为<span style="color:red">三小时</span>，建议提前半个小时到场调试编程环境以及网络情况。
-                    </p>
-                    <p style="margin-left: 48px; line-height: 1.5em;">（2）地点:<span style="color:red">信息楼二三楼机房</span></p>
-                    <p style="margin-left: 48px; line-height: 1.5em;">（3）参赛对象范围:<span style="color:red">2019</span><span
-                            style="color:red">级软件学院学生</span></p>
-                    <p style="margin-left: 48px; line-height: 1.5em;">（4）报名方式:于10月13号之前在<span
-                            style="color:red">各班学委</span>那进行预报名，然后通过校园网进入<span
-                            style="color: red">10.191.65.243:8000</span>（SCNUOJ）后，以个人<span style="color:red">学号</span>为用户名进行注册，否则不予发奖。
-                    </p>
-                    <p style="margin-left: 48px; line-height: 1.5em;">（5）比赛内容:程序设计及算法实现，语言语法内容比上课内容<span
-                            style="color:red">略超前</span>，参赛同学需稍提前学习，包括分支、数组、字符串的处理等。</p>
-                    <p style="margin-left: 48px; line-height: 1.5em;">
-                        （6）比赛形式:共8题，比赛语言为C/C++，Python，Java，将提供Code::blocks、Dev-cpp、VC++6.0、Pycharm四种IDE。选手依据题意独立完成程序后提交源代码至比赛平台（SCNUOJ），由OJ系统自动判断正误，比赛排名以通过的题数多少为依据。</p>
-                    <p style="margin-left: 48px; line-height: 1.5em;">（7）奖项设置:一二三等奖根据比赛情况动态分配，比例接近于<span
-                            style="color:red">10%:20%:30%</span>（即约60%获奖），另外视比赛情况设置一名<span
-                            style="color:red">最佳女生奖</span>以及<span style="color:red">顽强拼搏奖</span>。//学年评优上AK杯奖项可以获得<span
-                            style="color:red">相应加分</span>。</p>
-                    <p style="margin-left: 56px; text-indent: 20px; line-height: 1.5em;">
-                        （8）温馨提示:比赛题目将涉及多种数据输入输出方式，请参赛同学注册后进入竞赛&amp;作业页面的<span style="color:red">A+B problems</span><span
-                            style="color:red">输入输出专题</span>中进行输入输出训练，并熟悉SCNUOJ的使用与答案提交，更多详情请看常见问题和判题解释。</p>
-                    <p style="margin-left: 48px; line-height: 1.5em;">
-                        （9）注意事项:比赛禁止携带除草稿纸外任何纸质资料，期间禁止上网查阅资料或交流代码，违者取消成绩。</p>
-                    <p style="margin-left: 48px; line-height: 1.5em;">(10) 本次比赛也将是软件协会<span
-                            style="color: red">香农先修班</span>的选拔赛，将选拔约<span style="color:red">40</span>名19级同学进入香农先修班进行算法学习。//AK杯未进前40名但通关洛谷新手村的同学，会招总计<span
-                            style="color:red">10</span><span style="color:red">名</span>左右。若这部分人数超过10名，则按照AK杯排名决定。</p>
-                    <p style="margin-left: 48px; line-height: 1.5em;">（11）具体事宜将不久后公布，请继续关注<span style="color:red">华南师大软协公众号:<span
-                            style="font-size:14px;font-family:'Georgia', Georgia, 'Times New Roman', Times, 'Microsoft YaHei', SimSun, SimHei, serif;'Georgia', Georgia, 'Times New Roman', Times, 'Microsoft YaHei', SimSun, SimHei, serif;color:red">SoCoding</span></span>以获取更多比赛信息。
-                    </p>
-                    <p style="margin-left: 48px; line-height: 1.5em; text-align: right;">华南师范大学软件学院</p>
-                    <p style="margin-left: 48px; line-height: 1.5em; text-align: right;">华南师大软件协会</p>
-                    <p><br></p>
+        <div class="tab-content pl-3 p-1 container-fluid" id="TabContent">
+            <div class="tab-pane fade show active" id="introduction" role="tabpanel" aria-labelledby="introduction-tab">
+                <div class="seller-profile">
+                    <div class="container" style="height: 100%;top: 50%">
+                        <div class="underContent container">
+                            <div class="notice_title container">
+                                <h2>{{announcementDetail.title}}</h2>
+                            </div>
+                            <div class="notice_d container">
+                                [&nbsp;发布人：
+                                曲超&nbsp;&nbsp;&nbsp;截止时间：2020-10-23
+                                23:59:59&nbsp;&nbsp;]
+                            </div>
+                            <div class="notice_content container">
+                                <p style="margin-left: 48px; line-height: 1.5em;">{{announcementDetail.context}}</p>
+
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
+
+
     </div>
+    <!--     Bootstrap core JavaScript-->
+    <script src="../vendor/jquery/jquery.min.js"></script>
+    <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- Contact form JavaScript -->
+    <!--    &lt;!&ndash; Do not edit these files! In order to set the email address and subject line for the contact form go to the bin/contact_me.php file. &ndash;&gt;-->
+    <!--    <script src="js/jqBootstrapValidation.js"></script>-->
+    <!--    <script src="js/contact_me.js"></script>-->
+    <!-- Slick -->
+    <script src="../vendor/slick-master/slick/slick.js" type="text/javascript" charset="utf-8"></script>
+    <!-- lightgallery -->
+    <script src="../vendor/lightgallery-master/dist/js/lightgallery-all.min.js"></script>
+    <!-- select2 Js -->
+    <script src="../vendor/select2/js/select2.min.js"></script>
+    <!-- Custom -->
+    <script src="../js/custom.js"></script>
+    <script src="js/announceDetail.js"></script>
 
-</div>
-</div>
-<!--     Bootstrap core JavaScript-->
-<script src="../vendor/jquery/jquery.min.js"></script>
-<script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-<!-- Contact form JavaScript -->
-<!--    &lt;!&ndash; Do not edit these files! In order to set the email address and subject line for the contact form go to the bin/contact_me.php file. &ndash;&gt;-->
-<!--    <script src="js/jqBootstrapValidation.js"></script>-->
-<!--    <script src="js/contact_me.js"></script>-->
-<!-- Slick -->
-<script src="../vendor/slick-master/slick/slick.js" type="text/javascript" charset="utf-8"></script>
-<!-- lightgallery -->
-<script src="../vendor/lightgallery-master/dist/js/lightgallery-all.min.js"></script>
-<!-- select2 Js -->
-<script src="../vendor/select2/js/select2.min.js"></script>
-<!-- Custom -->
-<script src="../js/custom.js"></script>
-
-<!--<div id="page"></div>-->
-<!--        <footer>-->
-<!--             <iframe class="my_footer" src="footer.html" scrolling="no"></iframe>-->
-<!--        </footer>-->
+    <!--<div id="page"></div>-->
+    <!--        <footer>-->
+    <!--             <iframe class="my_footer" src="footer.html" scrolling="no"></iframe>-->
+    <!--        </footer>-->
 </body>
 <script type="text/javascript" src="footer.js"></script>
+
 </html>

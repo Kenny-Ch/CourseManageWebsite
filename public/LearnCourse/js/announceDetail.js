@@ -2,18 +2,18 @@ var app = new Vue({
     el: '#app',
     data: {
         message: 'Hello Vue!',
-        announcementList:{},
+        announcementDetail:{},
         params:{}
         
     },
     created(){
         that=this
         if(getUrlkey(window.location.href)){
-            console.log(getUrlkey(window.location.href).courseId)
-            this.$http.get('/course/announcementList?courseID='+getUrlkey(window.location.href).courseId).then(function(res){
+            console.log(getUrlkey(window.location.href).announcementID)
+            this.$http.get('/course/announcementDetail?announcementID='+getUrlkey(window.location.href).announcementID).then(function(res){
                 console.log(res)
                 if(res.body.code==200){
-                    this.announcementList=res.body.homeworkList
+                    this.announcementDetail=res.body.announcementDetail
                 }else if(res.body.code==401){
 
                 }
@@ -24,9 +24,6 @@ var app = new Vue({
         
     },
     methods: {
-        open(announcement){
-            window.location.href="/LearnCourse/announceDetail.html?announcementID="+announcement.ID
-        }
         
     }
 });
