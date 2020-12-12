@@ -19,6 +19,7 @@ var app = new Vue({
                     if (res.body.code == 200) {
                         console.log(res.body)
                         $.cookie('name', res.body.content.name);
+                        $.cookie('email', res.body.content.email);
                         $.cookie('imgUrl', res.body.content.imgUrl);
                         window.location.replace("/index.html") 
                     } else {

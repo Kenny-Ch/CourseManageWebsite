@@ -6,15 +6,15 @@
 </head>
 <body>
 <nav class='navbar navbar-expand-lg navbar-light topbar static-top shadow-sm bg-white osahan-nav-top px-0'>
-    <div class='container'>
+    <div class='container' id="header">
         <!-- Sidebar Toggle (Topbar) -->
         <a class='navbar-brand' href='index.html'><img src='images/personal/xuezhe.png' alt=''></a>
         <!-- Topbar Search -->
         <form class='d-none d-sm-inline-block form-inline mr-auto my-2 my-md-0 mw-100 col-sm-4'>
             <div class='input-group'>
-                <input type='text' class='form-control bg-white small' placeholder='搜索课程' aria-label='Search' aria-describedby='basic-addon2'>
+                <input type='text' class='form-control bg-white small' placeholder='搜索课程' v-model="word" aria-label='Search' aria-describedby='basic-addon2'>
                 <div class='input-group-append'>
-                    <button class='btn btn-outline-success' type='button'>
+                    <button class='btn btn-outline-success' type='button' @click="search()">
                         <i class='fa fa-search fa-sm'></i>
                     </button>
                 </div>
@@ -41,18 +41,28 @@
                 </div>
             </li>
             <button type='button' class='btn btn-outline-success m-2' onclick=''>我的课程</button>
+<!--            <li>-->
+<!--                <a href='index.html'>我的课程&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</a>-->
+<!--            </li>-->
             <li class='nav-item dropdown no-arrow no-caret dropdown-user'>
-                <a class='btn btn-icon btn-transparent-dark dropdown-toggle' id='navbarDropdownUserImage' href='javascript:void(0);' role='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'><img class='img-fluid' src='images/personal/people.png'></a>
+                <a class='btn btn-icon btn-transparent-dark dropdown-toggle' id='navbarDropdownUserImage' href='javascript:void(0);' role='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'><img class='img-fluid' src='images/icon/avatar.png'></a>
                 <div class='dropdown-menu dropdown-menu-right border-0 shadow animated--fade-in-up' aria-labelledby='navbarDropdownUserImage'>
                     <h5 class='dropdown-header d-flex align-items-center'>
-                        <img class='dropdown-user-img rounded-circle' src='images/personal/kennychen_1589254399919.jpg'>
+                        <img class='dropdown-user-img rounded-circle' src='images/icon/avatar.png'>
                         <div class='dropdown-user-details'>
-                            <div class='dropdown-user-details-name'>cyb</div>
+                            <div class='dropdown-user-details-name'>{{message}}</div>
                             <div class='dropdown-user-details-email'>kenny@qq.com</div>
                         </div>
                     </h5>
                     <div class='dropdown-divider'></div>
                     <a class='dropdown-item' href='JavaScript:logout();'>
+<!--                        <div class='dropdown-item-icon'>-->
+<!--                            <svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='feather feather-log-out'>-->
+<!--                                <path d='M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4'></path>-->
+<!--                                <polyline points='16 17 21 12 16 7'></polyline>-->
+<!--                                <line x1='21' y1='12' x2='9' y2='12'></line>-->
+<!--                            </svg>-->
+<!--                        </div>-->
                         退出登录
                     </a>
                 </div>
