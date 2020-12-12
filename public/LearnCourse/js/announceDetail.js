@@ -16,7 +16,7 @@ var app = new Vue({
                 if(res.body.code==200){
                     this.announcementDetail=res.body.announcementDetail
                 }else if(res.body.code==401){
-
+                    window.location.replace("../login.html") 
                 }
             })
         }

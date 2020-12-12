@@ -48,7 +48,7 @@ document.writeln("            <li class=\'nav-item dropdown no-arrow no-caret dr
 document.writeln("                <a class=\'btn btn-icon btn-transparent-dark dropdown-toggle\' id=\'navbarDropdownUserImage\' href=\'javascript:void(0);\' role=\'button\' data-toggle=\'dropdown\' aria-haspopup=\'true\' aria-expanded=\'false\'><img class=\'img-fluid\' src=\'../images/icon/avatar.png\'></a>");
 document.writeln("                <div class=\'dropdown-menu dropdown-menu-right border-0 shadow animated--fade-in-up\' aria-labelledby=\'navbarDropdownUserImage\'>");
 document.writeln("                    <h5 class=\'dropdown-header d-flex align-items-center\'>");
-document.writeln("                        <img class=\'dropdown-user-img rounded-circle\' src=\'images/personal/kennychen_1589254399919.jpg\'>");
+document.writeln("                        <img class=\'dropdown-user-img rounded-circle\' src=\'../images/icon/avatar.png\'>");
 document.writeln("                        <div class=\'dropdown-user-details\'>");
 document.writeln("                            <div class=\'dropdown-user-details-name\'>cyb</div>");
 document.writeln("                            <div class=\'dropdown-user-details-email\'>kenny@qq.com</div>");

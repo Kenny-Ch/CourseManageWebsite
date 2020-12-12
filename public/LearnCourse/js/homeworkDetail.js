@@ -14,6 +14,8 @@ var app = new Vue({
             console.log(res)
             if(res.body.code==200){
                 this.homeworkDetail=res.body.homeworkDetail
+            }else if(res.body.code==401){
+                window.location.replace("../login.html") 
             }
         })
     },

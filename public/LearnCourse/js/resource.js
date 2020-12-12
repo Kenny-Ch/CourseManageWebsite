@@ -13,6 +13,8 @@ var app = new Vue({
             console.log(res)
             if(res.body.code==200){
                 this.resourceList=res.body.resourceList
+            }else if(res.body.code==401){
+                window.location.replace("../login.html") 
             }
             for(var i=0;i<this.resourceList.length;i++){
                 resource=this.resourceList[i]

@@ -10,9 +10,14 @@ var app = new Vue({
         console.log("test")
         this.params=getUrlkey(window.location.href)
         this.$http.get('/course/homeworkList?courseID=1').then(function(res){
-            console.log(res.body.homeworkList)
+            if(res.body.code==200){
+                console.log(res.body.homeworkList)
             this.homeworkList=res.body.homeworkList
             console.log(this.homeworkList[0].ddl)
+            }else if(res.body.code==401){
+                window.location.replace("../login.html") 
+            }
+            
         })
     },
     methods: {

@@ -173,7 +173,7 @@
                                 <div class="row">
                                     <!--一个学习的课程-->
                                     <div class=" col-md-3" v-for="course in joinCourse">
-                                        <a href="CreateCourse/announcement.html">
+                                        <a :href="'LearnCourse/announcement.html?courseID='+course.ID">
                                             <img class="img-fluid" :src="course.cImgUrl" />
                                         </a>
                                         <div class="inner-slider">
