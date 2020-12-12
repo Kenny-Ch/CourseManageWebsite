@@ -82,13 +82,13 @@ r.get('/announcementList', (req, res) => {
     //检查是否登录
     if (userInfo) {
         if (courseID) {
-            pool.query('SELECT * FROM course_announcement WHERE courseID=? order by announceTime desc', [courseID], (err, result) => {
+            pool.query('SELECT * FROM course_announcement_tea WHERE courseID=? order by announceTime desc', [courseID], (err, result) => {
                 console.log('作业公告列表查询结果：', result);
                 if (err) throw err;
 
                 res.send({
                     code: 200,
-                    homeworkList: result
+                    announcementList: result
                 })
             })
         } else {
@@ -110,7 +110,7 @@ r.get('/announcementDetail', (req, res) => {
     let userInfo = req.session.userInfo;
     if (userInfo) {
         if (announcementID) {
-            pool.query('SELECT * FROM course_announcement WHERE ID=? ', [announcementID], (err, result) => {
+            pool.query('SELECT * FROM course_announcement_tea WHERE ID=? ', [announcementID], (err, result) => {
                 console.log('作业公告详情查询结果：', result);
                 if (err) throw err;
 
@@ -205,7 +205,7 @@ r.post('/createCourse', (req, res) => {
             res.send({code: 403, msg: 'image required'})
             return;
         }
-        obj.creator = userInfo.name
+        obj.creator = userInfo.email
 
 
         pool.query('INSERT INTO course SET ?', [obj], (err, result) => {
@@ -218,45 +218,60 @@ r.post('/createCourse', (req, res) => {
             let desDirPath = "uploadFiles/" + courseID
             let fileUrl = desDirPath + "/" + fileInfo.originalname
 
-            // 上传文件
-            fileTool.uploadFile(fileInfo.path, desDirPath, fileInfo.originalname)
-                .then(function (fileRes) {
-                    if (fileRes.code === 200) {//上传成功
-                        //执行sql命令  将数据添加到数据库
-                        pool.query('UPDATE course  SET cImgUrl=? WHERE courseID=?', [fileUrl, courseID], (err, updateresult) => {
-                            if (err) {
-                                fileTool.deleteFile(fileInfo.path)
-                                fileTool.deleteFile(fileUrl)
-                                res.send({
-                                    code: 405,
-                                    msg: 'query fail'
-                                })
-                                throw err;
-                            }
+            let userObj = {
+                userEmail:userInfo.email,
+                courseID: courseID
+            }
 
-                            console.log('更新结果', updateresult);
-                            if (updateresult.affectedRows === 0) {
-                                fileTool.deleteFile(fileInfo.path)
-                                fileTool.deleteFile(fileUrl)
-                                res.send({
-                                    code: 406,
-                                    msg: 'updatequery fail',
-                                })
-                            } else {
-                                res.send({
-                                    code: 200,
-                                    msg: 'create success'
-                                })
-                            }
-                        })
-                    } else {//上传失败
-                        fileTool.deleteFile(fileInfo.path)
-                        res.send({code: 404, msg: 'upload file fail'})
-                    }
-                }).catch(function (err) {
-                fileTool.deleteFile(fileInfo.path)
-                res.send({code: 404, msg: 'upload file fail'})
+            pool.query('INSERT INTO user_course SET ?', [userObj], (err, result) => {
+                if(err) {
+                    fileTool.deleteFile(fileInfo.path)
+                    res.send({code: 405, msg: 'query fail'})
+                    throw err;
+                }
+                // 上传文件
+                fileTool.uploadFile(fileInfo.path, desDirPath, fileInfo.originalname)
+                    .then(function (fileRes) {
+                        if (fileRes.code === 200) {//上传成功
+                            //执行sql命令  将数据添加到数据库
+                            pool.query('UPDATE course  SET cImgUrl=? WHERE courseID=?', [fileUrl, courseID], (err, updateresult) => {
+                                if (err) {
+                                    fileTool.deleteFile(fileInfo.path)
+                                    fileTool.deleteFile(fileUrl)
+                                    res.send({
+                                        code: 405,
+                                        msg: 'query fail'
+                                    })
+                                    throw err;
+                                }
+
+                                console.log('更新结果', updateresult);
+                                if (updateresult.affectedRows === 0) {
+                                    fileTool.deleteFile(fileInfo.path)
+                                    fileTool.deleteFile(fileUrl)
+                                    res.send({
+                                        code: 406,
+                                        msg: 'updatequery fail',
+                                    })
+                                } else {
+                                    fileTool.deleteFile(fileInfo.path)
+                                    res.send({
+                                        code: 200,
+                                        msg: 'create success'
+                                    })
+                                }
+                            })
+                        } else {//上传失败
+                            fileTool.deleteFile(fileInfo.path)
+                            res.send({code: 404, msg: 'upload file fail'})
+                        }
+                    }).catch(function (err) {
+                    fileTool.deleteFile(fileInfo.path)
+                    res.send({code: 404, msg: 'upload file fail'})
+                })
             })
+
+
         })
     } else {
         res.send({code: 401, msg: '请先登录'})

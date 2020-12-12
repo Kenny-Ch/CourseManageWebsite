@@ -6,7 +6,7 @@ var app = new Vue({
     },
     created(){
         this.params=getUrlkey(window.location.href)
-        this.$http.get('/index/search?courseName='+this.params.key).then(function(res){
+        this.$http.get('/index/search?search='+this.params.key).then(function(res){
             console.log(res.body)
         })
     },

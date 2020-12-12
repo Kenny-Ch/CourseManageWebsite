@@ -88,7 +88,7 @@ r.post('/register', (req, res) => {
 })
 
 //个人信息
-r.post('/perInfo', (req, res) => {
+r.get('/perInfo', (req, res) => {
     let userInfo = req.session.userInfo;
     //检查是否登录
     if (userInfo) {

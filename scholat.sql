@@ -23,15 +23,15 @@ DROP TABLE IF EXISTS `course`;
 CREATE TABLE `course` (
   `courseID` int(5) NOT NULL AUTO_INCREMENT,
   `cname` varchar(10) NOT NULL,
-  `cImgUrl` varchar(50) DEFAULT NULL,
+  `cImgUrl` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
   `creator` varchar(20) NOT NULL,
   `introduction` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`courseID`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 /*Data for the table `course` */
 
-insert  into `course`(`courseID`,`cname`,`cImgUrl`,`creator`,`introduction`) values (1,'数据结构与算法','http://www.scholat.com/resources/c_icon/sjjg_15032','2','这是数据结构与算法课程'),(2,'数字图像处理','http://www.scholat.com/resources/c_icon/imageproce','3','这是数字图像处理'),(3,'Linux操作系统','http://www.scholat.com/resources/c_icon/linuxopsys','2','这是Linux操作系统课程'),(6,'c++语言程序设计','http://www.scholat.com/resources/c_icon/cppl_15513','3','这是C++语言程序设计课程'),(7,'计算机科学技术导论','http://www.scholat.com/resources/c_icon/jsjkx_1534','3','这是计算机科学技术导论'),(8,'计算机科学技术导论','http://www.scholat.com/resources/c_icon/jsjkx_1534','3','这是计算机科学技术导论');
+insert  into `course`(`courseID`,`cname`,`cImgUrl`,`creator`,`introduction`) values (1,'数据结构与算法','http://www.scholat.com/resources/c_icon/algorithms2020_1598001765238.jpg','1','这是数据结构与算法课程'),(2,'数字图像处理','http://www.scholat.com/resources/c_icon/imageprocessing_1509061447401046.jpg','1','这是数字图像处理'),(3,'Linux操作系统','http://www.scholat.com/resources/c_icon/linuxopsystem_1497495229734.jpg','1','这是Linux操作系统课程'),(6,'c++语言程序设计','http://www.scholat.com/resources/c_icon/sjjg_1503252320591107.jpg','3','这是C++语言程序设计课程'),(7,'计算机科学技术导论','http://www.scholat.com/resources/c_icon/jsjkx_1534320000586.jpg','3','这是计算机科学技术导论');
 
 /*Table structure for table `course_announcement` */
 
@@ -111,11 +111,11 @@ CREATE TABLE `user_course` (
   `userEmail` varchar(20) NOT NULL,
   `courseID` int(5) NOT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 /*Data for the table `user_course` */
 
-insert  into `user_course`(`ID`,`userEmail`,`courseID`) values (1,'1',1),(2,'1',2),(3,'1',3),(4,'2',1);
+insert  into `user_course`(`ID`,`userEmail`,`courseID`) values (1,'1',1),(2,'1',2),(3,'1',3),(4,'2',1),(6,'1',6),(7,'1',13);
 
 /*Table structure for table `user_coursehomework` */
 
@@ -134,6 +134,23 @@ CREATE TABLE `user_coursehomework` (
 /*Data for the table `user_coursehomework` */
 
 insert  into `user_coursehomework`(`ID`,`userEmail`,`homeworkID`,`status`,`finishTime`,`homeworkUrl`) values (1,'1',1,'已完成','2020-12-07 21:54:35.337000',NULL),(2,'1',2,'未完成','2020-12-11 10:11:47.000000',NULL);
+
+/*Table structure for table `course_announcement_tea` */
+
+DROP TABLE IF EXISTS `course_announcement_tea`;
+
+/*!50001 DROP VIEW IF EXISTS `course_announcement_tea` */;
+/*!50001 DROP TABLE IF EXISTS `course_announcement_tea` */;
+
+/*!50001 CREATE TABLE  `course_announcement_tea`(
+ `ID` int(5) ,
+ `courseID` int(5) ,
+ `context` varchar(500) ,
+ `title` varchar(50) ,
+ `announceTime` datetime(6) ,
+ `viewTimes` int(5) ,
+ `teaName` varchar(10) 
+)*/;
 
 /*Table structure for table `course_homework_tea` */
 
@@ -165,7 +182,7 @@ DROP TABLE IF EXISTS `user_allcourses`;
  `courseID` int(5) ,
  `userEmail` varchar(20) ,
  `cname` varchar(10) ,
- `cImgUrl` varchar(50) ,
+ `cImgUrl` varchar(200) ,
  `teaID` varchar(20) ,
  `teaName` varchar(10) ,
  `introduction` varchar(100) 
@@ -191,6 +208,13 @@ DROP TABLE IF EXISTS `user_homeworklist`;
  `teaID` varchar(20) ,
  `teaName` varchar(10) 
 )*/;
+
+/*View structure for view course_announcement_tea */
+
+/*!50001 DROP TABLE IF EXISTS `course_announcement_tea` */;
+/*!50001 DROP VIEW IF EXISTS `course_announcement_tea` */;
+
+/*!50001 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `course_announcement_tea` AS select `course_announcement`.`ID` AS `ID`,`course_announcement`.`courseID` AS `courseID`,`course_announcement`.`context` AS `context`,`course_announcement`.`title` AS `title`,`course_announcement`.`announceTime` AS `announceTime`,`course_announcement`.`viewTimes` AS `viewTimes`,`user`.`name` AS `teaName` from ((`course_announcement` join `user`) join `course`) where ((`course_announcement`.`courseID` = `course`.`courseID`) and (`course`.`creator` = `user`.`email`)) */;
 
 /*View structure for view course_homework_tea */
 
