@@ -129,7 +129,7 @@
                         <!--所有课程里各个课程-->
                         <div id="homeworkRemind14360" v-for="course in allCourse">
                             <div style="line-height:6px;min-height:6px;"><a href="perInfo.html" target="_blank">
-                                    <img src="images/personal/jsjkxdl.jpg" class="user_img"
+                                    <img :src="course.cImgUrl" class="user_img"
                                         style="margin-top:16px;margin-left:16px;height:56px;width:56px;"></a></div>
                             <p style="padding-left:94px;margin-top:-50px;font-size: 25px">
                                 <a style="text-decoration:none;font-size:25px;color: black"
@@ -174,7 +174,7 @@
                                     <!--一个学习的课程-->
                                     <div class=" col-md-3" v-for="course in joinCourse">
                                         <a href="CreateCourse/announcement.html">
-                                            <img class="img-fluid" src="images/personal/jsjkxdl.jpg" />
+                                            <img class="img-fluid" :src="course.cImgUrl" />
                                         </a>
                                         <div class="inner-slider">
                                             <div class="inner-wrapper">
@@ -184,7 +184,7 @@
                                                             alt='' />
                                                     </span>
                                                     <span class="seller-name">
-                                                        <a href="CreateCourse/announcement.html">{{course.cname}}</a>
+                                                        <a :href="'LearnCourse/announcement.html?courseID='+course.ID">{{course.cname}}</a>
                                                     </span>
                                                 </div>
                                                 <div class="content-info">
@@ -193,7 +193,7 @@
                                                 </div>
                                                 <div class="footer row" style="font-size: 15px;">
                                                     <div class="price col-sm-6" style="">
-                                                        <a href="#">
+                                                        <a :href="'LearnCourse/announcement.html?courseID='+course.ID">
                                                             进入课程
                                                         </a>
                                                     </div>
