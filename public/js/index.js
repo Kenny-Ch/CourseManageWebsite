@@ -8,12 +8,16 @@ var app = new Vue({
             content: '',
             file:[]
         },
-        courseList:[]
+        allCourse:[],
+        createCourse:[],
+        joinCourse:[]
     },
     created(){
         this.$http.get('/index/mycourses').then(function(res){
-            console.log(res.body.allCourse)
-            this.courseList=res.body.allCourse;
+            console.log(res.body)
+            this.allCourse=res.body.allCourse;
+            this.createCourse=res.body.createCourse;
+            this.joinCourse=res.body.joinCourse;
         })
     },
     methods: {
