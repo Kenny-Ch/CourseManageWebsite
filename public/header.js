@@ -50,8 +50,8 @@ document.writeln("                <div class=\'dropdown-menu dropdown-menu-right
 document.writeln("                    <h5 class=\'dropdown-header d-flex align-items-center\'>");
 document.writeln("                        <img class=\'dropdown-user-img rounded-circle\' src=\'images/icon/avatar.png\'>");
 document.writeln("                        <div class=\'dropdown-user-details\'>");
-document.writeln("                            <div class=\'dropdown-user-details-name\'>{{message}}</div>");
-document.writeln("                            <div class=\'dropdown-user-details-email\'>kenny@qq.com</div>");
+document.writeln("                            <div class=\'dropdown-user-details-name\'>{{name}}</div>");
+document.writeln("                            <div class=\'dropdown-user-details-email\'>{{email}}</div>");
 document.writeln("                        </div>");
 document.writeln("                    </h5>");
 document.writeln("                    <div class=\'dropdown-divider\'></div>");
