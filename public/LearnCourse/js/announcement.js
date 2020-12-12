@@ -9,8 +9,9 @@ var app = new Vue({
     created(){
         that=this
         if(getUrlkey(window.location.href)){
-            console.log(getUrlkey(window.location.href).courseId)
-            this.$http.get('/course/announcementList?courseID='+getUrlkey(window.location.href).courseId).then(function(res){
+            console.log(getUrlkey(window.location.href).courseID)
+            this.params=getUrlkey(window.location.href)
+            this.$http.get('/course/announcementList?courseID='+getUrlkey(window.location.href).courseID).then(function(res){
                 console.log(res)
                 if(res.body.code==200){
                     this.announcementList=res.body.homeworkList
@@ -25,7 +26,16 @@ var app = new Vue({
     },
     methods: {
         open(announcement){
-            window.location.href="/LearnCourse/announceDetail.html?announcementID="+announcement.ID
+            window.location.href="/LearnCourse/announceDetail.html?announcementID="+announcement.ID+"&courseID="+getUrlkey(window.location.href).courseID
+        },
+        openAnnouncement(){
+            window.open('announcement.html?courseID='+this.params.courseID)
+        },
+        openResource(){
+            window.open('resource.html?courseID='+this.params.courseID)
+        },
+        openHomeworkList(){
+            window.open('homeworkList.html?courseID='+this.params.courseID)
         }
         
     }

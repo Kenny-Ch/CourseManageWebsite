@@ -7,8 +7,8 @@ var app = new Vue({
         
     },
     created(){
-        // console.log(getUrlkey(window.location.href))
-        // this.params=getUrlkey(window.location.href)
+        console.log(getUrlkey(window.location.href))
+        this.params=getUrlkey(window.location.href)
         this.$http.get('/course/resourceList?courseID=1').then(function(res){
             console.log(res)
             if(res.body.code==200){
@@ -26,14 +26,15 @@ var app = new Vue({
         
     },
     methods: {
-        // download(resource){
-        //     var head=resource.fileUrl.indexOf('/')
-        //     var end=resource.fileUrl.length
-        //     console.log(resource.fileUrl.substring(head,end))
-        //     url=resource.fileUrl.substring(head,end)
-        //     console.log(window.location.host)
-        //     window.open(window.location.host+url)
-        // }
+        openAnnouncement(){
+            window.open('announcement.html?courseID='+this.params.courseID)
+        },
+        openResource(){
+            window.open('resource.html?courseID='+this.params.courseID)
+        },
+        openHomeworkList(){
+            window.open('homeworkList.html?courseID='+this.params.courseID)
+        }
         
     }
 });

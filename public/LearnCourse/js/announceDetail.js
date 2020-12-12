@@ -7,8 +7,9 @@ var app = new Vue({
         
     },
     created(){
-        that=this
+        
         if(getUrlkey(window.location.href)){
+            this.params=getUrlkey(window.location.href)
             console.log(getUrlkey(window.location.href).announcementID)
             this.$http.get('/course/announcementDetail?announcementID='+getUrlkey(window.location.href).announcementID).then(function(res){
                 console.log(res)
@@ -24,7 +25,15 @@ var app = new Vue({
         
     },
     methods: {
-        
+        openAnnouncement(){
+            window.open('announcement.html?courseID='+this.params.courseID)
+        },
+        openResource(){
+            window.open('resource.html?courseID='+this.params.courseID)
+        },
+        openHomeworkList(){
+            window.open('homeworkList.html?courseID='+this.params.courseID)
+        }
     }
 });
 

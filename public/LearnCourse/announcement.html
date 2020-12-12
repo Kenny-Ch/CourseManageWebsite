@@ -34,9 +34,9 @@
     <div id="menu-main" class="" style="padding: 0;margin-bottom: 15px;">
         <nav class="mynav">
             <ul>
-                <li onclick="window.open('announcement2.html')"><a target="announcement2.html" href="announcement2.html">课程公告</a></li>
-                <li onclick="window.open('resource2.html')"><a target="resource2.html" href="resource2.html">课程资源</a></li>
-                <li onclick="window.open('homeworkList2.html')"><a target="homeworkList2.html" href="homeworkList2.html">课程作业</a></li>
+                <li @click="openAnnouncement()"><a href="announcement.html">课程公告</a></li>
+                <li @click="openResource()"><a href="resource.html">课程资源</a></li>
+                <li @click="openHomeworkList()"><a href="homeworkList.html">课程作业</a></li>
             </ul>
         </nav>
         <span class="target"></span>

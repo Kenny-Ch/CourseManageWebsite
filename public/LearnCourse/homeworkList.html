@@ -36,9 +36,9 @@
             <div id="menu-main" class="" style="padding: 0;margin-bottom: 15px;">
                 <nav class="mynav">
                     <ul>
-                        <li onclick="window.open('announcement.html')"><a href="announcement.html">课程公告</a></li>
-                        <li onclick="window.open('resource.html')"><a href="resource.html">课程资源</a></li>
-                        <li onclick="window.open('homeworkList.html')"><a href="homeworkList.html">课程作业</a></li>
+                        <li @click="openAnnouncement()"><a href="announcement.html">课程公告</a></li>
+                        <li @click="openResource()"><a href="resource.html">课程资源</a></li>
+                        <li @click="openHomeworkList()"><a href="homeworkList.html">课程作业</a></li>
                     </ul>
                 </nav>
                 <span class="target"></span>
@@ -57,7 +57,7 @@
                             <!--        main-content-->
                             <div class="col-sm-6 col-lg-6 col-md-4" style="left: 3%;margin-right: 20%">
                                 <div class="container" style="min-width: auto">
-                                    <a v-bind:href="'/LearnCourse/homeworkDetail.html?homeworkID='+homework.ID"
+                                    <a v-bind:href="'/LearnCourse/homeworkDetail.html?homeworkID='+homework.ID+'&courseID='+params.courseId"
                                         style="color: black;"><span
                                             style="font-size: 20px;font-family: 微軟正黑體;"><strong>{{homework.homeworkTitle}}</strong></span></a>
 

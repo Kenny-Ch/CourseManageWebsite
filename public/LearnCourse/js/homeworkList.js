@@ -2,11 +2,13 @@ var app = new Vue({
     el: '#app',
     data: {
         message: 'Hello Vue!',
-        homeworkList:[]
+        homeworkList:[],
+        params:{}
         
     },
     created(){
         console.log("test")
+        this.params=getUrlkey(window.location.href)
         this.$http.get('/course/homeworkList?courseID=1').then(function(res){
             console.log(res.body.homeworkList)
             this.homeworkList=res.body.homeworkList
@@ -14,10 +16,31 @@ var app = new Vue({
         })
     },
     methods: {
-        
+        openAnnouncement(){
+            window.open('announcement.html?courseID='+this.params.courseID)
+        },
+        openResource(){
+            window.open('resource.html?courseID='+this.params.courseID)
+        },
+        openHomeworkList(){
+            window.open('homeworkList.html?courseID='+this.params.courseID)
+        }
         
     }
 });
+
+function getUrlkey(url) {
+    var params = {};
+    var urls = url.split("?");                  
+    var arr = urls[1].split("&");               
+    for (var i = 0, l = arr.length; i < l; i++) {
+      var a = arr[i].split("=");                
+      params[a[0]] = a[1];                      
+    }                                           
+    return params;
+}
+
+
 "use strict";
                     (function () {
 
