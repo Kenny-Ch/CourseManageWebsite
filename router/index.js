@@ -17,7 +17,7 @@ r.get('/search', (req, res) => {
         //阻止往后执行
         return;
     } else {
-        pool.query("SELECT * FROM course WHERE cname like '%" + obj.search + "%'", (err, result) => {
+        pool.query("SELECT * FROM course_tea WHERE cname like '%" + obj.search + "%'", (err, result) => {
             if (err) throw err;
             console.log("数据库模糊查询结果", result);
 

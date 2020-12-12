@@ -135,23 +135,6 @@ CREATE TABLE `user_coursehomework` (
 
 insert  into `user_coursehomework`(`ID`,`userEmail`,`homeworkID`,`status`,`finishTime`,`homeworkUrl`) values (1,'1',1,'已完成','2020-12-07 21:54:35.337000',NULL),(2,'1',2,'未完成','2020-12-11 10:11:47.000000',NULL);
 
-/*Table structure for table `course_announcement_tea` */
-
-DROP TABLE IF EXISTS `course_announcement_tea`;
-
-/*!50001 DROP VIEW IF EXISTS `course_announcement_tea` */;
-/*!50001 DROP TABLE IF EXISTS `course_announcement_tea` */;
-
-/*!50001 CREATE TABLE  `course_announcement_tea`(
- `ID` int(5) ,
- `courseID` int(5) ,
- `context` varchar(500) ,
- `title` varchar(50) ,
- `announceTime` datetime(6) ,
- `viewTimes` int(5) ,
- `teaName` varchar(10) 
-)*/;
-
 /*Table structure for table `course_homework_tea` */
 
 DROP TABLE IF EXISTS `course_homework_tea`;
@@ -209,12 +192,38 @@ DROP TABLE IF EXISTS `user_homeworklist`;
  `teaName` varchar(10) 
 )*/;
 
-/*View structure for view course_announcement_tea */
+/*Table structure for table `course_announcement_tea` */
 
-/*!50001 DROP TABLE IF EXISTS `course_announcement_tea` */;
+DROP TABLE IF EXISTS `course_announcement_tea`;
+
 /*!50001 DROP VIEW IF EXISTS `course_announcement_tea` */;
+/*!50001 DROP TABLE IF EXISTS `course_announcement_tea` */;
 
-/*!50001 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `course_announcement_tea` AS select `course_announcement`.`ID` AS `ID`,`course_announcement`.`courseID` AS `courseID`,`course_announcement`.`context` AS `context`,`course_announcement`.`title` AS `title`,`course_announcement`.`announceTime` AS `announceTime`,`course_announcement`.`viewTimes` AS `viewTimes`,`user`.`name` AS `teaName` from ((`course_announcement` join `user`) join `course`) where ((`course_announcement`.`courseID` = `course`.`courseID`) and (`course`.`creator` = `user`.`email`)) */;
+/*!50001 CREATE TABLE  `course_announcement_tea`(
+ `ID` int(5) ,
+ `courseID` int(5) ,
+ `context` varchar(500) ,
+ `title` varchar(50) ,
+ `announceTime` datetime(6) ,
+ `viewTimes` int(5) ,
+ `teaName` varchar(10) 
+)*/;
+
+/*Table structure for table `course_tea` */
+
+DROP TABLE IF EXISTS `course_tea`;
+
+/*!50001 DROP VIEW IF EXISTS `course_tea` */;
+/*!50001 DROP TABLE IF EXISTS `course_tea` */;
+
+/*!50001 CREATE TABLE  `course_tea`(
+ `courseID` int(5) ,
+ `cname` varchar(10) ,
+ `cImgUrl` varchar(200) ,
+ `creator` varchar(20) ,
+ `introduction` varchar(100) ,
+ `teaName` varchar(10) 
+)*/;
 
 /*View structure for view course_homework_tea */
 
@@ -236,6 +245,20 @@ DROP TABLE IF EXISTS `user_homeworklist`;
 /*!50001 DROP VIEW IF EXISTS `user_homeworklist` */;
 
 /*!50001 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `user_homeworklist` AS select `user_coursehomework`.`ID` AS `ID`,`course_homework`.`courseID` AS `courseID`,`user_coursehomework`.`userEmail` AS `userEmail`,`user_coursehomework`.`status` AS `status`,`user_coursehomework`.`finishTime` AS `finishTime`,`user_coursehomework`.`homeworkUrl` AS `homeworkUrl`,`course_homework`.`title` AS `homeworkTitle`,`course_homework`.`ddl` AS `ddl`,`course_homework`.`ID` AS `homeworkID`,`course_homework`.`teaID` AS `teaID`,`user`.`name` AS `teaName` from ((`user_coursehomework` join `course_homework`) join `user`) where ((`user_coursehomework`.`homeworkID` = `course_homework`.`ID`) and (`course_homework`.`teaID` = `user`.`email`)) */;
+
+/*View structure for view course_announcement_tea */
+
+/*!50001 DROP TABLE IF EXISTS `course_announcement_tea` */;
+/*!50001 DROP VIEW IF EXISTS `course_announcement_tea` */;
+
+/*!50001 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `course_announcement_tea` AS select `course_announcement`.`ID` AS `ID`,`course_announcement`.`courseID` AS `courseID`,`course_announcement`.`context` AS `context`,`course_announcement`.`title` AS `title`,`course_announcement`.`announceTime` AS `announceTime`,`course_announcement`.`viewTimes` AS `viewTimes`,`user`.`name` AS `teaName` from ((`course_announcement` join `user`) join `course`) where ((`course_announcement`.`courseID` = `course`.`courseID`) and (`course`.`creator` = `user`.`email`)) */;
+
+/*View structure for view course_tea */
+
+/*!50001 DROP TABLE IF EXISTS `course_tea` */;
+/*!50001 DROP VIEW IF EXISTS `course_tea` */;
+
+/*!50001 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `course_tea` AS select `course`.`courseID` AS `courseID`,`course`.`cname` AS `cname`,`course`.`cImgUrl` AS `cImgUrl`,`course`.`creator` AS `creator`,`course`.`introduction` AS `introduction`,`user`.`name` AS `teaName` from (`course` join `user`) where (`course`.`creator` = `user`.`email`) */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
