@@ -10,7 +10,13 @@ var app = new Vue({
         },
         allCourse:[],
         createCourse:[],
-        joinCourse:[]
+        joinCourse:[],
+        ifAllCourse:false,
+        ifCreateCourse:false,
+        ifJoinCours:false,
+        allCourseNum:0,
+        createCourseNum:0,
+        joinCourseNum:0
     },
     created(){
         this.$http.get('/index/mycourses').then(function(res){
@@ -18,6 +24,24 @@ var app = new Vue({
             this.allCourse=res.body.allCourse;
             this.createCourse=res.body.createCourse;
             this.joinCourse=res.body.joinCourse;
+            if(this.allCourse.length>0){
+                this.ifAllCourse=true
+                this.allCourseNum=this.allCourse.length
+            }else{
+                this.ifAllCourse=false
+            }
+            if(this.createCourse.length>0){
+                this.ifCreateCourse=true
+                this.createCourseNum=this.createCourse.length
+            }else{
+                this.ifCreateCourse=false
+            }
+            if(this.joinCourse.length>0){
+                this.ifJoinCours=true
+                this.joinCourseNum=this.joinCourse.length
+            }else{
+                this.ifJoinCours=false
+            }
         })
     },
     methods: {

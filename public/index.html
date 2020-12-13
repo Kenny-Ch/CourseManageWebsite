@@ -146,15 +146,59 @@
                 <!--                创建课程-->
                 <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab"
                     style="min-height: 70%;">
-                    <div class="tabs_stc">共创建<a id="courseNum">&nbsp;0&nbsp;</a>门课程</div>
-                    <div id="pl_event_eventIntro" class="ev_intro">
+                    <div class="main-page best-selling" v-if="ifCreateCourse">
+                        <div class="view_slider recommended pt-5">
+                            <div class="container">
+                                <h3>已创建{{createCourseNum}}门课程</h3>
+                            </div>
+                            <div class="container" v-if="ifCreateCourse">
+                                <div class="row">
+                                    
+                                    <div class=" col-md-3" v-for="course in createCourse">
+                                        <a :href="'LearnCourse/announcement.html?courseID='+course.ID">
+                                            <img class="img-fluid" :src="course.cImgUrl" />
+                                        </a>
+                                        <div class="inner-slider">
+                                            <div class="inner-wrapper">
+                                                <div class="d-flex align-items-center">
+                                                    <span class="seller-image">
+                                                        <img class="img-fluid" :src="course.cImgUrl"
+                                                            alt='' />
+                                                    </span>
+                                                    <span class="seller-name">
+                                                        <a :href="'LearnCourse/announcement.html?courseID='+course.ID">{{course.cname}}</a>
+                                                    </span>
+                                                </div>
+                                                <div class="content-info">
+                                                    <div class="rating-wrapper">
+                                                    </div>
+                                                </div>
+                                                <div class="footer row" style="font-size: 15px;">
+                                                    <div class="price col-sm-6" style="">
+                                                        <a :href="'LearnCourse/announcement.html?courseID='+course.ID">
+                                                            进入课程
+                                                        </a>
+                                                    </div>
+                                                    <div class="price col-sm-6" style="">
+                                                        <a href="#">
+                                                            退出课程
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="pl_event_eventIntro" class="ev_intro" v-if="ifCreateCourse==false">
                         <div class="evlist_main clearfix">
                             <ul id="pl_event_eventList" style="margin-top: 0px;">
                                 <table class="datalist" style="margin-left:0px;" id="datalist1">
                                     <tbody id="createCourse">
                                         <div class="not-conts">你还没有创建任何课程，可以先<a href="#" data-toggle="modal"
-                                                data-target="#scrollmodal" class="find-course">去创建课程</a><a
-                                                onclick="logout()">测试</a></div>
+                                                data-target="#scrollmodal" class="find-course">去创建课程</a>
                                     </tbody>
                                 </table>
                             </ul>
@@ -167,7 +211,7 @@
                     <div class="main-page best-selling">
                         <div class="view_slider recommended pt-5">
                             <div class="container">
-                                <h3>正在学习6门课程</h3>
+                                <h3>正在学习{{joinCourseNum}} 门课程</h3>
                             </div>
                             <div class="container">
                                 <div class="row">
