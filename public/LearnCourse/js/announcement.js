@@ -14,7 +14,7 @@ var app = new Vue({
             this.$http.get('/course/announcementList?courseID='+getUrlkey(window.location.href).courseID).then(function(res){
                 console.log(res)
                 if(res.body.code==200){
-                    this.announcementList=res.body.homeworkList
+                    this.announcementList=res.body.announcementList
                 }else if(res.body.code==401){
                     window.location.replace("../login.html") 
                 }

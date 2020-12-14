@@ -9,7 +9,7 @@ var app = new Vue({
     created(){
         console.log("test")
         this.params=getUrlkey(window.location.href)
-        this.$http.get('/course/homeworkList?courseID=1').then(function(res){
+        this.$http.get('/course/homeworkList?courseID='+this.params.courseID).then(function(res){
             if(res.body.code==200){
                 console.log(res.body.homeworkList)
             this.homeworkList=res.body.homeworkList

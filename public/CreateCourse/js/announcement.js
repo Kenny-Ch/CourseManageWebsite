@@ -3,7 +3,12 @@ var app = new Vue({
     data: {
         message: 'Hello Vue!',
         announcementList:{},
-        params:{}
+        params:{},
+        CreAnnData:{
+            courseID:"",
+            context:"",
+            title:""
+        },
         
     },
     created(){
@@ -36,7 +41,33 @@ var app = new Vue({
         },
         openHomeworkList(){
             window.open('homeworkList.html?courseID='+this.params.courseID)
-        }
+        },
+        CreateAnn(){
+            this.CreAnnData.courseID=this.params.courseID;
+            var formData = new FormData();
+            formData.append('courseID', this.CreAnnData.courseID);
+            formData.append('context',this.CreAnnData.context);
+            formData.append('title',this.CreAnnData.title);
+            var config = {
+                headers: {
+                  'Content-Type': 'multipart/form-data',
+                  'Authorization': this.token
+                }
+              };
+            this.$http.post('/course/publishAnnouncement',formData,config).then(function (res) {
+                if (res.status === 200) {
+                    if (res.body.code == 200) {
+                        console.log(res)
+                        location.reload() 
+                    } else {
+                        console.log(res)
+                    }
+                }
+                else {
+                    console.log("err!")
+                }
+            })
+        },
         
     }
 });

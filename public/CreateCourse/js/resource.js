@@ -3,13 +3,14 @@ var app = new Vue({
     data: {
         message: 'Hello Vue!',
         resourceList:{},
+        resourceFile:[],
         params:{}
         
     },
     created(){
         console.log(getUrlkey(window.location.href))
         this.params=getUrlkey(window.location.href)
-        this.$http.get('/course/resourceList?courseID=1').then(function(res){
+        this.$http.get('/course/resourceList?courseID='+this.params.courseID).then(function(res){
             console.log(res)
             if(res.body.code==200){
                 this.resourceList=res.body.resourceList
@@ -36,7 +37,38 @@ var app = new Vue({
         },
         openHomeworkList(){
             window.open('homeworkList.html?courseID='+this.params.courseID)
-        }
+        },
+        uploadFile(){
+            console.log(this.resourceFile)
+            var formData = new FormData();
+            formData.append('courseID', this.params.courseID);
+            formData.append('file',this.resourceFile[0]);
+            var config = {
+                headers: {
+                  'Content-Type': 'multipart/form-data',
+                  'Authorization': this.token
+                }
+              };
+            this.$http.post('/course/uploadResource',formData,config).then(function (res) {
+                if (res.status === 200) {
+                    if (res.body.code == 200) {
+                        console.log(res)
+                        location.reload() 
+                    } else {
+                        console.log(res)
+                    }
+
+                }
+                else {
+                    console.log("err!")
+                }
+            })
+        },
+        getFile(event){
+            var file = event.target.files;
+            console.log(event.target.files)
+            this.resourceFile=event.target.files;
+        },
         
     }
 });
