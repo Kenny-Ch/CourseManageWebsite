@@ -22,101 +22,23 @@
     <link href="../css/style.css" rel="stylesheet">
     <link rel="stylesheet" href="../css/nav.css">
     <script type="text/javascript" src="header.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://cdn.staticfile.org/vue-resource/1.5.1/vue-resource.min.js"></script>
 </head>
 <body style="background-color: whitesmoke">
-<div class="container" style="min-height: 100%;">
+<div class="container" style="min-height: 100%;" id="app">
     <div id="courseName" class="container-fluid courseName">
         <h1><strong>计算机组成原理</strong></h1>
     </div>
     <div id="menu-main" class="" style="padding: 0;margin-bottom: 15px;">
-        <!--        <nav class="navbar navbar-expand-lg rounded" style="">-->
-        <!--            <div class="">-->
-        <!--                <ul class="nav nav-tabs" id="myTab" role="tablist" style="min-width: 80%;">-->
-        <!--                    <li class="nav-item"><strong>-->
-        <!--                        <a class="nav-link a_style" id="introduction-tab" data-toggle="tab" href="announcement.html" role="tab"-->
-        <!--                           aria-controls="home" aria-selected="true">课程公告</a></strong>-->
-        <!--                    </li>-->
-        <!--                    <li class="nav-item"><strong>-->
-        <!--                        <a class="nav-link a_style" id="news-tab" data-toggle="tab" href="resource.html" role="tab"-->
-        <!--                           aria-controls="profile" aria-selected="false">课程资源</a></strong>-->
-        <!--                    </li>-->
-        <!--                    <li class="nav-item"><strong>-->
-        <!--                        <a class="nav-link active a_style" id="academic-tab" data-toggle="tab" href="homeworkList2.html"-->
-        <!--                           role="tab"-->
-        <!--                           aria-controls="contact" aria-selected="false">课程作业</a></strong>-->
-        <!--                    </li>-->
-        <!--                </ul>-->
-        <!--            </div>-->
-        <!--        </nav>-->
-
-        <div  style="display: inline-block">
-            <nav class="mynav">
-                <ul>
-                    <li onclick="window.open('announcement2.html')"><a target="announcement2.html" href="announcement2.html">课程公告</a></li>
-                    <li onclick="window.open('resource2.html')"><a target="resource2.html" href="resource2.html">课程资源</a></li>
-                    <li onclick="window.open('homeworkList2.html')"><a target="homeworkList2.html" href="homeworkList2.html">课程作业</a></li>
-                </ul>
-            </nav><span class="target"></span></div>
-<!--        <div style="display: inline-block;margin-left: 45%">-->
-<!--            <button type="button" class="btn btn-outline-warning btn-lg" style="font-size: 18px;margin-left: 46%;min-width:100px;padding: 0;color: black;"  data-toggle="modal" data-target="#scrollmodal" >发布新公告</button>-->
-<!--        </div>-->
+        <nav class="mynav">
+            <ul>
+                <li @click="openAnnouncement()"><a href="announcement.html">课程公告</a></li>
+                <li @click="openResource()"><a href="resource.html">课程资源</a></li>
+                <li @click="openHomeworkList()"><a href="homeworkList.html">课程作业</a></li>
+            </ul>
+        </nav>
         <span class="target"></span>
-        <script>
-            "use strict";
-            (function () {
-
-                var target = document.querySelector(".target");
-                var links = document.querySelectorAll(".mynav a");
-                var colors = ["deepskyblue", "orange", "firebrick", "gold", "magenta", "black", "darkblue"];
-
-                function mouseenterFunc() {
-                    if (!this.parentNode.classList.contains("active")) {
-                        for (var i = 0; i < links.length; i++) {
-                            if (links[i].parentNode.classList.contains("active")) {
-                                links[i].parentNode.classList.remove("active");
-                            }
-                            links[i].style.opacity = "0.25";
-                        }
-
-                        this.parentNode.classList.add("active");
-                        this.style.opacity = "1";
-
-                        var width = this.getBoundingClientRect().width;
-                        var height = this.getBoundingClientRect().height;
-                        var left = this.getBoundingClientRect().left + window.pageXOffset;
-                        var top = this.getBoundingClientRect().top + window.pageYOffset;
-                        var color = colors[Math.floor(Math.random() * colors.length)];
-
-                        target.style.width = width + "px";
-                        target.style.height = height + "px";
-                        target.style.left = left + "px";
-                        target.style.top = top + "px";
-                        target.style.borderColor = color;
-                        target.style.transform = "none";
-                    }
-                }
-
-                for (var i = 0; i < links.length; i++) {
-                    links[i].addEventListener("click", function (e) {
-                        return e.preventDefault();
-                    });
-                    links[i].addEventListener("mouseenter", mouseenterFunc);
-                }
-
-                function resizeFunc() {
-                    var active = document.querySelector(".mynav li.active");
-
-                    if (active) {
-                        var left = active.getBoundingClientRect().left + window.pageXOffset;
-                        var top = active.getBoundingClientRect().top + window.pageYOffset;
-
-                        target.style.left = left + "px";
-                        target.style.top = top + "px";
-                    }
-                }
-
-                window.addEventListener("resize", resizeFunc);
-            })();</script>
     </div>
 
     <div class="tab-content pl-3 p-1 container-fluid" id="TabContent">
@@ -124,13 +46,13 @@
             <div class="seller-profile">
                 <div class="container" style="height: 100%;top: 50%">
                     <div class="underContent container">
-                        <div class="notice_title container"><h2>第一章作业</h2></div>
+                        <div class="notice_title container"><h2>{{homeworkDetail.title}}</h2></div>
                         <div class="notice_d container">
                             [&nbsp;发布人：
-                            <a href="../quchao" target="_blank">曲超</a>&nbsp;&nbsp;&nbsp;截止时间：2020-10-23 23:59:59&nbsp;&nbsp;]
+                            <a href="../quchao" target="_blank">{{homeworkDetail.teaName}}</a>&nbsp;&nbsp;&nbsp;截止时间：{{homeworkDetail.ddl}}&nbsp;&nbsp;]
                         </div>
                         <div class="notice_content container" style="font-size: 16px;">
-                            <p>3.3 基本术语解释:</p><p>扩展操作</p><p>零扩展</p><p>符号扩展</p><p>零标志ZF、溢出标志OF、进位/借位标志CF、符号标志SF</p><p>通用寄存器组</p><p>多路选择器</p><p><br/></p><p>3.4&nbsp; &nbsp;常见问题解答</p><p>1、无符号加法器如何实现?</p><p>2、补码加法器如何实现?&nbsp;</p><p>3、在补码加法器中，如何实现补码减法运算?</p><p>10、在C语言程序中，为什么以下程序段最终的f值为0，而不是2.5?</p><p>&nbsp; &nbsp; float&nbsp; f = 2.5+1e10;</p><p>&nbsp; &nbsp; f=f-1e10;</p><p><br/></p><p>*请画出补码加减运算部件的原理图。<br/></p><p><br/></p><p>3.5&nbsp; &nbsp;单项选择题</p><p>【全部要求】</p><p>重点:1-3、7-10、12、14、19、20</p><p><br/></p><p>3.6&nbsp; &nbsp;分析应用题</p><p>5、6、13、17</p><p><br/></p>
+                            {{homeworkDetail.context}}
                         </div>
                     </div>
                 </div>
@@ -155,11 +77,9 @@
 <script src="../vendor/select2/js/select2.min.js"></script>
 <!-- Custom -->
 <script src="../js/custom.js"></script>
+<script src="js//homeworkDetail.js"></script>
 
-<!--<div id="page"></div>-->
-<!--        <footer>-->
-<!--             <iframe class="my_footer" src="footer.html" scrolling="no"></iframe>-->
-<!--        </footer>-->
+
 </body>
 <script type="text/javascript" src="footer.js"></script>
 </html>
