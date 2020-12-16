@@ -25,9 +25,25 @@ r.get('/homeworkList', (req, res) => {
     //检查是否登录
     if (userInfo) {
         if (courseID) {
-            pool.query('SELECT * FROM user_homeworklist WHERE userEmail=? and courseID=? order by ddl desc', [userInfo.email, courseID], (err, result) => {
+            pool.query('SELECT course_homework.*,user.name as teaName FROM course_homework,user WHERE courseID=? and course_homework.teaID=user.email order by ddl desc', [courseID], (err, result) => {
                 console.log('作业列表查询结果：', result);
                 if (err) throw err;
+                for(let i=0; i<result.length; i++) {
+                    pool.query('SELECT * FROM user_coursehomework WHERE userEmail=? and homeworkID=? order by ddl desc', [userInfo.email, result[i].ID], (err, rresult) => {
+                      if(err) throw err;
+                      if(rresult.length == 0) {
+                          result[i].userEmail = userInfo.email;
+                          result[i].status = "未完成";
+                          result[i].finishTime = null;
+                          result[i].homeworkUrl = null;
+                      } else {
+                          result[i].userEmail = userInfo.email;
+                          result[i].status = rresult[0].status;
+                          result[i].finishTime = rresult[0].finishTime;
+                          result[i].homeworkUrl = rresult[0].homeworkUrl;
+                      }
+                    })
+                }
 
                 res.send({
                     code: 200,
