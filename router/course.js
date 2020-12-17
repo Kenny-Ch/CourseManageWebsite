@@ -4,6 +4,7 @@ const multer = require('multer'); //multer - node.js 中间件，用于处理 en
 
 //引入连接池的模块
 const pool = require('../tool/pool.js');
+const syncPool = require('../tool/syncPool');
 const fileTool = require('../tool/fileTool.js');
 
 //创建路由器对象
@@ -14,7 +15,7 @@ r.use(multer({dest: "./tempFiles"}).array("file", 1));
 
 //已加入课程相关
 //作业列表
-r.get('/homeworkList', (req, res) => {
+r.get('/homeworkList',async (req, res) => {
 
     //1.获取post 请求数据
     let obj = req.query;
@@ -25,7 +26,27 @@ r.get('/homeworkList', (req, res) => {
     //检查是否登录
     if (userInfo) {
         if (courseID) {
-            pool.query('SELECT course_homework.*,user.name as teaName FROM course_homework,user WHERE courseID=? and course_homework.teaID=user.email order by ddl desc', [courseID], (err, result) => {
+            let cresult = await syncPool('SELECT course_homework.*,user.name as teaName FROM course_homework,user WHERE courseID='+courseID+' and course_homework.teaID=user.email order by ddl desc');
+            for(let i=0; i<cresult.length; i++) {
+                let rresult = await syncPool('SELECT * FROM user_coursehomework WHERE userEmail='+userInfo.email+' and homeworkID='+cresult[i].ID);
+                    if(rresult.length == 0) {
+                        cresult[i].userEmail = userInfo.email;
+                        cresult[i].status = "未完成";
+                        cresult[i].finishTime = null;
+                        cresult[i].homeworkUrl = null;
+                    } else {
+                        cresult[i].userEmail = userInfo.email;
+                        cresult[i].status = rresult[0].status;
+                        cresult[i].finishTime = rresult[0].finishTime;
+                        cresult[i].homeworkUrl = rresult[0].homeworkUrl;
+                    }
+            }
+
+            res.send({
+                code: 200,
+                homeworkList: cresult
+            })
+            /*pool.query('SELECT course_homework.*,user.name as teaName FROM course_homework,user WHERE courseID=? and course_homework.teaID=user.email order by ddl desc', [courseID], (err, result) => {
                 console.log('作业列表查询结果：', result);
                 if (err) throw err;
                 for(let i=0; i<result.length; i++) {
@@ -49,7 +70,7 @@ r.get('/homeworkList', (req, res) => {
                     code: 200,
                     homeworkList: result
                 })
-            })
+            })*/
         } else {
             res.send({code: 402, msg: 'courseID未提供'})
         }
@@ -80,6 +101,119 @@ r.get('/homeworkDetail', (req, res) => {
         } else {
             res.send({code: 402, msg: 'homeworkID未提供'})
         }
+
+    } else {
+        res.send({code: 401, msg: '请先登录'})
+    }
+})
+
+//作业列表
+r.get('/myOrderHomeworkList',async (req, res) => {
+
+    //1.获取post 请求数据
+    // let obj = req.query;
+    // console.log(obj)
+    //2.获取session个人信息
+    let userInfo = req.session.userInfo;
+    //检查是否登录
+    if (userInfo) {
+        let cresult = await syncPool("SELECT * FROM user_allcourses WHERE userEmail="+ userInfo.email+" and userEmail != teaID");
+        let resArr = [];
+        for(let i=0; i<cresult.length; i++) {
+            let courseID = cresult[i].courseID;
+            let hresult = await syncPool('SELECT course_homework.*,user.name as teaName FROM course_homework,user WHERE courseID='+courseID+' and course_homework.teaID=user.email order by ddl desc');
+
+            for(let j=0; j<hresult.length; j++) {
+                let result = await syncPool('SELECT * FROM user_coursehomework WHERE userEmail='+userInfo.email+' and homeworkID=' + hresult[j].ID)
+                if(result.length == 0) {
+                    hresult[j].userEmail = userInfo.email;
+                    hresult[j].status = "未完成";
+                    hresult[j].finishTime = null;
+                    hresult[j].homeworkUrl = null;
+                } else {
+                    hresult[j].userEmail = userInfo.email;
+                    hresult[j].status = result[0].status;
+                    hresult[j].finishTime = result[0].finishTime;
+                    hresult[j].homeworkUrl = result[0].homeworkUrl;
+                }
+            }
+            resArr =  resArr.concat(hresult)
+        }
+        let unArr = [];
+        let hasArr = [];
+        resArr.sort(function (a,b) {
+            return b.ddl-a.ddl
+        })
+        for(let i=0; i<resArr.length; i++) {
+            if(resArr[i].status == "未完成") {
+                unArr.push(resArr[i]);
+            } else {
+                hasArr.push(resArr[i]);
+            }
+        }
+        res.send({
+            code: 200,
+            allHomeworkList: resArr,
+            unfinishList: unArr,
+            doneList:hasArr
+        })
+
+            /*pool.query('SELECT * FROM user_allcourses WHERE userEmail=? and userEmail != teaID', [userInfo.email], (err, cresult) => {
+                if(err) throw err;
+                console.log('所选的所有课程列表：length:',cresult.length)
+                let flag0 = 0;
+                let flag1 = 0;
+                let flag2 = 0;
+                let resArr = [];
+                for(let i=0; i<cresult.length; i++) {
+                    let courseID = cresult[i].courseID;
+                    pool.query('SELECT course_homework.*,user.name as teaName FROM course_homework,user WHERE courseID=? and course_homework.teaID=user.email order by ddl desc', [courseID], (err, result) => {
+                        console.log('作业列表查询结果：',courseID ," length:",result.length);
+                        if (err) throw err;
+                        if(i+1==cresult.length)flag0 = 1;
+                        for(let i=0; i<result.length; i++) {
+                            pool.query('SELECT * FROM user_coursehomework WHERE userEmail=? and homeworkID=?', [userInfo.email, result[i].ID], (err, rresult) => {
+                                if(err) throw err;
+                                if(rresult.length == 0) {
+                                    result[i].userEmail = userInfo.email;
+                                    result[i].status = "未完成";
+                                    result[i].finishTime = null;
+                                    result[i].homeworkUrl = null;
+                                } else {
+                                    result[i].userEmail = userInfo.email;
+                                    result[i].status = rresult[0].status;
+                                    result[i].finishTime = rresult[0].finishTime;
+                                    result[i].homeworkUrl = rresult[0].homeworkUrl;
+                                }
+                                if(i+1 == result.length && flag0 == 1) flag1 = 1;
+                            })
+                        }
+                        resArr =  resArr.concat(result)
+                        console.log("resarr循环时的长度：i=",i,' len: ', resArr.length)
+                    })
+                }
+                while (!flag1);
+                let unArr = [];
+                let hasArr = [];
+                console.log('所有弄完：resarr:',resArr.length)
+                resArr.sort(function (a,b) {
+                    return b.ddl-a.ddl
+                })
+                console.log('排序后resarr:',resArr.length)
+                for(let i=0; i<resArr.length; i++) {
+                    if(resArr[i].status == "未完成") {
+                        unArr.push(resArr[i]);
+                    } else {
+                        hasArr.push(resArr[i]);
+                    }
+                }
+                res.send({
+                    code: 200,
+                    allHomeworkList: resArr,
+                    unfinishList: unArr,
+                    doneList:hasArr
+                })
+            })*/
 
     } else {
         res.send({code: 401, msg: '请先登录'})
