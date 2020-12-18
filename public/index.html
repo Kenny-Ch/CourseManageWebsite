@@ -26,26 +26,26 @@
     <script src="https://cdn.staticfile.org/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script src="https://cdn.staticfile.org/vue-resource/1.5.1/vue-resource.min.js"></script>
-        <script>
-            var cookie = $.cookie('name');
-            console.log($.cookie('name'))
-            if ($.cookie('name') == null) {
-                window.location.replace("/login.html")
-            }
-            function setCookie(cname, cvalue, exdays) {
-                var d = new Date();
-                d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
-                var expires = "expires=" + d.toUTCString();
-                document.cookie = cname + "=" + cvalue + "; " + expires;
-            }
-            function clearCookie(name) {
-                setCookie(name, "", -1);
-            }
-            function logout() {
-                clearCookie('name')
-                window.location.replace("/index.html")
-            }
-        </script>
+<!--        <script>-->
+<!--            var cookie = $.cookie('name');-->
+<!--            console.log($.cookie('name'))-->
+<!--            if ($.cookie('name') == null) {-->
+<!--                window.location.replace("/login.html")-->
+<!--            }-->
+<!--            function setCookie(cname, cvalue, exdays) {-->
+<!--                var d = new Date();-->
+<!--                d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));-->
+<!--                var expires = "expires=" + d.toUTCString();-->
+<!--                document.cookie = cname + "=" + cvalue + "; " + expires;-->
+<!--            }-->
+<!--            function clearCookie(name) {-->
+<!--                setCookie(name, "", -1);-->
+<!--            }-->
+<!--            function logout() {-->
+<!--                clearCookie('name')-->
+<!--                window.location.replace("/index.html")-->
+<!--            }-->
+<!--        </script>-->
     <script type="text/javascript" src="header.js" style="padding: 0px;"></script>
     <!-- <link rel="import" href="header.html"> -->
 </head>
@@ -106,27 +106,27 @@
                 <div class="container">
                     <ul class="nav nav-tabs" id="myTab" role="tablist" style="min-width: 80%;">
                         <li class="nav-item">
-                            <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab"
+                            <a class="nav-link active text-dark font-weight-bold" id="home-tab" data-toggle="tab" href="#home" role="tab"
                                aria-controls="home" aria-selected="true">所有课程</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab"
+                            <a class="nav-link text-dark font-weight-bold" id="profile-tab" data-toggle="tab" href="#profile" role="tab"
                                aria-controls="profile" aria-selected="false">创建的课程</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab"
+                            <a class="nav-link text-dark font-weight-bold" id="contact-tab" data-toggle="tab" href="#contact" role="tab"
                                aria-controls="contact" aria-selected="false">学习的课程</a>
                         </li>
                     </ul>
-                    <ul class="navbar-nav mr-auto nav-tabs">
-                        <li class="nav-item">
-                            <input class="" type="image" src="images/personal/plus2.png" data-toggle="modal"
-                                   data-target="#scrollmodal" style="height: 32px;outline: none;"/>
-                        </li>
-                    </ul>
+<!--                    <ul class="navbar-nav mr-auto nav-tabs">-->
+<!--                        <li class="nav-item">-->
+<!--                            <input class="" type="image" src="images/personal/plus2.png" data-toggle="modal"-->
+<!--                                   data-target="#scrollmodal" style="height: 32px;outline: none;"/>-->
+<!--                        </li>-->
+<!--                    </ul>-->
                 </div>
             </nav>
-            <div class="tab-content pl-3 p-1" id="myTabContent" style="min-height: 820px;">
+            <div class="tab-content pl-5 p-1" id="myTabContent" style="min-height: 820px;">
                 <!--所有课程-->
                 <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab"
                      style="min-height: 70%;">
@@ -148,13 +148,13 @@
                         </div>
                     </ul>
                 </div>
-                <!--                创建课程-->
+                <!--创建课程-->
                 <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab"
                      style="min-height: 70%;">
                     <div class="main-page best-selling" v-if="ifCreateCourse">
                         <div class="view_slider recommended pt-5">
                             <div class="container">
-                                <h3>已创建{{createCourseNum}}门课程</h3>
+                                <h4>已创建{{createCourseNum}}门课程</h4>
                             </div>
                             <div class="container" v-if="ifCreateCourse">
                                 <div class="row">
@@ -202,9 +202,9 @@
                             <ul id="pl_event_eventList" style="margin-top: 0px;">
                                 <table class="datalist" style="margin-left:0px;" id="datalist1">
                                     <tbody id="createCourse">
-                                    <div class="not-conts">你还没有创建任何课程，可以先<a href="#" data-toggle="modal"
+                                    <div class="not-conts pt-3"><h5>你还没有创建任何课程，可以先<a href="#" data-toggle="modal"
                                                                             data-target="#scrollmodal"
-                                                                            class="find-course">去创建课程</a>
+                                                                            class="find-course">去创建课程</a></h5>
                                     </div>
                                     </tbody>
                                 </table>
@@ -212,13 +212,13 @@
                         </div>
                     </div>
                 </div>
-                <!--            学习的课程-->
+                <!--学习的课程-->
                 <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab"
                      style="min-height: 70%;">
                     <div class="main-page best-selling">
-                        <div class="view_slider recommended pt-5">
-                            <div class="container">
-                                <h3>正在学习{{joinCourseNum}} 门课程</h3>
+                        <div class="view_slider recommended pt-3">
+                            <div class="container" style="">
+                                <h5>正在学习{{joinCourseNum}} 门课程</h5>
                             </div>
                             <div class="container">
                                 <div class="row">
@@ -272,26 +272,20 @@
                      data-block="timeline"
                      aria-labelledby="instance-155035-header">
                 <div class="card-body p-3">
-                    <h5 id="instance-155035-header" class="card-title d-inline">时间轴</h5>
+
                     <div class="card-text content mt-3">
                         <div id="block-timeline-5fd9f58aa23485fd9f58a9173311" class="block-timeline"
                              data-region="timeline">
                             <div class="container-fluid p-0 pb-3 border-bottom">
                                 <div class="row-fluid no-gutters">
-                                    <div data-region="day-filter" class="btn-group">
+                                    <h3 id="instance-155035-header" class="d-inline">时间轴</h3>
+                                    <div data-region="day-filter" class="btn-group ml-5" style="display: inline;height: inherit;top: -4px;">
                                         <button type="button" class="btn dropdown-toggle" data-toggle="dropdown"
                                                 aria-haspopup="true" aria-expanded="false"
                                                 aria-label="Filter timeline items" aria-controls="menudayfilter">
-                                            <img class="icon " alt="" aria-hidden="true"
-                                                 src="https://moodle.scnu.edu.cn/theme/image.php/lambda/core/1607404159/i/duration"/>
-                                            <span class="sr-only" data-active-item-text>
-                         所有
-
-
-
-
-
-                    </span>
+                                            <img class="icon " alt="" aria-hidden="true" style="height: 20px;"
+                                                 src="images/personal/time.png"/>
+                                            <span class="sr-only" data-active-item-text>所有</span>
                                             <span data-region="caret" class="caret"></span>
                                         </button>
                                         <ul id="menudayfilter" role="menu" class="dropdown-menu" data-show-active-item>
@@ -344,12 +338,12 @@
                                             </li>
                                         </ul>
                                     </div>
-                                    <div data-region="view-selector" class="btn-group pull-right">
+                                    <div data-region="view-selector" class="btn-group ml-5" style="display: inline;height: inherit;top: -4px;">
                                         <button type="button" class="btn dropdown-toggle" data-toggle="dropdown"
                                                 aria-haspopup="true" aria-expanded="false"
                                                 aria-label="Sort timeline items" aria-controls="menusortby">
-                                            <img class="icon " alt="" aria-hidden="true"
-                                                 src="https://moodle.scnu.edu.cn/theme/image.php/lambda/core/1607404159/i/filter"/>
+                                            <img class="icon " alt="" aria-hidden="true" style="height: 20px;"
+                                                 src="images/personal/select.png"/>
                                             <span data-region="caret" class="caret"></span>
                                             <span class="sr-only" data-active-item-text>
                         按课程排序
