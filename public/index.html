@@ -26,6 +26,11 @@
     <script src="https://cdn.staticfile.org/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script src="https://cdn.staticfile.org/vue-resource/1.5.1/vue-resource.min.js"></script>
+    <style>
+        #myTab li a:active{
+            color: #00b5e5;
+        }
+    </style>
 <!--        <script>-->
 <!--            var cookie = $.cookie('name');-->
 <!--            console.log($.cookie('name'))-->
@@ -50,8 +55,8 @@
     <!-- <link rel="import" href="header.html"> -->
 </head>
 
-<body>
-<div class="main-page py-5 second" id="app" style="background-color: white;">
+<body style="background-image: url(//s2.hdslb.com/bfs/static/blive/blfe-dynamic-web/static/img/background.bc725153.png);" >
+<div class="main-page py-3 second" id="app">
     <!--        main-content-->
     <div id="page" class="container-fluid">
         <div class="row-fluid span9" id="page-content" style="width: 67%;float: left;">
@@ -102,19 +107,19 @@
                 </div>
             </div>
             <!--            *******************************************************************************************************************-->
-            <nav class="navbar navbar-expand-lg rounded">
+            <nav class="navbar navbar-expand-lg" style="background-color: white;border-radius: 4px;">
                 <div class="container">
-                    <ul class="nav nav-tabs" id="myTab" role="tablist" style="min-width: 80%;">
+                    <ul class="nav " id="myTab" role="tablist" style="min-width: 80%;font-size: 14px;">
                         <li class="nav-item">
-                            <a class="nav-link active text-dark font-weight-bold" id="home-tab" data-toggle="tab" href="#home" role="tab"
+                            <a class="nav-link active navtext" id="home-tab" data-toggle="tab" href="#home" role="tab"
                                aria-controls="home" aria-selected="true">所有课程</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark font-weight-bold" id="profile-tab" data-toggle="tab" href="#profile" role="tab"
+                            <a class="nav-link navtext" id="profile-tab" data-toggle="tab" href="#profile" role="tab"
                                aria-controls="profile" aria-selected="false">创建的课程</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark font-weight-bold" id="contact-tab" data-toggle="tab" href="#contact" role="tab"
+                            <a class="nav-link navtext" id="contact-tab" data-toggle="tab" href="#contact" role="tab"
                                aria-controls="contact" aria-selected="false">学习的课程</a>
                         </li>
                     </ul>
@@ -126,7 +131,7 @@
 <!--                    </ul>-->
                 </div>
             </nav>
-            <div class="tab-content pl-5 p-1" id="myTabContent" style="min-height: 820px;">
+            <div class="tab-content pl-5 p-1 mt-3" id="myTabContent" style="min-height: 820px;background-color: white;border-radius: 4px;">
                 <!--所有课程-->
                 <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab"
                      style="min-height: 70%;">
@@ -217,7 +222,7 @@
                      style="min-height: 70%;">
                     <div class="main-page best-selling">
                         <div class="view_slider recommended pt-3">
-                            <div class="container" style="">
+                            <div class="container pl-0" style="">
                                 <h5>正在学习{{joinCourseNum}} 门课程</h5>
                             </div>
                             <div class="container">
@@ -265,39 +270,36 @@
             </div>
         </div>
         <!--时间轴-->
-        <aside id="timeline" class="card-body p-3 span3 block-region" style="width: 33%;float: right;">
-            <section id="inst155035"
-                     class=" block_timeline block  card-c mb-3"
+        <aside id="timeline" class="card-body pt-0 span3 block-region" style="width: 33%;float: right;border-radius: 4px;">
+            <section class=" block  card-c mb-3"
                      role="complementary"
                      data-block="timeline"
                      aria-labelledby="instance-155035-header">
                 <div class="card-body p-3">
-
-                    <div class="card-text content mt-3">
-                        <div id="block-timeline-5fd9f58aa23485fd9f58a9173311" class="block-timeline"
-                             data-region="timeline">
-                            <div class="container-fluid p-0 pb-3 border-bottom">
-                                <div class="row-fluid no-gutters">
+                    <div class="content mt-3">
+<!--                        <div class="block-timeline">-->
+                            <div class="container-fluid p-0 border-bottom">
+                                <div class="row-fluid no-gutters" id="btn-drop">
                                     <h3 id="instance-155035-header" class="d-inline">时间轴</h3>
-                                    <div data-region="day-filter" class="btn-group ml-5" style="display: inline;height: inherit;top: -4px;">
+                                    <div data-region="day-filter" class="btn-group" style="display: inline;height: inherit;top: -4px;">
                                         <button type="button" class="btn dropdown-toggle" data-toggle="dropdown"
                                                 aria-haspopup="true" aria-expanded="false"
                                                 aria-label="Filter timeline items" aria-controls="menudayfilter">
                                             <img class="icon " alt="" aria-hidden="true" style="height: 20px;"
                                                  src="images/personal/time.png"/>
                                             <span class="sr-only" data-active-item-text>所有</span>
-                                            <span data-region="caret" class="caret"></span>
+<!--                                            <span data-region="caret" class="caret"></span>-->
                                         </button>
-                                        <ul id="menudayfilter" role="menu" class="dropdown-menu" data-show-active-item>
+                                        <ul id="menudayfilter" role="menu" class="dropdown-menu navtext" data-show-active-item>
                                             <li class="dropdown-item  active " data-from="-14" data-filtername="all">
                                                 <a href="#" aria-label="所有 filter option"
-                                                   role="menuitem" aria-current="true">
+                                                   role="menuitem" aria-current="true" class="navtext">
                                                     所有
                                                 </a>
                                             </li>
                                             <li class="dropdown-item " data-from="-14" data-to="0"
                                                 data-filtername="overdue">
-                                                <a href="#"
+                                                <a class="navtext" href="#"
                                                    aria-label="过期的 filter option"
                                                    role="menuitem">
                                                     过期的
@@ -306,56 +308,29 @@
                                             <li class="divider" role="separator"></li>
                                             <li class="dropdown-item " data-from="0" data-to="7"
                                                 data-filtername="next7days">
-                                                <a href="#"
+                                                <a class="navtext" href="#"
                                                    aria-label="未来7天 filter option"
                                                    role="menuitem">
                                                     未来7天
                                                 </a>
                                             </li>
-                                            <li class="dropdown-item " data-from="0" data-to="30"
-                                                data-filtername="next30days">
-                                                <a href="#"
-                                                   aria-label="未来30天 filter option"
-                                                   role="menuitem">
-                                                    未来30天
-                                                </a>
-                                            </li>
-                                            <li class="dropdown-item " data-from="0" data-to="90"
-                                                data-filtername="next3months">
-                                                <a href="#"
-                                                   aria-label="未来3个月 filter option"
-                                                   role="menuitem">
-                                                    未来3个月
-                                                </a>
-                                            </li>
-                                            <li class="dropdown-item " data-from="0" data-to="180"
-                                                data-filtername="next6months">
-                                                <a href="#"
-                                                   aria-label="未来6个月 filter option"
-                                                   role="menuitem">
-                                                    未来6个月
-                                                </a>
-                                            </li>
                                         </ul>
                                     </div>
-                                    <div data-region="view-selector" class="btn-group ml-5" style="display: inline;height: inherit;top: -4px;">
+                                    <div data-region="view-selector" class="btn-group" style="display: inline;height: inherit;top: -4px;">
                                         <button type="button" class="btn dropdown-toggle" data-toggle="dropdown"
                                                 aria-haspopup="true" aria-expanded="false"
                                                 aria-label="Sort timeline items" aria-controls="menusortby">
                                             <img class="icon " alt="" aria-hidden="true" style="height: 20px;"
                                                  src="images/personal/select.png"/>
-                                            <span data-region="caret" class="caret"></span>
-                                            <span class="sr-only" data-active-item-text>
-                        按课程排序
-
-                    </span>
+<!--                                            <span data-region="caret" class="caret"></span>-->
+                                            <span class="sr-only" data-active-item-text>按课程排序</span>
                                         </button>
                                         <ul id="menusortby" role="menu" class="dropdown-menu dropdown-menu-right"
                                             data-show-active-item>
                                             <li class="dropdown-item "
                                                 data-target="#view_dates_5fd9f58aa23485fd9f58a9173311" data-toggle="tab"
                                                 data-filtername="sortbydates">
-                                                <a href="#"
+                                                <a class="navtext" href="#"
                                                    aria-label="按日期排序 sort option"
                                                    role="menuitem">
                                                     按日期排序
@@ -365,7 +340,7 @@
                                                 data-target="#view_courses_5fd9f58aa23485fd9f58a9173311"
                                                 data-toggle="tab"
                                                 data-filtername="sortbycourses">
-                                                <a href="#"
+                                                <a class="navtext" href="#"
                                                    aria-label="按课程排序 sort option"
                                                    role="menuitem" aria-current="true">
                                                     按课程排序
@@ -375,11 +350,56 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="container-fluid p-0 border-0">
+<!--                                <h3>test</h3>-->
+                                <div class="tab-content border-0" id="course-time-list">
+                                <!--**有作业**-->
+<!--                                <div class="tab-pane active fade" id="right_tab_tools">-->
+                                    <!--课程1-->
+                                    <div class="" id="course">
+                                        <h6 class="mt-3">计算机操作系统</h6>
+                                        <ul  class="pl-1 tab">
+                                            <li>
+                                                <div class="mr-5" style="display: inline-block;"><span>第一章作业</span></div>
+                                                <div class="ml-5" style="display: inline-block;"><span>2020年12月24日</span></div>
+                                            </li>
+                                            <li>
+                                                <div class="mr-5" style="display: inline-block;">第一章作业</div>
+                                                <div class="ml-5" style="display: inline-block;">2020年12月24日</div>
+                                            </li>
+                                            <li>
+                                                <div class="mr-5" style="display: inline-block;">第一章作业</div>
+                                                <div class="ml-5" style="display: inline-block;">2020年12月24日</div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="" id="course">
+                                        <h6 class="mt-3">计算机组成原理</h6>
+                                        <ul  class="pl-1 tab">
+                                            <li>
+                                                <div class="mr-5" style="display: inline-block;"><span>第一章作业</span></div>
+                                                <div class="ml-5" style="display: inline-block;"><span>2020年12月24日</span></div>
+                                            </li>
+                                            <li>
+                                                <div class="mr-5" style="display: inline-block;">第一章作业</div>
+                                                <div class="ml-5" style="display: inline-block;">2020年12月24日</div>
+                                            </li>
+                                            <li>
+                                                <div class="mr-5" style="display: inline-block;">第一章作业</div>
+                                                <div class="ml-5" style="display: inline-block;">2020年12月24日</div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
 
-
-                        </div>
+                            </div>
                     </div>
+
+                        <!--                            </div>-->
+<!--                            <div style="clear:both;"></div>-->
+<!--                        </div>-->
                 </div>
+
             </section>
         </aside>
         <div class="" style="clear: both"></div>

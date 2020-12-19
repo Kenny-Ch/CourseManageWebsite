@@ -63,10 +63,19 @@ a {
     width: 90%;
     max-width: 1600px;
     margin: 0 auto;
-    border-top: 4px solid #FA9A34;
+    /*border-top: 4px solid #FA9A34;*/
 }
 .row-fluid{
     width: 100%;
+}
+.navtext{
+    color: #99a2aa;
+}
+.navtext:hover{
+    color: #00b5e5;
+}
+#myTab .active{
+    color: #00b5e5;
 }
 .row-fluid:before, .row-fluid:after {
     display: table;
@@ -82,12 +91,12 @@ a {
     border-radius: 0;
 }
 .block {
-    background: #f2f2f2;
+    background: white;
     padding: 12px;
-    border: 1px solid #efefef;
+    /*border: 1px solid #efefef;*/
     margin-bottom: 10px;
     box-shadow: none;
-    border-radius: 2px;
+    border-radius: 6px;
 }
 @media (max-width: 979px) and (min-width: 768px){
     .row-fluid .span9 {
@@ -100,7 +109,63 @@ a {
         width: 22.9281768%;
     }
 }
-
+.btn .caret {
+    border-top: 4px solid #fff;
+    margin-top: 8px;
+    margin-left: 0;
+}
+.caret {
+    display: inline-block;
+    width: 0;
+    height: 0;
+    vertical-align: top;
+    border-top: 4px solid #000;
+    border-right: 4px solid transparent;
+    border-left: 4px solid transparent;
+    content: "";
+}
+.m-t-1 {
+    margin-top: 14px!important;
+}
+.media-list {
+    margin-left: 0;
+    list-style: none;
+}
+.bg-pulse-grey {
+    animation: bg-pulse-grey 2s infinite linear;
+}
+#course-time-list>div>h6:first-child:after {
+    content: '';
+    display: block;
+    background: #25d2b3;
+    width: 90px;
+    height: 9px;
+    position: relative;
+    left: 0;
+    bottom: 7px;
+    border-radius: 10px;
+    opacity: 0.25;
+    pointer-events: none;
+}
+.tab{
+    display: inline-block;
+    min-width: 56px;
+    /*height: 30px;*/
+    text-align: center;
+    padding-left: 20px;
+    vertical-align: center;
+}
+#course ul li {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-bottom: #eee solid 1px;
+}
+.dropdown-item.active{
+    background-color: white;!important;
+}
+.dropdown-item:active{
+    background-color: white;
+}
 .btn-success {
     background: #2cdd9b;
     background: -webkit-linear-gradient(legacy-direction(to right), #2cdd9b 0%, #1dc8cc 100%);
