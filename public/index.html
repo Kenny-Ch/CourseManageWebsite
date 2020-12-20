@@ -164,7 +164,7 @@
                             <div class="container" v-if="ifCreateCourse">
                                 <div class="row">
 
-                                    <div class=" col-md-3" v-for="course in createCourse">
+                                    <div class=" col-md-4" v-for="course in createCourse">
                                         <a :href="'CreateCourse/announcement.html?courseID='+course.ID">
                                             <img class="img-fluid" :src="course.cImgUrl"/>
                                         </a>
@@ -228,7 +228,7 @@
                             <div class="container">
                                 <div class="row">
                                     <!--一个学习的课程-->
-                                    <div class=" col-md-3" v-for="course in joinCourse">
+                                    <div class=" col-md-4" v-for="course in joinCourse">
                                         <a :href="'LearnCourse/announcement.html?courseID='+course.ID">
                                             <img class="img-fluid" :src="course.cImgUrl"/>
                                         </a>
