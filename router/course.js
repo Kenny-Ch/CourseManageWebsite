@@ -130,11 +130,13 @@ r.get('/myOrderHomeworkList',async (req, res) => {
                     hresult[j].status = "未完成";
                     hresult[j].finishTime = null;
                     hresult[j].homeworkUrl = null;
+                    hresult[j].courseName = cresult[i].cname;
                 } else {
                     hresult[j].userEmail = userInfo.email;
                     hresult[j].status = result[0].status;
                     hresult[j].finishTime = result[0].finishTime;
                     hresult[j].homeworkUrl = result[0].homeworkUrl;
+                    hresult[j].courseName = cresult[i].cname;
                 }
             }
             resArr =  resArr.concat(hresult)
