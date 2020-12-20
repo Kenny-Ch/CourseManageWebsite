@@ -16,7 +16,11 @@ var app = new Vue({
         ifJoinCours:false,
         allCourseNum:0,
         createCourseNum:0,
-        joinCourseNum:0
+        joinCourseNum:0,
+        allHomeworkList:[],
+        doneList:[],
+        unfinishList:[],
+        homeworkList:[]
     },
     created(){
         this.$http.get('/index/mycourses').then(function(res){
@@ -42,6 +46,35 @@ var app = new Vue({
             }else{
                 this.ifJoinCours=false
             }
+        }),
+        this.$http.get('/course/myOrderHomeworkList').then(function(res){
+            console.log(res.body)
+            this.allHomeworkList=res.body.allHomeworkList;
+            for(var i=0;i<this.allHomeworkList.length;i++){
+                let date = new Date(this.allHomeworkList[i].ddl); 
+                console.log(typeof(date))
+                let date_value = date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate() + ' ' + date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds();
+                this.allHomeworkList[i].date=date_value;
+            }
+
+            this.doneList=res.body.doneList;
+            for(var i=0;i<this.doneList.length;i++){
+                let date = new Date(this.doneList[i].ddl); 
+                console.log(typeof(date))
+                let date_value = date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate() + ' ' + date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds();
+                this.doneList[i].date=date_value;
+            }
+
+            this.unfinishList=res.body.unfinishList;
+            for(var i=0;i<this.unfinishList.length;i++){
+                let date = new Date(this.unfinishList[i].ddl); 
+                console.log(typeof(date))
+                let date_value = date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate() + ' ' + date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds();
+                this.unfinishList[i].date=date_value;
+            }
+
+            this.homeworkList=this.allHomeworkList;
+            
         })
     },
     methods: {
@@ -77,6 +110,15 @@ var app = new Vue({
             console.log(event.target.files)
             this.CreCouData.file=event.target.files;
         },
+        changeToFinish(){
+            this.homeworkList=this.doneList;
+        },
+        changeToUnFinish(){
+            this.homeworkList=this.unfinishList
+        },
+        changeToAll(){
+            this.homeworkList=this.allHomeworkList
+        }
         
     }
 });

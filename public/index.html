@@ -297,7 +297,7 @@
                                                     所有
                                                 </a>
                                             </li>
-                                            <li class="dropdown-item " data-from="-14" data-to="0"
+                                            <!-- <li class="dropdown-item " data-from="-14" data-to="0"
                                                 data-filtername="overdue">
                                                 <a class="navtext" href="#"
                                                    aria-label="过期的 filter option"
@@ -313,7 +313,7 @@
                                                    role="menuitem">
                                                     未来7天
                                                 </a>
-                                            </li>
+                                            </li> -->
                                         </ul>
                                     </div>
                                     <div data-region="view-selector" class="btn-group" style="display: inline;height: inherit;top: -4px;">
@@ -331,9 +331,10 @@
                                                 data-target="#view_dates_5fd9f58aa23485fd9f58a9173311" data-toggle="tab"
                                                 data-filtername="sortbydates">
                                                 <a class="navtext" href="#"
-                                                   aria-label="按日期排序 sort option"
+                                                   aria-label="显示未完成作业列表 sort option"
+                                                   @click="changeToUnFinish()"
                                                    role="menuitem">
-                                                    按日期排序
+                                                    显示未完成作业列表
                                                 </a>
                                             </li>
                                             <li class="dropdown-item active"
@@ -341,9 +342,21 @@
                                                 data-toggle="tab"
                                                 data-filtername="sortbycourses">
                                                 <a class="navtext" href="#"
-                                                   aria-label="按课程排序 sort option"
+                                                   aria-label="显示已完成作业列表 sort option"
+                                                   @click="changeToFinish()"
                                                    role="menuitem" aria-current="true">
-                                                    按课程排序
+                                                   显示已完成作业列表
+                                                </a>
+                                            </li>
+                                            <li class="dropdown-item active"
+                                                data-target="#view_courses_5fd9f58aa23485fd9f58a9173311"
+                                                data-toggle="tab"
+                                                data-filtername="sortbycourses">
+                                                <a class="navtext" href="#"
+                                                   aria-label="显示所有作业列表 sort option"
+                                                   @click="changeToAll()"
+                                                   role="menuitem" aria-current="true">
+                                                   显示所有作业列表
                                                 </a>
                                             </li>
                                         </ul>
@@ -356,37 +369,12 @@
                                 <!--**有作业**-->
 <!--                                <div class="tab-pane active fade" id="right_tab_tools">-->
                                     <!--课程1-->
-                                    <div class="" id="course">
-                                        <h6 class="mt-3">计算机操作系统</h6>
+                                    <div class="" id="course" v-for="homework in homeworkList">
+                                        <h6 class="mt-3">{{homework.courseName}} </h6>
                                         <ul  class="pl-1 tab">
                                             <li>
-                                                <div class="mr-5" style="display: inline-block;"><span>第一章作业</span></div>
-                                                <div class="ml-5" style="display: inline-block;"><span>2020年12月24日</span></div>
-                                            </li>
-                                            <li>
-                                                <div class="mr-5" style="display: inline-block;">第一章作业</div>
-                                                <div class="ml-5" style="display: inline-block;">2020年12月24日</div>
-                                            </li>
-                                            <li>
-                                                <div class="mr-5" style="display: inline-block;">第一章作业</div>
-                                                <div class="ml-5" style="display: inline-block;">2020年12月24日</div>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div class="" id="course">
-                                        <h6 class="mt-3">计算机组成原理</h6>
-                                        <ul  class="pl-1 tab">
-                                            <li>
-                                                <div class="mr-5" style="display: inline-block;"><span>第一章作业</span></div>
-                                                <div class="ml-5" style="display: inline-block;"><span>2020年12月24日</span></div>
-                                            </li>
-                                            <li>
-                                                <div class="mr-5" style="display: inline-block;">第一章作业</div>
-                                                <div class="ml-5" style="display: inline-block;">2020年12月24日</div>
-                                            </li>
-                                            <li>
-                                                <div class="mr-5" style="display: inline-block;">第一章作业</div>
-                                                <div class="ml-5" style="display: inline-block;">2020年12月24日</div>
+                                                <div class="mr-5" style="display: inline-block;"><span>{{homework.title}} </span></div>
+                                                <div class="ml-5" style="display: inline-block;"><span>{{homework.date}} </span></div>
                                             </li>
                                         </ul>
                                     </div>
