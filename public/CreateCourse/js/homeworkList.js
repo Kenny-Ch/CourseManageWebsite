@@ -55,7 +55,7 @@ var app = new Vue({
                 if (res.status === 200) {
                     if (res.body.code == 200) {
                         console.log(res)
-                        // location.reload() 
+                        window.location.replace("homeworkList.html?courseID="+this.params.courseID)
                     } else {
                         console.log(res)
                     }
