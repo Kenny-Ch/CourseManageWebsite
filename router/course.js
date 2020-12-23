@@ -647,7 +647,7 @@ r.post('/submitHomework', (req, res) => {
         let desDirPath = "uploadFiles/user" + userInfo.email
         let fileName = fileInfo.originalname
 
-        obj.userID = userInfo.email
+        obj.userEmail = userInfo.email
         obj.status = '已完成'
         obj.finishTime = new Date()
         obj.homeworkUrl = "user" + userInfo.email + "/" + fileName
