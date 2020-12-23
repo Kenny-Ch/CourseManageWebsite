@@ -23,61 +23,55 @@
       <link href="vendor/select2/css/select2.min.css" rel="stylesheet">
       <!-- Custom styles for this template -->
       <link href="css/style.css" rel="stylesheet">
+      <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+      <script src="https://cdn.staticfile.org/vue-resource/1.5.1/vue-resource.min.js"></script>
    </head>
    <body>
       <!-- Register -->
-      <div class="bg-white">
+      <div class="bg-white" id="app">
          <div class="container">
             <div class="row justify-content-center align-items-center d-flex vh-100">
                <div class="col-lg-4 mx-auto">
                   <div class="osahan-login py-4">
                      <div class="text-center mb-4">
-                        <img src="images/personal/kennychen_1589254399919.jpg" alt="">
-                        <h5 class="font-weight-bold mt-3">加入学者网</h5>
-                        <p class="text-muted">The scholars' home. Color your academic life</p>
+                        <img src="images/personal/xuezhe.png" alt="">
+                        <h5 class="font-weight-bold mt-3">加入云课堂</h5>
+                        <p class="text-muted">开启智慧课堂</p>
                      </div>
-                     <form action="index.html">
+                     <form>
                         <div class="form-row">
                            <div class="col">
                               <div class="form-group">
-                                 <label class="mb-1">用户名</label>
+                                 <label class="mb-1">姓名</label>
                                  <div class="position-relative icon-form-control">
                                     <i class="mdi mdi-account position-absolute"></i>
-                                    <input type="text" class="form-control">
+                                    <input type="text" class="form-control" v-model="formData.name">
                                  </div>
                               </div>
                            </div>
-<!--                           <div class="col">-->
-<!--                              <div class="form-group">-->
-<!--                                 <label class="mb-1">Last name</label>-->
-<!--                                 <div class="position-relative">-->
-<!--                                    <input type="text" class="form-control">-->
-<!--                                 </div>-->
-<!--                              </div>-->
-<!--                           </div>-->
                         </div>
                         <div class="form-group">
                            <label class="mb-1">邮箱</label>
                            <div class="position-relative icon-form-control">
                               <i class="mdi mdi-email-outline position-absolute"></i>
-                              <input type="email" class="form-control">
+                              <input type="email" class="form-control" v-model="formData.email">
                            </div>
                         </div>
                         <div class="form-group">
                            <label class="mb-1">密码</label>
                            <div class="position-relative icon-form-control">
                               <i class="mdi mdi-key-variant position-absolute"></i>
-                              <input type="password" class="form-control">
+                              <input type="password" class="form-control" v-model="formData.password">
                            </div>
                         </div>
                         <div class="form-group">
                            <label class="mb-1">再次输入密码</label>
                            <div class="position-relative icon-form-control">
                               <i class="mdi mdi-key-variant position-absolute"></i>
-                              <input type="password" class="form-control">
+                              <input type="password" class="form-control" v-model="password2">
                            </div>
                         </div>
-                        <button class="btn btn-success btn-block text-uppercase" type="submit">注册</button>
+                        <button class="btn btn-success btn-block text-uppercase" @click="onSubmit($event)">注册</button>
                         <div class="py-3 d-flex align-item-center">
                            <span class="ml-auto"> 已经拥有账号?<a href="login.html">登录</a></span>
                         </div>
@@ -99,5 +93,6 @@
       <script src="vendor/select2/js/select2.min.js"></script>
       <!-- Custom -->
       <script src="js/custom.js"></script>
+      <script src="js/register.js"></script>
    </body>
 </html>

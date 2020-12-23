@@ -47,17 +47,17 @@
 <!--        </div>-->
 <!--    </div>-->
 <!--</div>-->
-<div class="container" style="min-height: 100%;">
+<div class="container" style="min-height: 100%;" id="app">
     <div id="courseName" class="container-fluid courseName">
         <h1><strong>搜索结果</strong></h1>
     </div>
     <div class="pl-3 p-1" id="TabContent" style="min-height: 100%;margin-top: 10px;">
-        <div class="fade show active" id="introduction" role="tabpanel" aria-labelledby="introduction-tab">
-            <div class="seller-profile">
+        <div class="fade show active" id="introduction" role="tabpanel" aria-labelledby="introduction-tab" v-for="result in resultList">
+            <div class="seller-profile" >
                 <div class="container row" style="height: 100%;top: 50%">
                     <!--                        icon-->
                     <div class="col-sm-6 col-lg-2 col-md-2">
-                        <img src="images/personal/jsjkxdl.jpg" alt=""
+                        <img :src="result.cImgUrl" alt=""
                              style="width: 110px;height: 130px;border-radius: 4px;">
                     </div>
                     <div class="main-item-info col-sm-6 col-lg-6 col-md-4">
@@ -75,7 +75,7 @@
                     </div>
                     <div class="col" style="max-width: 200px;margin-left: 15%;">
                         <button class="btn btn-lg btn-success"
-                                style="min-width:150px; width: 100%;margin-top: 45px;font-size: 14px;">
+                                style="min-width:150px; width: 100%;margin-top: 45px;font-size: 14px;" @click="joinCourse(result.courseID)">
                             <strong
                                     style="font-size: 14px;">学习课程</strong></button>
                     </div>
