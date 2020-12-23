@@ -380,6 +380,7 @@ r.post('/createCourse', (req, res) => {
     //1.获取post 请求数据
     let obj = req.body;
     console.log("创建课程请求参数：", obj)
+    console.log('文件：',req.files)
 
     //2.获取session个人信息
     let userInfo = req.session.userInfo;
@@ -410,6 +411,7 @@ r.post('/createCourse', (req, res) => {
             let courseID = result.insertId
             let desDirPath = "uploadFiles/" + courseID
             let fileUrl = desDirPath + "/" + fileInfo.originalname
+            let sqlFileUrl = courseID + "/" + fileInfo.originalname
 
             let userObj = {
                 userEmail:userInfo.email,
@@ -427,7 +429,7 @@ r.post('/createCourse', (req, res) => {
                     .then(function (fileRes) {
                         if (fileRes.code === 200) {//上传成功
                             //执行sql命令  将数据添加到数据库
-                            pool.query('UPDATE course  SET cImgUrl=? WHERE courseID=?', [fileUrl, courseID], (err, updateresult) => {
+                            pool.query('UPDATE course  SET cImgUrl=? WHERE courseID=?', [sqlFileUrl, courseID], (err, updateresult) => {
                                 if (err) {
                                     fileTool.deleteFile(fileInfo.path)
                                     fileTool.deleteFile(fileUrl)

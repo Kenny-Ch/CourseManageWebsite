@@ -143,7 +143,7 @@
                                      style="margin-top:16px;margin-left:16px;height:56px;width:56px;"></a></div>
                             <p style="padding-left:94px;margin-top:-50px;font-size: 25px">
                                 <a style="text-decoration:none;font-size:25px;color: black"
-                                   v-bind:href="'/LearnCourse/homeworkList.html?courseID='+course.ID"
+                                   v-bind:href="'/LearnCourse/homeworkList.html?courseID='+course.courseID"
                                    target="_blank">{{course.cname}}</a>
                                 <!--<a style="text-decoration:none;font-size:15px;" href="./course/S_homeworkList.html?courseId=1428" target="_blank">上机实验13&nbsp;考级复习二</a>-->
                             </p>
@@ -165,7 +165,7 @@
                                 <div class="row">
 
                                     <div class=" col-md-4" v-for="course in createCourse">
-                                        <a :href="'CreateCourse/announcement.html?courseID='+course.ID">
+                                        <a :href="'CreateCourse/announcement.html?courseID='+course.courseID">
                                             <img class="img-fluid" :src="course.cImgUrl"/>
                                         </a>
                                         <div class="inner-slider">
@@ -176,7 +176,7 @@
                                                              alt=''/>
                                                     </span>
                                                     <span class="seller-name">
-                                                        <a :href="'CreateCourse/announcement.html?courseID='+course.ID">{{course.cname}}</a>
+                                                        <a :href="'CreateCourse/announcement.html?courseID='+course.courseID">{{course.cname}}</a>
                                                     </span>
                                                 </div>
                                                 <div class="content-info">
@@ -185,7 +185,7 @@
                                                 </div>
                                                 <div class="footer row" style="font-size: 15px;">
                                                     <div class="price col-sm-6" style="">
-                                                        <a :href="'CreateCourse/announcement.html?courseID='+course.ID">
+                                                        <a :href="'CreateCourse/announcement.html?courseID='+course.courseID">
                                                             进入课程
                                                         </a>
                                                     </div>
@@ -229,7 +229,7 @@
                                 <div class="row">
                                     <!--一个学习的课程-->
                                     <div class=" col-md-4" v-for="course in joinCourse">
-                                        <a :href="'LearnCourse/announcement.html?courseID='+course.ID">
+                                        <a :href="'LearnCourse/announcement.html?courseID='+course.courseID">
                                             <img class="img-fluid" :src="course.cImgUrl"/>
                                         </a>
                                         <div class="inner-slider">
@@ -240,7 +240,7 @@
                                                              alt=''/>
                                                     </span>
                                                     <span class="seller-name">
-                                                        <a :href="'LearnCourse/announcement.html?courseID='+course.ID">{{course.cname}}</a>
+                                                        <a :href="'LearnCourse/announcement.html?courseID='+course.courseID">{{course.cname}}</a>
                                                     </span>
                                                 </div>
                                                 <div class="content-info">
@@ -249,7 +249,7 @@
                                                 </div>
                                                 <div class="footer row" style="font-size: 15px;">
                                                     <div class="price col-sm-6" style="">
-                                                        <a :href="'LearnCourse/announcement.html?courseID='+course.ID">
+                                                        <a :href="'LearnCourse/announcement.html?courseID='+course.courseID">
                                                             进入课程
                                                         </a>
                                                     </div>
