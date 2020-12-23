@@ -21,11 +21,11 @@ var app = new Vue({
                 window.location.replace("../login.html") 
             }
             for(var i=0;i<this.resourceList.length;i++){
-                resource=this.resourceList[i]
-                var head=resource.fileUrl.indexOf('/')
-                var end=resource.fileUrl.length
-                url=resource.fileUrl.substring(head,end)
-                this.resourceList[i]['url']='http://'+window.location.host+url
+                let resource=this.resourceList[i]
+                // var head=resource.fileUrl.indexOf('/')
+                // var end=resource.fileUrl.length
+                // let url=resource.fileUrl.substring(head,end)
+                this.resourceList[i]['url']='http://'+window.location.host+"/"+resource.fileUrl
             }
             console.log(this.resourceList)
         })
