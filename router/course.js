@@ -13,6 +13,47 @@ r.use(multer({dest: "./tempFiles"}).array("file", 1));
 
 //添加路由
 
+//加入课程
+r.post('/joinCourse', (req,res) => {
+    //1.获取post 请求数据
+    let obj = req.body;
+    console.log(obj)
+     let courseID = obj.courseID
+    //2.获取session个人信息
+    let userInfo = req.session.userInfo;
+    if (userInfo) {
+        if (courseID) {
+            pool.query('SELECT * FROM user_course WHERE courseID=? and userEmail=?', [courseID,userInfo.email], (err, result) => {
+                console.log('加入课程情况查询：', result);
+                if (err) throw err;
+                if(result.length>0) {
+                    res.send({
+                        code: 403,
+                        msg: "已经加入课程"
+                    })
+                } else {
+                    let o = {
+                        userEmail: userInfo.email,
+                        courseID: courseID
+                    }
+                    pool.query('INSERT INTO user_course SET ?', [o], (err, result) => {
+                        if (err) throw err;
+                        console.log(result);
+                        //注册成功
+                        res.send({code: 200, msg: 'join success'})
+                    })
+                }
+
+            })
+        } else {
+            res.send({code: 402, msg: 'courseID未提供'})
+        }
+
+    } else {
+        res.send({code: 401, msg: '请先登录'})
+    }
+})
+
 //已加入课程相关
 //作业列表
 r.get('/homeworkList',async (req, res) => {
