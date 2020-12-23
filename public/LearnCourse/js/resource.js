@@ -13,6 +13,9 @@ var app = new Vue({
             console.log(res)
             if(res.body.code==200){
                 this.resourceList=res.body.resourceList
+                for(var i=0;i<this.resourceList.length;i++){
+                    this.resourceList[i].uploadTime=getDate(this.resourceList[i].uploadTime)
+                }
             }else if(res.body.code==401){
                 window.location.replace("../login.html") 
             }
@@ -50,6 +53,12 @@ function getUrlkey(url) {
       params[a[0]] = a[1];                      
     }                                           
     return params;
+}
+
+function getDate(dd) {
+    let date = new Date(dd);
+    let date_value = date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate() + ' ' + date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds();
+    return date_value;
 }
 
 "use strict";

@@ -15,6 +15,9 @@ var app = new Vue({
                 console.log(res)
                 if(res.body.code==200){
                     this.announcementList=res.body.announcementList
+                    for(var i=0;i<this.announcementList.length;i++){
+                        this.announcementList[i].announceTime=getDate(this.announcementList[i].announceTime)
+                    }
                 }else if(res.body.code==401){
                     window.location.replace("../login.html") 
                 }
@@ -55,6 +58,11 @@ function getUrlkey(url) {
     return params;
 }
 
+function getDate(dd) {
+    let date = new Date(dd);
+    let date_value = date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate() + ' ' + date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds();
+    return date_value;
+}
 "use strict";
             (function () {
 
