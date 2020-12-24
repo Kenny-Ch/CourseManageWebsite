@@ -371,10 +371,15 @@
                                     <!--课程1-->
                                     <div class="" id="course" v-for="homework in homeworkList">
                                         <h6 class="mt-3">{{homework.courseName}} </h6>
-                                        <ul  class="pl-1 tab">
+                                        <ul  class="pl-1 tab" style="width: 100%;">
                                             <li>
-                                                <div class="mr-5" style="display: inline-block;"><span  style="font-size: 16px;"><a :href="'LearnCourse/homeworkList.html?courseID='+homework.courseID" style="color: black;">{{homework.title}} </a>  </span></div>
-                                                <div class="ml-5" style="display: inline-block;"><span>{{homework.date}} </span></div>
+                                                <div class="row container-fluid">
+                                                    <div class="col-4"><span>{{homework.title}} </span></div>
+                                                    <div class="col-2"></div>
+                                                    <div class="col-6"><span>{{homework.date}} </span></div>
+                                                </div>
+                                                <!--                                                <div class="mr-5" style="display: inline-block;"><span>{{homework.title}} </span></div>-->
+                                                <!--                                                <div class="ml-5" style="display: inline-block;"><span>{{homework.date}} </span></div>-->
                                             </li>
                                         </ul>
                                     </div>
