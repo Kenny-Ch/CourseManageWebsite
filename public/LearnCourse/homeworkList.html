@@ -29,6 +29,35 @@
 
 <body style="background-color: whitesmoke; min-height: 70%; ">
     <div id="app" style="min-height: 67%;">
+        <!--    发布新资源-->
+        <div class="modal fade" id="scrollmodal1" tabindex="-1" role="dialog" aria-labelledby="scrollmodalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="scrollmodalLabel">提交作业</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div style="margin-top: 15px; margin-bottom: 20px;">
+                            <form action="" role="form">
+                                <div class="form-group">
+                                    <div class="col-sm-10"><input class="" id="upload-resource" type="file"
+                                            style="size: 30px;" @change="getFile($event)"></div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
+                        <button type="button" class="btn btn-primary" @click="uploadFile()">确定</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--****************-->
         <div class="container" style="min-height: 100%;">
             <div id="courseName" class="container-fluid courseName">
                 <h1><strong>My Courses</strong></h1>
@@ -41,7 +70,7 @@
                         <li @click="openHomeworkList()"><a href="homeworkList.html">课程作业</a></li>
                     </ul>
                 </nav>
-<!--                <span class="target"></span>-->
+                <!--                <span class="target"></span>-->
 
             </div>
 
@@ -80,7 +109,7 @@
                                     style="min-width:150px; width: 100%;margin-top: 5px;margin-right:20px;font-size: 14px;"><strong
                                         style="font-size: 14px;">更改作业</strong></button>
                                 <button class="btn btn-lg btn-success" v-if="homework.status=='未完成'"
-                                    style="min-width:150px; width: 100%;margin-top: 5px;margin-right:20px;font-size: 14px;"><strong
+                                    style="min-width:150px; width: 100%;margin-top: 5px;margin-right:20px;font-size: 14px;" data-toggle="modal" data-target="#scrollmodal1" @click="setHomeworkID(homework.ID)"><strong
                                         style="font-size: 14px;">提交作业</strong></button>
                             </div>
                         </div>

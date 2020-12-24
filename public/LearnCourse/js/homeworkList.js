@@ -3,7 +3,9 @@ var app = new Vue({
     data: {
         message: 'Hello Vue!',
         homeworkList: [],
-        params: {}
+        params: {},
+        homeworkFile:[],
+        homeworkID:-1
 
     },
     created() {
@@ -32,6 +34,41 @@ var app = new Vue({
         },
         openHomeworkList() {
             window.location.href='/LearnCourse/homeworkList.html?courseID=' + this.params.courseID
+        },
+        getFile(event){
+            var file = event.target.files;
+            console.log(event.target.files)
+            this.homeworkFile=event.target.files;
+        },
+        uploadFile(){
+            console.log(this.homeworkFile)
+            var formData = new FormData();
+            formData.append('homeworkID', this.homeworkID);
+            formData.append('file',this.homeworkFile[0]);
+            var config = {
+                headers: {
+                  'Content-Type': 'multipart/form-data',
+                  'Authorization': this.token
+                }
+              };
+            this.$http.post('/course/submitHomework',formData,config).then(function (res) {
+                if (res.status === 200) {
+                    if (res.body.code == 200) {
+                        console.log(res)
+                        location.reload() 
+                    } else {
+                        console.log(res)
+                    }
+
+                }
+                else {
+                    console.log("err!")
+                }
+            })
+        },
+        setHomeworkID(id){
+            // console.log("click")
+            this.homeworkID=id
         }
 
     }
