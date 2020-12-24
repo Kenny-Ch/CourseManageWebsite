@@ -4,7 +4,8 @@ var header = new Vue({
         message: 'Hello Vue!',
         word: "",
         name: "",
-        email: ""
+        email: "",
+        imgUrl:""
     },
     created() {
         this.$http.get('/user/perInfo').then(function (res) {
@@ -12,6 +13,7 @@ var header = new Vue({
                 console.log(res.body)
                 this.name = res.body.perInfo.name
                 this.email = res.body.perInfo.email
+                this.imgUrl=res.body.perInfo.imgUrl
             }else if(res.body.code==401){
                 window.location.replace("../login.html") 
             }
