@@ -138,7 +138,7 @@
                     <ul class="slider" id="courseEvents">
                         <!--所有课程里各个课程-->
                         <div id="homeworkRemind14360" v-for="course in allCourse">
-                            <div style="line-height:6px;min-height:6px;"><a href="perInfo.html" target="_blank">
+                            <div style="line-height:6px;min-height:6px;"><a v-bind:href="'/LearnCourse/homeworkList.html?courseID='+course.courseID" target="_blank">
                                 <img :src="course.cImgUrl" class="user_img"
                                      style="margin-top:16px;margin-left:16px;height:56px;width:56px;"></a></div>
                             <p style="padding-left:94px;margin-top:-50px;font-size: 25px">
