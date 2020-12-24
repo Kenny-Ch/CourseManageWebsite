@@ -34,16 +34,16 @@ var app = new Vue({
     },
     methods: {
         open(announcement){
-            window.location.href="/LearnCourse/announceDetail.html?announcementID="+announcement.ID+"&courseID="+getUrlkey(window.location.href).courseID
+            window.location.href="/CreateCourse/announceDetail.html?announcementID="+announcement.ID+"&courseID="+getUrlkey(window.location.href).courseID
         },
         openAnnouncement(){
-            window.open('announcement.html?courseID='+this.params.courseID)
+            window.location.href='/CreateCourse/announcement.html?courseID='+this.params.courseID
         },
         openResource(){
-            window.open('resource.html?courseID='+this.params.courseID)
+            window.location.href='/CreateCourse/resource.html?courseID='+this.params.courseID
         },
         openHomeworkList(){
-            window.open('homeworkList.html?courseID='+this.params.courseID)
+            window.location.href='/CreateCourse/homeworkList.html?courseID='+this.params.courseID
         },
         CreateAnn(){
             this.CreAnnData.courseID=this.params.courseID;

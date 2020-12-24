@@ -32,13 +32,13 @@ var app = new Vue({
     },
     methods: {
         openAnnouncement(){
-            window.open('announcement.html?courseID='+this.params.courseID)
+            window.location.href='/LearnCourse/announcement.html?courseID='+this.params.courseID
         },
         openResource(){
-            window.open('resource.html?courseID='+this.params.courseID)
+            window.location.href='/LearnCourse/resource.html?courseID='+this.params.courseID
         },
         openHomeworkList(){
-            window.open('homeworkList.html?courseID='+this.params.courseID)
+            window.location.href='/LearnCourse/homeworkList.html?courseID='+this.params.courseID
         }
         
     }
